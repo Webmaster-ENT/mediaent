@@ -26,7 +26,7 @@ class ArticleRequest extends FormRequest
         return [
             // 'title'=>'required',
             // 'status'=>'required',
-            // 'thumbnail'=>'required|mimes:png,jpg,jpeg|max:1024',
+            // 'thumbnail'=>'required|mimes:png,jpg,jpeg',
             // 'field' => ['in:title'],
             'order' => ['in:asc,desc'],
             'perPage' => ['numeric'],

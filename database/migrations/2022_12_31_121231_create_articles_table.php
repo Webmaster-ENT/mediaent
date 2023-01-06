@@ -22,9 +22,9 @@ return new class extends Migration
             $table->text('summary');
             $table->longText('body');
             $table->text('thumbnail');
-            $table->enum('status',['show', 'draft']);
-            $table->text('comment');
-            $table->unsignedBigInteger('like');
+            $table->enum('status',['show', 'draft'])->default('draft');
+            $table->text('comment')->nullable();
+            $table->unsignedBigInteger('like')->nullable();
             $table->timestamps();
         });
     }

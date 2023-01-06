@@ -62,17 +62,26 @@ class ArticleController extends Controller
             'body' => ['required'],
         ])->validate();
 
+        $slug = Str::slug(Str::words($request->title, 15));
+        $newName = '';
+
+        // if ($request->file('thumbnail')) {
+        //     $extension = $request->file('thumbnail')->getClientOriginalExtension();
+        //     $newName = $slug . '-' . now()->timestamp . '.' . $extension;
+        //     $request->file('thumbnail')->storeAs('images/article', $newName);
+        // }
+        $comment = " ";
         $like = 0;
         Article::create([
             'title' => $request->title,
-            'slug' => Str::slug(Str::words($request->title, 15)),
+            'slug' => $slug,
             'user_id' => Auth::id(),
             'category_id' => $request->category_id,
             'body' => $request->body,
             'summary' => Str::of(Str::words($request->body, 23)),
             'status' => $request->status,
-            'thumbnail' => $request->thumbnail,
-            'comment' => $request->comment,
+            // 'thumbnail' => $request['thumbnail'] = $newName,
+            'comment' => $comment,
             'like' => $like,
         ]);
         return redirect()->route('article.index');
