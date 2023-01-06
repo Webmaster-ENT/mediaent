@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Article;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Markdown;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
@@ -12,10 +21,19 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ArticleRequest $request)
     {
         $articles = Article::all();
-        return view('article.index', compact('articles'));
+        $categories = Category::all();
+        // $perPage = $request->has('perPage') ? $request->perPage : 10;
+        // return Inertia::render('Article/Index', [
+        //     'title'         => __('app.label.article'),
+        //     'filters'       => $request->all(['search', 'field', 'order']),
+        //     'perPage'       => (int) $perPage,
+        //     'articles'         => $articles->with('user')->paginate($perPage),
+        //     'breadcrumbs'   => [['label' => __('app.label.article'), 'href' => route('article.index')]],
+        // ]);
+        return Inertia::render('Article/Index',['articles' => $articles, 'categories' => $categories]);
     }
 
     /**
@@ -25,7 +43,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return Inertia::render('Article/Create',[
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -36,7 +57,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'title' => ['required'],
+            'body' => ['required'],
+        ])->validate();
+
+        $like = 0;
+        Article::create([
+            'title' => $request->title,
+            'slug' => Str::slug(Str::words($request->title, 15)),
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'body' => $request->body,
+            'summary' => Str::of(Str::words($request->body, 23)),
+            'status' => $request->status,
+            'thumbnail' => $request->thumbnail,
+            'comment' => $request->comment,
+            'like' => $like,
+        ]);
+        return redirect()->route('article.index');
     }
 
     /**
@@ -58,7 +97,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return Inertia::render('Article/Edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -68,9 +109,15 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'title' => ['required'],
+            'body' => ['required'],
+        ])->validate();
+
+        Article::find($id)->update($request->all());
+        return redirect()->route('article.index');
     }
 
     /**
@@ -79,8 +126,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        Article::find($id)->delete();
+        return redirect()->route('article.index');
     }
 }
