@@ -22,7 +22,17 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-basic-styles": "^35.4.0",
         "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+        "@ckeditor/ckeditor5-core": "^35.4.0",
+        "@ckeditor/ckeditor5-dev-utils": "^32.0.2",
+        "@ckeditor/ckeditor5-editor-classic": "^35.4.0",
+        "@ckeditor/ckeditor5-essentials": "^35.4.0",
+        "@ckeditor/ckeditor5-heading": "^35.4.0",
+        "@ckeditor/ckeditor5-list": "^35.4.0",
+        "@ckeditor/ckeditor5-paragraph": "^35.4.0",
+        "@ckeditor/ckeditor5-theme-lark": "^35.4.0",
+        "@ckeditor/ckeditor5-ui": "^35.4.0",
         "@ckeditor/ckeditor5-vue": "^4.0.1",
         "@headlessui/vue": "^1.7.7",
         "@heroicons/vue": "^2.0.13",

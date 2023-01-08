@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('category_id');
             $table->text('summary');
             $table->longText('body');
-            $table->text('thumbnail');
+            $table->text('thumbnail')->nullable();
             $table->enum('status',['show', 'draft'])->default('draft');
             $table->text('comment')->nullable();
             $table->unsignedBigInteger('like')->nullable();

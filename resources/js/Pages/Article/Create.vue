@@ -5,9 +5,9 @@ import SelectInput from "@/Components/SelectInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import Textarea from "@/Components/Textarea.vue";
+import Ckeditor from "@/Components/Ckeditor.vue";
 // import Modal from "@/Components/Modal.vue";
 import { Head, useForm, Link } from "@inertiajs/inertia-vue3";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
     CheckBadgeIcon,
     ChevronLeftIcon,
@@ -15,22 +15,6 @@ import {
     TrashIcon,
 } from "@heroicons/vue/24/solid";
 
-// import Form from "vue";
-// export default {
-//     data() {
-//         return {
-//             editor: ClassicEditor,
-//             editorData: "<p>Your Post Content</p>",
-//             editorConfig: {},
-
-//             form: new Form({
-//                 post_text: "",
-//                 post_title: "",
-//                 post_image: "",
-//             }),
-//         };
-//     },
-// };
 defineProps({
     categories: Array,
 });
@@ -84,21 +68,23 @@ const submit = () => {
                                             {{ form.errors.title }}
                                         </span>
                                     </div>
-                                    <!-- <ClassicEditor
-                                        :editor="editor"
-                                        v-model="form.post_text"
-                                        :config="editorConfig"
-                                    ></ClassicEditor> -->
 
                                     <div className="mb-4">
                                         <InputLabel for="body" value="Body" />
 
-                                        <Textarea
+                                        <Ckeditor
+                                            id="body"
+                                            :editor="editor"
+                                            v-model="form.body"
+                                            :config="editorConfig"
+                                            autofocus
+                                        />
+                                        <!-- <Textarea
                                             id="body"
                                             class="mt-1 block w-full"
                                             v-model="form.body"
                                             autofocus
-                                        />
+                                        /> -->
                                         <span
                                             className="text-red-600"
                                             v-if="form.errors.body"
