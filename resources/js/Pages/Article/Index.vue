@@ -53,11 +53,12 @@ function destroy(id) {
                                         {{ article.title }}
                                     </td>
                                     <td className="border px-4 py-2">
-                                        {{ article.body }}
+                                        <img
+                                            :src="article.thumbnail"
+                                            :alt="article.slug"
+                                        />
                                     </td>
-                                    <td className="border px-4 py-2">
-                                        {{ article.comment }}
-                                    </td>
+                                    <td className="border px-4 py-2"></td>
                                     <td className="border px-4 py-2">
                                         {{ article.like }}
                                     </td>

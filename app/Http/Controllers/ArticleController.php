@@ -23,8 +23,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        $categories = Category::all();
+        // $articles = Article::all();
+        // $categories = Category::all();
         // $perPage = $request->has('perPage') ? $request->perPage : 10;
         // return Inertia::render('Article/Index', [
         //     'title'         => __('app.label.article'),
@@ -33,7 +33,16 @@ class ArticleController extends Controller
         //     'articles'         => $articles->with('user')->paginate($perPage),
         //     'breadcrumbs'   => [['label' => __('app.label.article'), 'href' => route('article.index')]],
         // ]);
-        return Inertia::render('Article/Index',['articles' => $articles, 'categories' => $categories]);
+        return Inertia::render('Article/Index', [
+            'articles' => Article::all()->map(function($article){
+                return [
+                    'id' => $article->id,
+                    'title' =>$article->title,
+                    'summary'=>$article->summary,
+                    'thumbnail' =>asset('images/article/'. $article->thumbnail),
+            ];
+        })
+    ]);
     }
 
     /**
@@ -136,9 +145,13 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        Article::find($id)->delete();
+        if ($article->thumbnail) {
+            unlink('storage/images/article/' . $article->thumbnail);
+        }
+        $article->delete();
+        // Article::find($id)->delete();
         return redirect()->route('article.index');
     }
 }

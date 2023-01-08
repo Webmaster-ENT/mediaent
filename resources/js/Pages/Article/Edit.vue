@@ -8,17 +8,20 @@ const props = defineProps({
     article: Object,
 });
 const form = useForm({
+    id: props.article.id,
     title: props.article.title,
     category_id: props.article.category_id,
     body: props.article.body,
-    slug: props.article.slug,
     status: props.article.status,
     thumbnail: props.article.thumbnail,
-    like: props.article.like,
-    comment: props.article.comment,
 });
+// function updateArticle() {
+//     Inertia.post("/article/${props.article.id}",
+//     _method:"put",
+//     );
+// }
 const submit = () => {
-    form.put(route("articles.update", props.article.id));
+    form.put(route("article.update", props.article.id));
 };
 </script>
 <template>
@@ -60,25 +63,12 @@ const submit = () => {
                                         {{ form.errors.title }}
                                     </span>
                                 </div>
-                                <div className="mb-4">
-                                    <InputLabel for="slug" value="Slug" />
 
-                                    <TextInput
-                                        id="title"
-                                        type="text"
-                                        class="mt-1 block w-full"
-                                        v-model="form.like"
-                                        autofocus
-                                    />
-                                    <span
-                                        className="text-red-600"
-                                        v-if="form.errors.like"
-                                    >
-                                        {{ form.errors.like }}
-                                    </span>
-                                </div>
                                 <div className="mb-4">
-                                    <InputLabel for="slug" value="Slug" />
+                                    <InputLabel
+                                        for="thumbnail"
+                                        value="thumbnail"
+                                    />
 
                                     <TextInput
                                         id="title"
