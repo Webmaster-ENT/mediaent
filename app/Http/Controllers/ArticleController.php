@@ -21,7 +21,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ArticleRequest $request)
+    public function index()
     {
         $articles = Article::all();
         $categories = Category::all();
@@ -65,11 +65,12 @@ class ArticleController extends Controller
         $slug = Str::slug(Str::words($request->title, 15));
         $newName = '';
 
-        // if ($request->file('thumbnail')) {
-        //     $extension = $request->file('thumbnail')->getClientOriginalExtension();
-        //     $newName = $slug . '-' . now()->timestamp . '.' . $extension;
-        //     $request->file('thumbnail')->storeAs('images/article', $newName);
-        // }
+        if ($request->file('thumbnail')) {
+            $extension = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = $slug . '-' . now()->timestamp . '.' . $extension;
+            $request->file('thumbnail')->storeAs('images/article', $newName);
+        }
+
         $comment = " ";
         $like = 0;
         Article::create([
@@ -80,7 +81,7 @@ class ArticleController extends Controller
             'body' => $request->body,
             'summary' => Str::of(Str::words($request->body, 23)),
             'status' => $request->status,
-            // 'thumbnail' => $request['thumbnail'] = $newName,
+            'thumbnail' => $request['thumbnail'] = $newName,
             'comment' => $comment,
             'like' => $like,
         ]);

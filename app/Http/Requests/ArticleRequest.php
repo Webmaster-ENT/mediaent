@@ -28,8 +28,8 @@ class ArticleRequest extends FormRequest
             // 'status'=>'required',
             // 'thumbnail'=>'required|mimes:png,jpg,jpeg',
             // 'field' => ['in:title'],
-            'order' => ['in:asc,desc'],
-            'perPage' => ['numeric'],
+            // 'order' => ['in:asc,desc'],
+            // 'perPage' => ['numeric'],
             ];
     }
 }

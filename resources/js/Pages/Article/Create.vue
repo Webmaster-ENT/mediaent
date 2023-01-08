@@ -22,8 +22,8 @@ const form = useForm({
     title: "",
     body: "",
     status: "",
-    thumbnail: "",
-    category_id: "",
+    thumbnail: null,
+    category_id: null,
 });
 
 const submit = () => {
@@ -121,7 +121,7 @@ const submit = () => {
                                     <div className="mb-4">
                                         <InputLabel
                                             for="category_id"
-                                            value="Category_id"
+                                            value="Category"
                                         />
 
                                         <select
@@ -154,8 +154,11 @@ const submit = () => {
                                             id="thumbnail"
                                             type="file"
                                             class="mt-1 block w-full"
-                                            v-model="form.thumbnail"
-                                            autofocus
+                                            @input="
+                                                form.thumbnail =
+                                                    $event.target.files[0]
+                                            "
+                                            multiple
                                         />
                                         <span
                                             className="text-red-600"
