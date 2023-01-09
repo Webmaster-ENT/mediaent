@@ -7,12 +7,12 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Markdown;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
+
 
 class ArticleController extends Controller
 {
@@ -21,28 +21,30 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ArticleRequest $request)
     {
-        // $articles = Article::all();
+        $articles = Article::query();
         // $categories = Category::all();
-        // $perPage = $request->has('perPage') ? $request->perPage : 10;
-        // return Inertia::render('Article/Index', [
-        //     'title'         => __('app.label.article'),
-        //     'filters'       => $request->all(['search', 'field', 'order']),
-        //     'perPage'       => (int) $perPage,
-        //     'articles'         => $articles->with('user')->paginate($perPage),
-        //     'breadcrumbs'   => [['label' => __('app.label.article'), 'href' => route('article.index')]],
-        // ]);
+        $perPage = $request->has('perPage') ? $request->perPage : 10;
+
         return Inertia::render('Article/Index', [
-            'articles' => Article::all()->map(function($article){
-                return [
-                    'id' => $article->id,
-                    'title' =>$article->title,
-                    'summary'=>$article->summary,
-                    'thumbnail' =>asset('images/article/'. $article->thumbnail),
-            ];
-        })
-    ]);
+            'title'         => __('Article'),
+            'filters'       => $request->all(['search', 'field', 'order']),
+            'perPage'       => (int) $perPage,
+            'articles'      => $articles->paginate($perPage),
+            'breadcrumbs'   => [['label' => __('Article'), 'href' => route('article.index')]],
+        ]);
+        // return Inertia::render('Article/Index', [
+        //     'articles' => Article::all()->map(function($article){
+        //         return [
+        //             'id' => $article->id,
+        //             'title' =>$article->title,
+        //             'status'=>$article->status,
+        //             'like'=>$article->like,
+        //             'thumbnail' =>asset('images/article/'. $article->thumbnail),
+        //     ];
+        // })
+    // ]);
     }
 
     /**
@@ -116,8 +118,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $categories = Category::all();
         return Inertia::render('Article/Edit', [
-            'article' => $article
+            'article' => $article,
+            'categories' => $categories,
+
         ]);
     }
 

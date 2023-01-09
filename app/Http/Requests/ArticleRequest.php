@@ -24,12 +24,9 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'title'=>'required',
-            // 'status'=>'required',
-            // 'thumbnail'=>'required|mimes:png,jpg,jpeg',
-            // 'field' => ['in:title'],
-            // 'order' => ['in:asc,desc'],
-            // 'perPage' => ['numeric'],
-            ];
+            'field' => ['in:title'],
+            'order' => ['in:asc,desc'],
+            'perPage' => ['numeric'],
+        ];
     }
 }

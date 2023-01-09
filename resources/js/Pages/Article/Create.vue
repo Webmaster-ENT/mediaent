@@ -37,7 +37,7 @@ const submit = () => {
         <div class="py-5">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="p-6 bg-white">
                         <div className="flex items-center justify-between mb-6">
                             <div class="flex justify-between items-center">
                                 <ChevronLeftIcon class="w-4 h-4" />
@@ -173,7 +173,7 @@ const submit = () => {
                             <div className="mt-4">
                                 <button
                                     type="submit"
-                                    className="px-6 py-2 font-bold text-white bg-green-500 rounded"
+                                    className="px-6 py-2 font-bold text-white bg-blue-500 rounded"
                                 >
                                     Save
                                 </button>
