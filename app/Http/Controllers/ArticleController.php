@@ -125,7 +125,7 @@ class ArticleController extends Controller
         return Inertia::render('Article/Edit', [
             'article' => $article,
             'categories' => $categories,
-            'thumbnail' => asset('storage/images/article/'. $article->thumbnail),
+            'thumbnail' => '../../'.$article->thumbnail,
         ]);
     }
 
