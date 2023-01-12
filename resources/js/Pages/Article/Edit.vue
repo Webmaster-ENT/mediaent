@@ -5,21 +5,37 @@ import TextInput from "@/Components/TextInput.vue";
 import Textarea from "@/Components/Textarea.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import Ckeditor from "@/Components/Ckeditor.vue";
+// import { Inertia } from "@inertiajs/inertia";
+import {
+    CheckBadgeIcon,
+    ChevronLeftIcon,
+    PencilIcon,
+    TrashIcon,
+} from "@heroicons/vue/24/solid";
 const props = defineProps({
     article: Object,
+    categories: Array,
+    thumbnail: String,
 });
+
 const form = useForm({
     id: props.article.id,
     title: props.article.title,
     category_id: props.article.category_id,
     body: props.article.body,
     status: props.article.status,
-    thumbnail: props.article.thumbnail,
+    thumbnail: null,
 });
+
 // function updateArticle() {
-//     Inertia.post("/article/${props.article.id}",
-//     _method:"put",
-//     );
+//     Inertia.post("article/{props.article.id}", {
+//         _method: "put",
+//         title: form.title,
+//         category_id: form.category_id,
+//         body: form.body,
+//         status: form.status,
+//         thumbnail: form.thumbnail,
+//     });
 // }
 const submit = () => {
     form.put(route("article.update", props.article.id));
@@ -28,24 +44,21 @@ const submit = () => {
 <template>
     <Head title="Dashboard" />
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Post
-            </h2>
-        </template>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-5">
+            <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="p-6 bg-white">
                         <div className="flex items-center justify-between mb-6">
-                            <Link
-                                className="px-6 py-2 text-white bg-blue-500 rounded-md focus:outline-none"
-                                :href="route('article.index')"
-                            >
-                                Back
-                            </Link>
+                            <div class="flex justify-between items-center">
+                                <ChevronLeftIcon class="w-4 h-4" />
+                                <Link :href="route('article.index')">Back</Link>
+                            </div>
                         </div>
-                        <form name="createForm" @submit.prevent="submit">
+                        <form
+                            name="updateForm"
+                            @submit.prevent="submit"
+                            enctype="multipart/form-data"
+                        >
                             <div className="grid grid-cols-4 gap-4">
                                 <div className="col-span-3">
                                     <div class="mb-4">
@@ -67,7 +80,11 @@ const submit = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <InputLabel for="body" value="Body" />
+                                        <InputLabel
+                                            for="body"
+                                            class="mb-1"
+                                            value="Body"
+                                        />
 
                                         <Ckeditor
                                             id="body"
@@ -157,6 +174,13 @@ const submit = () => {
                                             "
                                             multiple
                                         />
+                                        <div class="m-2 p-2">
+                                            <img
+                                                :src="thumbnail"
+                                                class="w-32"
+                                                alt=""
+                                            />
+                                        </div>
                                         <span
                                             className="text-red-600"
                                             v-if="form.errors.thumbnail"

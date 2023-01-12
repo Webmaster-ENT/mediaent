@@ -62,7 +62,7 @@ watch(editorData, () => {
 </script>
 
 <template>
-    <div class="fg-block" style="--ck-border-radius: 0.25rem">
+    <div class="fg-block" style="--ck-border-radius: 0.5rem">
         <CKEditor :editor="ClassicEditor" v-model="editorData" />
     </div>
 </template>

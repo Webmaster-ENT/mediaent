@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -74,6 +75,8 @@ class ArticleController extends Controller
         ])->validate();
 
         $slug = Str::slug(Str::words($request->title, 15));
+
+        $url = 'storage/images/article/';
         $newName = '';
 
         if ($request->file('thumbnail')) {
@@ -92,7 +95,7 @@ class ArticleController extends Controller
             'body' => $request->body,
             'summary' => Str::of(Str::words($request->body, 23)),
             'status' => $request->status,
-            'thumbnail' => $request['thumbnail'] = $newName,
+            'thumbnail' => $request['thumbnail'] = $url.$newName,
             'comment' => $comment,
             'like' => $like,
         ]);
@@ -122,7 +125,7 @@ class ArticleController extends Controller
         return Inertia::render('Article/Edit', [
             'article' => $article,
             'categories' => $categories,
-
+            'thumbnail' => asset('storage/images/article/'. $article->thumbnail),
         ]);
     }
 
@@ -133,15 +136,57 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Article $article)
     {
-        Validator::make($request->all(), [
-            'title' => ['required'],
-            'body' => ['required'],
-        ])->validate();
+        // $thumbnail = $article->thumbnail;
+        // if(Request::file('thumbnail')){
+        //     Storage::delete('public/images/article'. $article->thumbnail);
+        //     $thumbnail = Request::file('thumbnail')->store('image/article', 'public');
+        // }
+        $newName = $article->thumbnail;
 
-        Article::find($id)->update($request->all());
+        if ($request->hasFile('thumbnail')) {
+            if ($article->thumbnail) {
+                unlink('storage/images/article/' . $article->thumbnail);
+            $extension = $request->file('thumbnail')->getClientOriginalExtension();
+             $newName = 'halo' . now()->timestamp . '.' . $extension;
+            $request->file('thumbnail')->storeAs('images/article', $newName);
+            }
+            // $values['thumbnail'] = $newName;
+        }
+        $article->update([
+            'title' => $request->title,
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'slug' => Str::slug(Str::words($request->title, 15)),
+            'body' => $request->body,
+            'summary' => Str::of(Str::words($request->body, 23)),
+            'status' => $request->status,
+            // 'title' => Request::input('title'),
+            // 'user_id' => Auth::id(),
+            // 'category_id' => Request::input('category_id'),
+            // 'status' => Request::input('status'),
+            'thumbnail' => $newName,
+            // 'slug' => Str::slug(Str::words(Request::input('title'), 15)),
+            // 'summary' => Str::of(Str::words(Request::input('body'), 23)),
+            // ''
+        ]);
+        // $slug = Str::slug(Str::words($request->title, 15));
+
+        // $values = [
+        //     'title' => $request->title,
+        //     'user_id' => Auth::id(),
+        //     'category_id' => $request->category_id,
+        //     'slug' => Str::slug(Str::words($request->title, 15)),
+        //     'body' => $request->body,
+        //     'summary' => Str::of(Str::words($request->body, 23)),
+        //     'status' => $request->status,
+        // ];
+
+
+    //   $article->update($values);
         return redirect()->route('article.index');
+
     }
 
     /**

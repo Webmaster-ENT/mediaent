@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import Breadcrumb from "@/Components/Breadcrumb.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -85,6 +85,12 @@ const select = () => {
         data.multipleSelect = false;
     }
 };
+const form = useForm();
+function destroy(id) {
+    if (confirm("Are you sure you want to Delete")) {
+        form.delete(route("article.destroy", id));
+    }
+}
 </script>
 
 <template>
@@ -102,6 +108,13 @@ const select = () => {
                     >
                         {{ lang().button.add }}
                     </PrimaryButton>
+                    <Link
+                        tabindex="1"
+                        type="button"
+                        className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
+                        :href="route('article.create')"
+                        >Create</Link
+                    >
                     <!-- <Create
                         :show="data.createOpen"
                         @close="data.createOpen = false"
@@ -160,7 +173,6 @@ const select = () => {
                                         @change="selectAll"
                                     />
                                 </th>
-                                <th class="px-2 py-4 text-center">#</th>
                                 <th
                                     class="px-2 py-4 cursor-pointer"
                                     v-on:click="order('title')"
@@ -168,9 +180,7 @@ const select = () => {
                                     <div
                                         class="flex justify-between items-center"
                                     >
-                                        <span>{{
-                                            lang().label.thumbnail
-                                        }}</span>
+                                        <span>Thumbnail</span>
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>
@@ -212,7 +222,7 @@ const select = () => {
                         </thead>
                         <tbody>
                             <tr
-                                v-for="(article, index) in articles.data"
+                                v-for="article in articles.data"
                                 :key="index"
                                 class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-200/30 hover:dark:bg-gray-900/20"
                             >
@@ -227,21 +237,20 @@ const select = () => {
                                         v-model="article.selectedId"
                                     />
                                 </td>
-                                <td
-                                    class="whitespace-nowrap py-4 px-2 sm:py-3 text-center"
-                                >
-                                    {{ ++index }}
-                                </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     <span
                                         class="flex justify-start items-center"
                                     >
-                                        {{ article.thumbnail }}
-                                        <CheckBadgeIcon
-                                            class="ml-[2px] w-4 h-4 text-blue-600 dark:text-white"
-                                            v-show="article.email_verified_at"
-                                        />
+                                        <!-- <CheckBadgeIcon
+                                        class="ml-[2px] w-4 h-4 text-blue-600 dark:text-white"
+                                        v-show="article.email_verified_at"
+                                        /> -->
                                     </span>
+                                    <img
+                                        :src="article.thumbnail"
+                                        class="w-32 rounded"
+                                        alt=""
+                                    />
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     {{ article.title }}
@@ -252,42 +261,24 @@ const select = () => {
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     {{ article.like }}
                                 </td>
-                                <!-- <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    {{ article.updated_at }}
-                                </td> -->
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    <div
-                                        class="flex justify-center items-center"
+                                    <Link
+                                        tabIndex="1"
+                                        className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
+                                        :href="
+                                            route('article.edit', article.id)
+                                        "
                                     >
-                                        <div class="rounded-md overflow-hidden">
-                                            <InfoButton
-                                                v-show="can(['update article'])"
-                                                type="button"
-                                                @click="
-                                                    (data.editOpen = true),
-                                                        (data.article = article)
-                                                "
-                                                class="px-2 py-1.5 rounded-none"
-                                                v-tooltip="lang().tooltip.edit"
-                                            >
-                                                <PencilIcon class="w-4 h-4" />
-                                            </InfoButton>
-                                            <DangerButton
-                                                v-show="can(['delete article'])"
-                                                type="button"
-                                                @click="
-                                                    (data.deleteOpen = true),
-                                                        (data.article = article)
-                                                "
-                                                class="px-2 py-1.5 rounded-none"
-                                                v-tooltip="
-                                                    lang().tooltip.delete
-                                                "
-                                            >
-                                                <TrashIcon class="w-4 h-4" />
-                                            </DangerButton>
-                                        </div>
-                                    </div>
+                                        Edit
+                                    </Link>
+                                    <button
+                                        @click="destroy(article.id)"
+                                        tabIndex="-1"
+                                        type="button"
+                                        className="mx-1 px-4 py-2 text-sm text-white bg-red-500 rounded"
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

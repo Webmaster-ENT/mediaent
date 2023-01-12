@@ -160,6 +160,13 @@ const submit = () => {
                                             "
                                             multiple
                                         />
+                                        <div class="m-2 p-2">
+                                            <img
+                                                :src="form.thumbnail"
+                                                class="w-32"
+                                                alt=""
+                                            />
+                                        </div>
                                         <span
                                             className="text-red-600"
                                             v-if="form.errors.thumbnail"
