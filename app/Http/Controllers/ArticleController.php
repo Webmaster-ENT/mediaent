@@ -143,18 +143,7 @@ class ArticleController extends Controller
         //     Storage::delete('public/images/article'. $article->thumbnail);
         //     $thumbnail = Request::file('thumbnail')->store('image/article', 'public');
         // }
-        $newName = $article->thumbnail;
-
-        if ($request->hasFile('thumbnail')) {
-            if ($article->thumbnail) {
-                unlink('storage/images/article/' . $article->thumbnail);
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
-             $newName = 'halo' . now()->timestamp . '.' . $extension;
-            $request->file('thumbnail')->storeAs('images/article', $newName);
-            }
-            // $values['thumbnail'] = $newName;
-        }
-        $article->update([
+        $values = [
             'title' => $request->title,
             'user_id' => Auth::id(),
             'category_id' => $request->category_id,
@@ -162,18 +151,21 @@ class ArticleController extends Controller
             'body' => $request->body,
             'summary' => Str::of(Str::words($request->body, 23)),
             'status' => $request->status,
-            // 'title' => Request::input('title'),
-            // 'user_id' => Auth::id(),
-            // 'category_id' => Request::input('category_id'),
-            // 'status' => Request::input('status'),
-            'thumbnail' => $newName,
-            // 'slug' => Str::slug(Str::words(Request::input('title'), 15)),
-            // 'summary' => Str::of(Str::words(Request::input('body'), 23)),
-            // ''
-        ]);
-        // $slug = Str::slug(Str::words($request->title, 15));
+        ];
 
-        // $values = [
+        $newName = "";
+        $url = 'storage/images/article/';
+
+        if ($request->file('thumbnail')) {
+            if ($article->thumbnail) {
+                unlink($article->thumbnail);
+            $extension = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'halo' . now()->timestamp . '.' . $extension;
+            $request->file('thumbnail')->storeAs('images/article', $newName);
+            }
+            $values['thumbnail'] = $url.$newName;
+        }
+        // $article->update([
         //     'title' => $request->title,
         //     'user_id' => Auth::id(),
         //     'category_id' => $request->category_id,
@@ -181,10 +173,18 @@ class ArticleController extends Controller
         //     'body' => $request->body,
         //     'summary' => Str::of(Str::words($request->body, 23)),
         //     'status' => $request->status,
-        // ];
+            // 'title' => Request::input('title'),
+            // 'user_id' => Auth::id(),
+            // 'category_id' => Request::input('category_id'),
+            // 'status' => Request::input('status'),
+            // 'thumbnail' => $newName,
+            // 'slug' => Str::slug(Str::words(Request::input('title'), 15)),
+            // 'summary' => Str::of(Str::words(Request::input('body'), 23)),
+            // ''
+        // ]);
+        // $slug = Str::slug(Str::words($request->title, 15));
 
-
-    //   $article->update($values);
+      $article->update($values);
         return redirect()->route('article.index');
 
     }

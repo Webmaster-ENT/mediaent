@@ -3,15 +3,16 @@
 use App\Models\Role;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Article;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
-use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('article', ArticleController::class);
+    Route::resource('video', VideoController::class);
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');
     // Route::post('article',[ArticleController::class, 'store'])->name('article.store');

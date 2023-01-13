@@ -52,7 +52,7 @@ import { Link } from "@inertiajs/inertia-vue3";
             </li>
             <!-- user -->
             <li class="py-2">
-                <p>Article</p>
+                <p>Website</p>
             </li>
             <li
                 class="bg-primary text-white rounded-lg hover:bg-primary"
@@ -64,6 +64,18 @@ import { Link } from "@inertiajs/inertia-vue3";
                 >
                     <UserIcon class="w-6 h-5" />
                     <span class="ml-3">Article</span>
+                </Link>
+            </li>
+            <li
+                class="bg-primary text-white rounded-lg hover:bg-primary"
+                :class="{ 'bg-gray-700': !route().current('video.index') }"
+            >
+                <Link
+                    :href="route('video.index')"
+                    class="flex items-center py-2 px-4"
+                >
+                    <UserIcon class="w-6 h-5" />
+                    <span class="ml-3">Video</span>
                 </Link>
             </li>
             <!-- user -->
