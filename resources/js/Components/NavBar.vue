@@ -37,10 +37,12 @@ const emit = defineEmits(["open"]);
                             :href="route('dashboard')"
                             class="flex items-center space-x-2"
                         >
-                            <ApplicationLogo
+                            <img src="Logo-ENT-Gelap.svg" class="w-12" alt="" />
+                            <!-- <ApplicationLogo
                                 class="hidden md:block h-6 w-auto fill-current"
-                            />
-                            <p>{{ $page.props.app.name }}</p>
+                            /> -->
+                            <!-- <p>{{ $page.props.app.name }}</p> -->
+                            <p>Media ENT</p>
                         </Link>
                     </div>
                 </div>
