@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     show: Boolean,
-    user: Object,
+    video: Object,
 });
 
 const emit = defineEmits(["close"]);
@@ -14,7 +14,7 @@ const emit = defineEmits(["close"]);
 const form = useForm({});
 
 const destory = () => {
-    form.delete(route("user.destroy", props.user?.id), {
+    form.delete(route("video.destroy", props.video?.id), {
         preserveScroll: true,
         onSuccess: () => {
             emit("close");
@@ -33,11 +33,11 @@ const destory = () => {
                 <h2
                     class="text-lg font-medium text-gray-900 dark:text-gray-100"
                 >
-                    {{ lang().label.delete }} {{ lang().label.user }}
+                    {{ lang().label.delete }} {{ lang().label.video }}
                 </h2>
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ lang().label.delete_confirm }}
-                    <b>{{ props.user?.name }}</b
+                    <b>{{ props.video?.title }}</b
                     >?
                 </p>
                 <div class="mt-6 flex justify-end">

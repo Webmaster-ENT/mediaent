@@ -3,18 +3,22 @@ import DangerButton from "@/Components/DangerButton.vue";
 import Modal from "@/Components/Modal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { watchEffect } from "vue";
 
 const props = defineProps({
     show: Boolean,
-    article: Object,
+    selectedId: Object,
 });
 
 const emit = defineEmits(["close"]);
 
-const form = useForm({});
+const form = useForm({
+    id: [],
+    thumbnail: [],
+});
 
 const destory = () => {
-    form.delete(route("article.destroy", props.article?.id), {
+    form.post(route("article.destroy-bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             emit("close");
@@ -24,6 +28,13 @@ const destory = () => {
         onFinish: () => null,
     });
 };
+
+watchEffect(() => {
+    if (props.show) {
+        form.id = props.selectedId;
+        form.thumbnail = props.selectedThumbnail;
+    }
+});
 </script>
 
 <template>
@@ -33,12 +44,11 @@ const destory = () => {
                 <h2
                     class="text-lg font-medium text-gray-900 dark:text-gray-100"
                 >
-                    {{ lang().label.delete }} {{ lang().label.article }}
+                    Delete article
                 </h2>
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ lang().label.delete_confirm }}
-                    <b>{{ props.article?.title }}</b
-                    >?
+                    {{ props.selectedId?.length }} article?
                 </p>
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton
@@ -53,11 +63,7 @@ const destory = () => {
                         :disabled="form.processing"
                         @click="destory"
                     >
-                        {{
-                            form.processing
-                                ? lang().button.delete + "..."
-                                : lang().button.delete
-                        }}
+                        {{ form.processing ? "Delete..." : "Delete" }}
                     </DangerButton>
                 </div>
             </form>

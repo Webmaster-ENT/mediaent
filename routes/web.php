@@ -48,7 +48,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('article', ArticleController::class);
+    Route::post('/article/destroy-bulk', [ArticleController::class, 'destroyBulk'])->name('article.destroy-bulk');
+
     Route::resource('video', VideoController::class);
+    Route::post('/video/destroy-bulk', [VideoController::class, 'destroyBulk'])->name('video.destroy-bulk');
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');
     // Route::post('article',[ArticleController::class, 'store'])->name('article.store');

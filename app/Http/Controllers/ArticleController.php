@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,7 +26,13 @@ class ArticleController extends Controller
     public function index(ArticleRequest $request)
     {
         $articles = Article::query();
-        // $categories = Category::all();
+        if ($request->has('search')) {
+            $articles->where('title', 'LIKE', "%" . $request->search . "%");
+            $articles->orWhere('status', 'LIKE', "%" . $request->search . "%");
+        }
+        if ($request->has(['field', 'order'])) {
+            $articles->orderBy($request->field, $request->order);
+        }
         $perPage = $request->has('perPage') ? $request->perPage : 10;
 
         return Inertia::render('Article/Index', [
@@ -198,10 +205,22 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         if ($article->thumbnail) {
-            unlink('storage/images/article/' . $article->thumbnail);
+            unlink($article->thumbnail);
         }
         $article->delete();
         // Article::find($id)->delete();
         return redirect()->route('article.index');
+    }
+
+    public function destroyBulk(Request $request)
+    {
+        try {
+            $article = Article::whereIn('id', $request->id);
+            // $article->unlink();
+            $article->delete();
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('Article')]));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('Article')]) . $th->getMessage());
+        }
     }
 }

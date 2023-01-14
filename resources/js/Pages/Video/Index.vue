@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { Head } from "@inertiajs/inertia-vue3";
 import Breadcrumb from "@/Components/Breadcrumb.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -17,16 +17,17 @@ import {
     PencilIcon,
     TrashIcon,
 } from "@heroicons/vue/24/solid";
-// import Create from "@/Pages/video/Create.vue";
-// import Edit from "@/Pages/video/Edit.vue";
+import Create from "@/Pages/Video/Create.vue";
+import Edit from "@/Pages/Video/Edit.vue";
 import Delete from "@/Pages/Video/Delete.vue";
+import DeleteBulk from "@/Pages/Video/DeleteBulk.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 
 const props = defineProps({
     title: String,
     filters: Object,
     videos: Object,
-    roles: Object,
+    // roles: Object,
     breadcrumbs: Object,
     perPage: Number,
 });
@@ -85,12 +86,6 @@ const select = () => {
         data.multipleSelect = false;
     }
 };
-const form = useForm();
-function destroy(id) {
-    if (confirm("Are you sure you want to Delete")) {
-        form.delete(route("video.destroy", id));
-    }
-}
 </script>
 
 <template>
@@ -102,34 +97,34 @@ function destroy(id) {
             <div class="px-4 sm:px-0">
                 <div class="rounded-lg overflow-hidden w-fit">
                     <PrimaryButton
-                        v-show="can(['create video'])"
+                        v-show="can(['create user'])"
                         class="rounded-none"
                         @click="data.createOpen = true"
                     >
-                        {{ lang().button.add }}
+                        Create
                     </PrimaryButton>
-                    <Link
-                        tabindex="1"
-                        type="button"
-                        className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
-                        :href="route('video.create')"
-                        >Create</Link
-                    >
-                    <!-- <Create
+                    <Create
                         :show="data.createOpen"
                         @close="data.createOpen = false"
-                        :roles="props.roles"
-                    /> -->
-                    <!-- <Edit
+                    />
+                    <Edit
                         :show="data.editOpen"
                         @close="data.editOpen = false"
                         :video="data.video"
-                        :roles="props.roles"
-                    /> -->
+                    />
                     <Delete
                         :show="data.deleteOpen"
                         @close="data.deleteOpen = false"
                         :video="data.video"
+                    />
+                    <DeleteBulk
+                        :show="data.deleteBulkOpen"
+                        @close="
+                            (data.deleteBulkOpen = false),
+                                (data.multipleSelect = false),
+                                (data.selectedId = [])
+                        "
+                        :selectedId="data.selectedId"
                     />
                 </div>
             </div>
@@ -146,7 +141,7 @@ function destroy(id) {
                             @click="data.deleteBulkOpen = true"
                             v-show="
                                 data.selectedId.length != 0 &&
-                                can(['delete video'])
+                                can(['delete user'])
                             "
                             class="px-3 py-1.5"
                             v-tooltip="lang().tooltip.delete_selected"
@@ -173,20 +168,10 @@ function destroy(id) {
                                         @change="selectAll"
                                     />
                                 </th>
+                                <th class="px-2 py-4 text-center">#</th>
                                 <th
                                     class="px-2 py-4 cursor-pointer"
                                     v-on:click="order('title')"
-                                >
-                                    <div
-                                        class="flex justify-between items-center"
-                                    >
-                                        <span>Thumbnail</span>
-                                        <ChevronUpDownIcon class="w-4 h-4" />
-                                    </div>
-                                </th>
-                                <th
-                                    class="px-2 py-4 cursor-pointer"
-                                    v-on:click="order('updated_at')"
                                 >
                                     <div
                                         class="flex justify-between items-center"
@@ -197,7 +182,18 @@ function destroy(id) {
                                 </th>
                                 <th
                                     class="px-2 py-4 cursor-pointer"
-                                    v-on:click="order('updated_at')"
+                                    v-on:click="order('video_url')"
+                                >
+                                    <div
+                                        class="flex justify-between items-center"
+                                    >
+                                        <span>Url Video</span>
+                                        <ChevronUpDownIcon class="w-4 h-4" />
+                                    </div>
+                                </th>
+                                <th
+                                    class="px-2 py-4 cursor-pointer"
+                                    v-on:click="order('status')"
                                 >
                                     <div
                                         class="flex justify-between items-center"
@@ -206,23 +202,12 @@ function destroy(id) {
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>
-                                <th
-                                    class="px-2 py-4 cursor-pointer"
-                                    v-on:click="order('updated_at')"
-                                >
-                                    <div
-                                        class="flex justify-between items-center"
-                                    >
-                                        <span>Like</span>
-                                        <ChevronUpDownIcon class="w-4 h-4" />
-                                    </div>
-                                </th>
                                 <th class="px-2 py-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr
-                                v-for="video in videos.data"
+                                v-for="(video, index) in videos.data"
                                 :key="index"
                                 class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-200/30 hover:dark:bg-gray-900/20"
                             >
@@ -234,49 +219,65 @@ function destroy(id) {
                                         type="checkbox"
                                         @change="select"
                                         :value="video.id"
-                                        v-model="video.selectedId"
+                                        v-model="data.selectedId"
                                     />
                                 </td>
+                                <td
+                                    class="whitespace-nowrap py-4 px-2 sm:py-3 text-center"
+                                >
+                                    {{ ++index }}
+                                </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    <span
-                                        class="flex justify-start items-center"
-                                    >
-                                        <!-- <CheckBadgeIcon
-                                        class="ml-[2px] w-4 h-4 text-blue-600 dark:text-white"
-                                        v-show="video.email_verified_at"
-                                        /> -->
-                                    </span>
-                                    <img
-                                        :src="video.thumbnail"
-                                        class="w-32 rounded"
-                                        alt=""
-                                    />
+                                    <iframe
+                                        :src="video.video_url"
+                                        class="rounded"
+                                        frameborder="0"
+                                        title="YouTube video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                    ></iframe>
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     {{ video.title }}
                                 </td>
-                                <td class="whitespace-nowrap py-4 px-2 sm:py-3">
+                                <td
+                                    class="whitespace-nowrap py-4 px-2 sm:py-3 text-capitalize"
+                                >
                                     {{ video.status }}
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    {{ video.like }}
-                                </td>
-                                <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    <Link
-                                        tabIndex="1"
-                                        className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
-                                        :href="route('video.edit', video.id)"
+                                    <div
+                                        class="flex justify-center items-center"
                                     >
-                                        Edit
-                                    </Link>
-                                    <button
-                                        @click="destroy(video.id)"
-                                        tabIndex="-1"
-                                        type="button"
-                                        className="mx-1 px-4 py-2 text-sm text-white bg-red-500 rounded"
-                                    >
-                                        Delete
-                                    </button>
+                                        <div class="rounded-md overflow-hidden">
+                                            <InfoButton
+                                                v-show="can(['update user'])"
+                                                type="button"
+                                                @click="
+                                                    (data.editOpen = true),
+                                                        (data.video = video)
+                                                "
+                                                class="px-2 py-1.5 rounded-none"
+                                                v-tooltip="lang().tooltip.edit"
+                                            >
+                                                <PencilIcon class="w-4 h-4" />
+                                            </InfoButton>
+                                            <DangerButton
+                                                v-show="can(['delete user'])"
+                                                type="button"
+                                                @click="
+                                                    (data.deleteOpen = true),
+                                                        (data.video = video)
+                                                "
+                                                class="px-2 py-1.5 rounded-none"
+                                                v-tooltip="
+                                                    lang().tooltip.delete
+                                                "
+                                            >
+                                                <TrashIcon class="w-4 h-4" />
+                                            </DangerButton>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

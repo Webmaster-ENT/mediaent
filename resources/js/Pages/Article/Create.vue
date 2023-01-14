@@ -21,7 +21,7 @@ defineProps({
 const form = useForm({
     title: "",
     body: "",
-    status: "",
+    status: "draft",
     thumbnail: null,
     category_id: null,
 });
@@ -36,7 +36,7 @@ const submit = () => {
     <AuthenticatedLayout>
         <div class="py-5">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden sm:rounded-lg">
                     <div class="p-6 bg-white">
                         <div className="flex items-center justify-between mb-6">
                             <div class="flex justify-between items-center">

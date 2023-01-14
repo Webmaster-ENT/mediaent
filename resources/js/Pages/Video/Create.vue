@@ -1,194 +1,108 @@
 <script setup>
-// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputError from "@/Components/InputError.vue";
-import SelectInput from "@/Components/SelectInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import TextInput from "@/Components/TextInput.vue";
+import Modal from "@/Components/Modal.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Textarea from "@/Components/Textarea.vue";
-import Ckeditor from "@/Components/Ckeditor.vue";
-// import Modal from "@/Components/Modal.vue";
-import { Head, useForm, Link } from "@inertiajs/inertia-vue3";
-import {
-    CheckBadgeIcon,
-    ChevronLeftIcon,
-    PencilIcon,
-    TrashIcon,
-} from "@heroicons/vue/24/solid";
+import SelectInput from "@/Components/SelectInput.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 
-defineProps({
-    categories: Array,
+const props = defineProps({
+    show: Boolean,
 });
+
+const emit = defineEmits(["close"]);
+
 const form = useForm({
     title: "",
-    body: "",
-    status: "",
-    thumbnail: null,
-    category_id: null,
+    video_url: "",
+    status: "draft",
 });
 
-const submit = () => {
-    form.post(route("article.store"));
+const create = () => {
+    form.post(route("video.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            emit("close");
+            form.reset();
+        },
+        onError: () => null,
+        onFinish: () => null,
+    });
 };
 </script>
 
 <template>
-    <Head title="Article" />
-    <AuthenticatedLayout>
-        <div class="py-5">
-            <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white">
-                        <div className="flex items-center justify-between mb-6">
-                            <div class="flex justify-between items-center">
-                                <ChevronLeftIcon class="w-4 h-4" />
-                                <Link :href="route('article.index')">Back</Link>
-                            </div>
-                        </div>
-                        <form
-                            name="createForm"
-                            @submit.prevent="submit"
-                            enctype="multipart/form-data"
-                        >
-                            <div className="grid grid-cols-4 gap-4">
-                                <div className="col-span-3">
-                                    <div class="mb-4">
-                                        <InputLabel for="title" value="Title" />
-
-                                        <TextInput
-                                            id="title"
-                                            type="text"
-                                            class="mt-1 block w-full"
-                                            v-model="form.title"
-                                            autofocus
-                                        />
-                                        <span
-                                            className="text-red-600"
-                                            v-if="form.errors.title"
-                                        >
-                                            {{ form.errors.title }}
-                                        </span>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <InputLabel for="body" value="Body" />
-
-                                        <Ckeditor
-                                            id="body"
-                                            :editor="editor"
-                                            v-model="form.body"
-                                            :config="editorConfig"
-                                            autofocus
-                                        />
-                                        <!-- <Textarea
-                                            id="body"
-                                            class="mt-1 block w-full"
-                                            v-model="form.body"
-                                            autofocus
-                                        /> -->
-                                        <span
-                                            className="text-red-600"
-                                            v-if="form.errors.body"
-                                        >
-                                            {{ form.errors.body }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="mb-4">
-                                        <InputLabel
-                                            for="status"
-                                            value="Status"
-                                        />
-
-                                        <select
-                                            id="status"
-                                            v-model="form.status"
-                                            class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm placeholder:text-gray-400 placeholder:dark:text-gray-400/50"
-                                        >
-                                            <option value="draft" selected>
-                                                Draft
-                                            </option>
-                                            <option value="show">Show</option>
-                                        </select>
-                                        <span
-                                            className="text-red-600"
-                                            v-if="form.errors.status"
-                                        >
-                                            {{ form.errors.status }}
-                                        </span>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <InputLabel
-                                            for="category_id"
-                                            value="Category"
-                                        />
-
-                                        <select
-                                            id="category_id"
-                                            v-model="form.category_id"
-                                            class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm placeholder:text-gray-400 placeholder:dark:text-gray-400/50"
-                                            autofocus
-                                        >
-                                            <option
-                                                v-for="category in categories"
-                                                v-bind:value="category.id"
-                                            >
-                                                <p>{{ category.name }}</p>
-                                            </option>
-                                        </select>
-                                        <span
-                                            className="text-red-600"
-                                            v-if="form.errors.category_id"
-                                        >
-                                            {{ form.errors.category_id }}
-                                        </span>
-                                    </div>
-                                    <div className="mb-4">
-                                        <InputLabel
-                                            for="thumbnail"
-                                            value="Thumbnail"
-                                        />
-
-                                        <Input
-                                            id="thumbnail"
-                                            type="file"
-                                            class="mt-1 block w-full"
-                                            @input="
-                                                form.thumbnail =
-                                                    $event.target.files[0]
-                                            "
-                                            multiple
-                                        />
-                                        <div class="m-2 p-2">
-                                            <img
-                                                :src="form.thumbnail"
-                                                class="w-32"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <span
-                                            className="text-red-600"
-                                            v-if="form.errors.thumbnail"
-                                        >
-                                            {{ form.errors.thumbnail }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mt-4">
-                                <button
-                                    type="submit"
-                                    className="px-6 py-2 font-bold text-white bg-blue-500 rounded"
-                                >
-                                    Save
-                                </button>
-                            </div>
-                        </form>
+    <section class="space-y-6">
+        <Modal :show="props.show" @close="emit('close')">
+            <form class="p-6" @submit.prevent="create">
+                <h2
+                    class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                >
+                    Add Video Url
+                </h2>
+                <div class="my-6 space-y-4">
+                    <div>
+                        <InputLabel for="title" value="Title" />
+                        <TextInput
+                            id="name"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="form.title"
+                            required
+                            placeholder="Title"
+                        />
+                        <InputError class="mt-2" :message="form.errors.title" />
                     </div>
                 </div>
-            </div>
-        </div>
-    </AuthenticatedLayout>
+                <div class="my-6 space-y-4">
+                    <div>
+                        <InputLabel for="title" value="Link YouTube-Embed" />
+                        <Textarea
+                            id="video_url"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="form.video_url"
+                            required
+                            placeholder="https://www.youtube.com/embed/xxx..."
+                        />
+                        <InputError class="mt-2" :message="form.errors.title" />
+                    </div>
+                </div>
+                <div class="my-6 space-y-4">
+                    <InputLabel for="status" value="Status" />
+                    <select
+                        id="status"
+                        v-model="form.status"
+                        class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm placeholder:text-gray-400 placeholder:dark:text-gray-400/50"
+                    >
+                        <option value="draft" selected>Draft</option>
+                        <option value="show">Show</option>
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <SecondaryButton
+                        :disabled="form.processing"
+                        @click="emit('close')"
+                    >
+                        {{ lang().button.close }}
+                    </SecondaryButton>
+                    <PrimaryButton
+                        class="ml-3"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                        @click="create"
+                    >
+                        {{
+                            form.processing
+                                ? lang().button.add + "..."
+                                : lang().button.add
+                        }}
+                    </PrimaryButton>
+                </div>
+            </form>
+        </Modal>
+    </section>
 </template>
