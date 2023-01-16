@@ -42,17 +42,6 @@ class ArticleController extends Controller
             'articles'      => $articles->paginate($perPage),
             'breadcrumbs'   => [['label' => __('Article'), 'href' => route('article.index')]],
         ]);
-        // return Inertia::render('Article/Index', [
-        //     'articles' => Article::all()->map(function($article){
-        //         return [
-        //             'id' => $article->id,
-        //             'title' =>$article->title,
-        //             'status'=>$article->status,
-        //             'like'=>$article->like,
-        //             'thumbnail' =>asset('images/article/'. $article->thumbnail),
-        //     ];
-        // })
-    // ]);
     }
 
     /**
@@ -80,33 +69,37 @@ class ArticleController extends Controller
             'title' => ['required'],
             'body' => ['required'],
         ])->validate();
+        DB::beginTransaction();
+        try {
+            $slug = Str::slug(Str::words($request->title, 15));
+            $url = 'storage/images/article/';
+            $comment = " ";
+            $newName = '';
+            $like = 0;
 
-        $slug = Str::slug(Str::words($request->title, 15));
-
-        $url = 'storage/images/article/';
-        $newName = '';
-
-        if ($request->file('thumbnail')) {
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = $slug . '-' . now()->timestamp . '.' . $extension;
-            $request->file('thumbnail')->storeAs('images/article', $newName);
+            if ($request->file('thumbnail')) {
+                $extension = $request->file('thumbnail')->getClientOriginalExtension();
+                $newName = $slug . '-' . now()->timestamp . '.' . $extension;
+                $request->file('thumbnail')->storeAs('images/article', $newName);
+            }
+            $article = Article::create([
+                    'title' => $request->title,
+                    'slug' => $slug,
+                    'user_id' => Auth::id(),
+                    'category_id' => $request->category_id,
+                    'body' => $request->body,
+                    'summary' => Str::of(Str::words($request->body, 23)),
+                    'status' => $request->status,
+                    'thumbnail' => $request['thumbnail'] = $url.$newName,
+                    'comment' => $comment,
+                    'like' => $like,
+            ]);
+            DB::commit();
+            return redirect()->route('article.index')->with('success', __('app.label.created_successfully', ['name' => $article->title]));
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('article.index')->with('error', __('app.label.created_error', ['name' => __('app.label.article')]) . $th->getMessage());
         }
-
-        $comment = " ";
-        $like = 0;
-        Article::create([
-            'title' => $request->title,
-            'slug' => $slug,
-            'user_id' => Auth::id(),
-            'category_id' => $request->category_id,
-            'body' => $request->body,
-            'summary' => Str::of(Str::words($request->body, 23)),
-            'status' => $request->status,
-            'thumbnail' => $request['thumbnail'] = $url.$newName,
-            'comment' => $comment,
-            'like' => $like,
-        ]);
-        return redirect()->route('article.index');
     }
 
     /**
@@ -143,56 +136,48 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Article $article)
+    public function update(Request $request,$id)
     {
-        // $thumbnail = $article->thumbnail;
-        // if(Request::file('thumbnail')){
-        //     Storage::delete('public/images/article'. $article->thumbnail);
-        //     $thumbnail = Request::file('thumbnail')->store('image/article', 'public');
-        // }
-        $values = [
-            'title' => $request->title,
-            'user_id' => Auth::id(),
-            'category_id' => $request->category_id,
-            'slug' => Str::slug(Str::words($request->title, 15)),
-            'body' => $request->body,
-            'summary' => Str::of(Str::words($request->body, 23)),
-            'status' => $request->status,
-        ];
+        DB::beginTransaction();
+        try {
+            $article = Article::findOrFail($id);
+            $slug = Str::slug(Str::words($request->title, 15));
+            $url = 'storage/images/article/';
+            $comment = " ";
+            $newName = "";
+            $like = 0;
 
-        $newName = "";
-        $url = 'storage/images/article/';
+            $values = [
+                'title' => $request->title,
+                'slug' => $slug,
+                'user_id' => Auth::id(),
+                'category_id' => $request->category_id,
+                'body' => $request->body,
+                'summary' => Str::of(Str::words($request->body, 23)),
+                'status' => $request->status,
+                'comment' => $comment,
+                'like' => $like,
+            ];
 
-        if ($request->file('thumbnail')) {
-            if ($article->thumbnail) {
-                unlink($article->thumbnail);
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = 'halo' . now()->timestamp . '.' . $extension;
-            $request->file('thumbnail')->storeAs('images/article', $newName);
+            if ($request->file('thumbnail')) {
+                if ($article->thumbnail) {
+                    unlink($article->thumbnail);
+                    $extension = $request->file('thumbnail')->getClientOriginalExtension();
+                    $newName = $slug . '-' . now()->timestamp . '.' . $extension;
+                    $request->file('thumbnail')->storeAs('images/article', $newName);
+                }
+                $values['thumbnail'] = $url.$newName;
             }
-            $values['thumbnail'] = $url.$newName;
-        }
-        // $article->update([
-        //     'title' => $request->title,
-        //     'user_id' => Auth::id(),
-        //     'category_id' => $request->category_id,
-        //     'slug' => Str::slug(Str::words($request->title, 15)),
-        //     'body' => $request->body,
-        //     'summary' => Str::of(Str::words($request->body, 23)),
-        //     'status' => $request->status,
-            // 'title' => Request::input('title'),
-            // 'user_id' => Auth::id(),
-            // 'category_id' => Request::input('category_id'),
-            // 'status' => Request::input('status'),
-            // 'thumbnail' => $newName,
-            // 'slug' => Str::slug(Str::words(Request::input('title'), 15)),
-            // 'summary' => Str::of(Str::words(Request::input('body'), 23)),
-            // ''
-        // ]);
-        // $slug = Str::slug(Str::words($request->title, 15));
 
-      $article->update($values);
-        return redirect()->route('article.index');
+
+            $article->update($values);
+            DB::commit();
+
+            return redirect()->route('article.index')->with('success', __('app.label.updated_successfully', ['name' => $article->title]));
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('article.index')->with('error', __('app.label.updated_error', ['name' => $article->title]) . $th->getMessage());
+        }
 
     }
 
@@ -208,7 +193,6 @@ class ArticleController extends Controller
             unlink($article->thumbnail);
         }
         $article->delete();
-        // Article::find($id)->delete();
         return redirect()->route('article.index');
     }
 

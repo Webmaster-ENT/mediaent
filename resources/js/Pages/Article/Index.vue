@@ -16,10 +16,7 @@ import {
     PencilIcon,
     TrashIcon,
 } from "@heroicons/vue/24/solid";
-import Create from "@/Pages/Article/Create.vue";
-import Edit from "@/Pages/Article/Edit.vue";
 import Delete from "@/Pages/Article/Delete.vue";
-// import DeleteBulk from "@/Pages/Article/DeleteBulk.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 
 const props = defineProps({
@@ -106,15 +103,6 @@ const select = () => {
                         @close="data.deleteOpen = false"
                         :article="data.article"
                     />
-                    <DeleteBulk
-                        :show="data.deleteBulkOpen"
-                        @close="
-                            (data.deleteBulkOpen = false),
-                                (data.multipleSelect = false),
-                                (data.selectedId = [])
-                        "
-                        :selectedId="data.selectedId"
-                    />
                 </div>
             </div>
             <div
@@ -126,17 +114,6 @@ const select = () => {
                             v-model="data.params.perPage"
                             :dataSet="data.dataSet"
                         />
-                        <DangerButton
-                            @click="data.deleteBulkOpen = true"
-                            v-show="
-                                data.selectedId.length != 0 &&
-                                can(['delete user'])
-                            "
-                            class="px-3 py-1.5"
-                            v-tooltip="lang().tooltip.delete_selected"
-                        >
-                            <TrashIcon class="w-5 h-5" />
-                        </DangerButton>
                     </div>
                     <TextInput
                         v-model="data.params.search"

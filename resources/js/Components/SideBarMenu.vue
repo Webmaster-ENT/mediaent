@@ -1,5 +1,7 @@
 <script setup>
 import {
+    ClipboardDocumentListIcon,
+    PlayIcon,
     HomeIcon,
     UserIcon,
     CheckBadgeIcon,
@@ -62,7 +64,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                     :href="route('article.index')"
                     class="flex items-center py-2 px-4"
                 >
-                    <UserIcon class="w-6 h-5" />
+                    <ClipboardDocumentListIcon class="w-6 h-5" />
                     <span class="ml-3">Article</span>
                 </Link>
             </li>
@@ -74,7 +76,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                     :href="route('video.index')"
                     class="flex items-center py-2 px-4"
                 >
-                    <UserIcon class="w-6 h-5" />
+                    <PlayIcon class="w-6 h-5" />
                     <span class="ml-3">Video</span>
                 </Link>
             </li>
