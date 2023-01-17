@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('video_url');
-            $table->enum('status',['show', 'draft']);
+            $table->enum('status',['show', 'draft'])->default('draft');
             $table->timestamps();
         });
     }
