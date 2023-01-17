@@ -14,6 +14,7 @@ import {
     CheckBadgeIcon,
     ChevronUpDownIcon,
     PencilIcon,
+    EyeIcon,
     TrashIcon,
 } from "@heroicons/vue/24/solid";
 import Delete from "@/Pages/Article/Delete.vue";
@@ -26,6 +27,7 @@ const props = defineProps({
     breadcrumbs: Object,
     perPage: Number,
 });
+
 const data = reactive({
     params: {
         search: props.filters.search,
@@ -127,7 +129,7 @@ const select = () => {
                         <thead
                             class="uppercase text-sm border-t border-gray-200 dark:border-gray-700"
                         >
-                            <tr class="dark:bg-gray-900/50 text-left">
+                            <tr class="dark:bg-gray-900/50 text-center">
                                 <th class="px-2 py-4 text-center">
                                     <Checkbox
                                         v-model:checked="data.multipleSelect"
@@ -226,7 +228,18 @@ const select = () => {
                                     >
                                         <div class="rounded-md overflow-hidden">
                                             <Link
-                                                class="px-2 py-1.5 rounded-none inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                                                class="px-2 py-1.5 inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                                                :href="
+                                                    route(
+                                                        'article.show',
+                                                        article.id
+                                                    )
+                                                "
+                                            >
+                                                <EyeIcon class="w-4 h-4" />
+                                            </Link>
+                                            <Link
+                                                class="px-2 py-1.5 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                                                 :href="
                                                     route(
                                                         'article.edit',

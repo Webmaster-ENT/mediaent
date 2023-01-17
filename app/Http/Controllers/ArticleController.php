@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -39,7 +40,7 @@ class ArticleController extends Controller
             'title'         => __('Article'),
             'filters'       => $request->all(['search', 'field', 'order']),
             'perPage'       => (int) $perPage,
-            'articles'      => $articles->paginate($perPage),
+            'articles'      => $articles->with('user')->paginate($perPage),
             'breadcrumbs'   => [['label' => __('Article'), 'href' => route('article.index')]],
         ]);
     }
@@ -110,7 +111,14 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        // $article = Article::with('user')->get();
+        $users = User::all();
+        $categories = Category::all();
+        return Inertia::render('Article/Show', [
+            'article' => $article,
+            'categories' => $categories,
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -136,11 +144,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Article $article)
     {
         DB::beginTransaction();
         try {
-            $article = Article::findOrFail($id);
+            // $article = Article::findOrFail($id);
             $slug = Str::slug(Str::words($request->title, 15));
             $url = 'storage/images/article/';
             $comment = " ";
@@ -159,7 +167,7 @@ class ArticleController extends Controller
                 'like' => $like,
             ];
 
-            if ($request->file('thumbnail')) {
+            if ($request->hasFile('thumbnail')) {
                 if ($article->thumbnail) {
                     unlink($article->thumbnail);
                     $extension = $request->file('thumbnail')->getClientOriginalExtension();
@@ -171,6 +179,8 @@ class ArticleController extends Controller
 
 
             $article->update($values);
+            // print_r($values);
+            // die();
             DB::commit();
 
             return redirect()->route('article.index')->with('success', __('app.label.updated_successfully', ['name' => $article->title]));

@@ -151,15 +151,9 @@ const submit = () => {
                                     <img
                                         :src="previewimage"
                                         alt=""
-                                        class="w-30"
+                                        class="w-30 mt-4 rounded-md"
                                     />
-                                    <div class="m-2 p-2">
-                                        <img
-                                            :src="form.thumbnail"
-                                            class="w-32"
-                                            alt=""
-                                        />
-                                    </div>
+
                                     <span
                                         className="text-red-600"
                                         v-if="form.errors.thumbnail"
@@ -173,7 +167,7 @@ const submit = () => {
                         <div className="mt-4">
                             <button
                                 type="submit"
-                                className="px-6 py-2 font-bold text-white bg-blue-500 rounded"
+                                className="inline-flex items-center px-4 py-2 bg-primary dark:bg-primary border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-primary/80 dark:hover:bg-primary/90 focus:bg-primary/80 dark:focus:bg-primary/80 active:bg-primary dark:active:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-primary transition ease-in-out duration-150 disabled:bg-primary/80"
                             >
                                 Save
                             </button>

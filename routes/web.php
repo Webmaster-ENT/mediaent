@@ -39,6 +39,7 @@ Route::get('/dashboard', function () {
         'users'         => (int) User::count(),
         'roles'         => (int) Role::count(),
         'permissions'   => (int) Permission::count(),
+        'articles'   => (int) Article::count(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

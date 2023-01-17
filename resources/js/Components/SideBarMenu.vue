@@ -54,7 +54,7 @@ import { Link } from "@inertiajs/inertia-vue3";
             </li>
             <!-- user -->
             <li class="py-2">
-                <p>Website</p>
+                <p>Site</p>
             </li>
             <li
                 class="bg-primary text-white rounded-lg hover:bg-primary"
@@ -81,7 +81,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                 </Link>
             </li>
             <!-- user -->
-            <li v-show="can(['read user'])" class="py-2">
+            <!-- <li v-show="can(['read user'])" class="py-2">
                 <p>{{ lang().label.data }}</p>
             </li>
             <li
@@ -125,7 +125,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                     <ShieldCheckIcon class="w-6 h-5" />
                     <span class="ml-3">{{ lang().label.permission }}</span>
                 </Link>
-            </li>
+            </li> -->
         </ul>
     </div>
 </template>

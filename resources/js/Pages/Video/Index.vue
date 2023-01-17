@@ -176,7 +176,7 @@ const select = () => {
                                     <div
                                         class="flex justify-between items-center"
                                     >
-                                        <span>Title</span>
+                                        <span>Video</span>
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>
@@ -187,7 +187,7 @@ const select = () => {
                                     <div
                                         class="flex justify-between items-center"
                                     >
-                                        <span>Url Video</span>
+                                        <span>Title</span>
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>

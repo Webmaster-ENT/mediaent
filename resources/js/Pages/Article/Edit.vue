@@ -1,17 +1,10 @@
 <script setup>
-// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import Textarea from "@/Components/Textarea.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import Ckeditor from "@/Components/Ckeditor.vue";
-// import { Inertia } from "@inertiajs/inertia";
-import {
-    CheckBadgeIcon,
-    ChevronLeftIcon,
-    PencilIcon,
-    TrashIcon,
-} from "@heroicons/vue/24/solid";
+import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { Inertia } from "@inertiajs/inertia";
 const props = defineProps({
     article: Object,
     categories: Array,
@@ -25,15 +18,15 @@ const form = useForm({
     body: props.article.body,
     status: props.article.status,
     thumbnail: props.article.thumbnail,
+    _method: "put",
 });
 
 const submit = () => {
-    form.put(route("article.update", props.article.id));
+    form.post(route("article.update", props.article.id));
 };
 </script>
 <template>
     <Head title="Article" />
-
     <div class="py-5">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -80,12 +73,6 @@ const submit = () => {
                                         v-model="form.body"
                                         autofocus
                                     />
-                                    <!-- <Textarea
-                                            id="body"
-                                            class="mt-1 block w-full"
-                                            v-model="form.body"
-                                            autofocus
-                                        /> -->
                                     <span
                                         className="text-red-600"
                                         v-if="form.errors.body"
@@ -151,15 +138,24 @@ const submit = () => {
                                     <TextInput
                                         id="thumbnail"
                                         type="file"
-                                        class="mt-1 rounded-none"
+                                        class="mt-1 block w-full rounded-none shadow-none"
                                         name="thumbnail"
+                                        @change="upload"
                                         @input="
                                             form.thumbnail =
                                                 $event.target.files[0]
                                         "
                                         multiple
                                     />
-                                    <img :src="thumbnail" alt="" class="w-30" />
+                                    <img
+                                        v-bind:src="
+                                            previewimage == null
+                                                ? '../../' + form.thumbnail
+                                                : previewimage
+                                        "
+                                        alt=""
+                                        class="w-30 mt-4 rounded-md"
+                                    />
                                     <span
                                         className="text-red-600"
                                         v-if="form.errors.thumbnail"
@@ -173,7 +169,7 @@ const submit = () => {
                         <div className="mt-4">
                             <button
                                 type="submit"
-                                className="px-6 py-2 font-bold text-white bg-green-500 rounded"
+                                className="inline-flex items-center px-4 py-2 bg-primary dark:bg-primary border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-primary/80 dark:hover:bg-primary/90 focus:bg-primary/80 dark:focus:bg-primary/80 active:bg-primary dark:active:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-primary transition ease-in-out duration-150 disabled:bg-primary/80"
                             >
                                 Save
                             </button>
@@ -184,3 +180,20 @@ const submit = () => {
         </div>
     </div>
 </template>
+<script>
+export default {
+    props: ["id"],
+    data() {
+        return {
+            previewimage: null,
+        };
+    },
+    methods: {
+        upload(e) {
+            let files = e.target.files[0];
+            this.previewimage = URL.createObjectURL(files);
+            // console.log(e.target.files);
+        },
+    },
+};
+</script>

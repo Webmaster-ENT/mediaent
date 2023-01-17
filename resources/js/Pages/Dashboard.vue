@@ -13,6 +13,7 @@ const props = defineProps({
     users: Number,
     roles: Number,
     permissions: Number,
+    articles: Number,
 });
 </script>
 
