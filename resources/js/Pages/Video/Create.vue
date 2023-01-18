@@ -17,7 +17,7 @@ const emit = defineEmits(["close"]);
 
 const form = useForm({
     title: "",
-    video_url: "",
+    video_url: "https://www.youtube.com/embed/",
     status: "draft",
 });
 
@@ -60,7 +60,7 @@ const create = () => {
                 <div class="my-6 space-y-4">
                     <div>
                         <InputLabel for="title" value="Link YouTube-Embed" />
-                        <Textarea
+                        <TextInput
                             id="video_url"
                             type="text"
                             class="mt-1 block w-full"
