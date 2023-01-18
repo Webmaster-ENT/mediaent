@@ -81,7 +81,7 @@ class ArticleController extends Controller
             if ($request->file('thumbnail')) {
                 $extension = $request->file('thumbnail')->getClientOriginalExtension();
                 $newName = $slug . '-' . now()->timestamp . '.' . $extension;
-                $request->file('thumbnail')->storeAs('public/images/article', $newName);
+                $request->file('thumbnail')->storeAs('images/article', $newName);
             }
             $article = Article::create([
                     'title' => $request->title,
@@ -172,7 +172,7 @@ class ArticleController extends Controller
                     unlink($article->thumbnail);
                     $extension = $request->file('thumbnail')->getClientOriginalExtension();
                     $newName = $slug . '-' . now()->timestamp . '.' . $extension;
-                    $request->file('thumbnail')->storeAs('public/images/article', $newName);
+                    $request->file('thumbnail')->storeAs('images/article', $newName);
                 }
                 $values['thumbnail'] = $url.$newName;
             }
