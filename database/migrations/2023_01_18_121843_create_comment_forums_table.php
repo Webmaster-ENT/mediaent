@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
+        Schema::create('comment_forums', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

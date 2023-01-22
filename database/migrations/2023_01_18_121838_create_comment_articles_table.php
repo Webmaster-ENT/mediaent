@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('comment_articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
