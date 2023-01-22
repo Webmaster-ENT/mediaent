@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
 
@@ -53,6 +54,10 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('video', VideoController::class);
     Route::post('/video/destroy-bulk', [VideoController::class, 'destroyBulk'])->name('video.destroy-bulk');
+
+    Route::resource('forum', ForumController::class);
+    Route::post('/forum/destroy-bulk', [ForumController::class, 'destroyBulk'])->name('forum.destroy-bulk');
+
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');
     // Route::post('article',[ArticleController::class, 'store'])->name('article.store');

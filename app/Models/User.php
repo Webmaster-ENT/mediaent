@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Forum;
 use App\Models\Article;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -55,6 +56,11 @@ class User extends Authenticatable
         return $this->getAllPermissions()->mapWithKeys(function ($pr) {
             return [$pr['name'] => true];
         });
+    }
+
+    public function forum()
+    {
+        return $this->hasMany(Forum::class);
     }
 
     public function article()

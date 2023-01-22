@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
+<<<<<<< HEAD:database/migrations/2023_01_18_121838_create_comment_articles_table.php
+        Schema::create('comment_articles', function (Blueprint $table) {
+=======
+        Schema::create('comments', function (Blueprint $table) {
+>>>>>>> e8d15a6 (forum):database/migrations/2023_01_22_134419_create_comments_table.php
             $table->id();
+            $table->bigInteger('commentable_id');
+            $table->string('commentable_type');
             $table->foreignId('user_id')->constrained('users');
-            $table->string('subject');
-            $table->text('slug');
-            $table->bigInteger('like')->nullable();
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('comments');
     }
 };

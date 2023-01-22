@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
@@ -33,4 +34,7 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comment() {
+        return $this->morphOne(Comment::class, 'commentable');
+    }
 }

@@ -74,7 +74,6 @@ class ArticleController extends Controller
         try {
             $slug = Str::slug(Str::words($request->title, 15));
             $url = 'storage/images/article/';
-            $comment = " ";
             $newName = '';
             $like = 0;
 
@@ -92,7 +91,6 @@ class ArticleController extends Controller
                     'summary' => Str::of(Str::words($request->body, 23)),
                     'status' => $request->status,
                     'thumbnail' => $request['thumbnail'] = $url.$newName,
-                    'comment' => $comment,
                     'like' => $like,
             ]);
             DB::commit();
