@@ -29,7 +29,7 @@ const props = defineProps({
     title: String,
     filters: Object,
     forums: Object,
-    users: Object,
+    // users: Object,
     breadcrumbs: Object,
     perPage: Number,
 });
@@ -244,15 +244,15 @@ const select = () => {
                                     <div v-html="forum.subject"></div>
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    {{ users[-1 + forum.user_id].name }}
+                                    {{ forum.user.name }}
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    {{ moment(forum.created_at).format("LL") }}
+                                    {{ forum.created_at }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap py-4 px-2 sm:py-3 text-capitalize"
                                 >
-                                    {{ moment(forum.updated_at).format("LL") }}
+                                    {{ forum.updated_at }}
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     <div

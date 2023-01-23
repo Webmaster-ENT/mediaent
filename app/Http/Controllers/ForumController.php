@@ -35,7 +35,6 @@ class ForumController extends Controller
             'title'         => __('Forum'),
             'filters'       => $request->all(['search', 'field', 'order']),
             'perPage'       => (int) $perPage,
-            'users'         => $users,
             'forums'      => $forums->with('user')->paginate($perPage),
             'breadcrumbs'   => [['label' => __('Forum'), 'href' => route('forum.index')]],
         ]);

@@ -70,7 +70,7 @@ const emit = defineEmits(["open"]);
                                                 {{
                                                     $page.props.auth.user.name.split(
                                                         " "
-                                                    )[0]
+                                                    )[0]    
                                                 }}
                                                 <CheckCircleIcon
                                                     class="ml-[2px] w-4 h-4 text-white dark:text-white lg:text-blue-600"

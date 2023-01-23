@@ -3,15 +3,17 @@
 use App\Models\Role;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Forum;
+use App\Models\Video;
 use App\Models\Article;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
 
@@ -41,6 +43,8 @@ Route::get('/dashboard', function () {
         'roles'         => (int) Role::count(),
         'permissions'   => (int) Permission::count(),
         'articles'   => (int) Article::count(),
+        'forums'    => (int) Forum::count(),
+        'videos'    => (int) Video::count(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
