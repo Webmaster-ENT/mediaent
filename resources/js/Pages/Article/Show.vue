@@ -3,8 +3,12 @@
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import Ckeditor from "@/Components/Ckeditor.vue";
+// import Ckeditor from "@/Components/Ckeditor.vue";
+import DangerButton from "@/Components/DangerButton.vue";
+import Delete from "@/Pages/Article/DeleteComment.vue";
 import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { reactive, watch } from "vue";
+import { TrashIcon } from "@heroicons/vue/24/solid";
 import moment from "moment";
 
 const props = defineProps({
@@ -89,9 +93,6 @@ const props = defineProps({
                 </div>
             </div>
         </div>
-        <!-- </div>
-            </div>
-        </div> -->
     </div>
 </template>
 

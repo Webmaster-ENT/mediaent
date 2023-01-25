@@ -18,7 +18,8 @@ return new class extends Migration
             $table->bigInteger('commentable_id');
             $table->string('commentable_type');
             $table->foreignId('user_id')->constrained('users');
-            $table->text('body');
+            $table->text('comment');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

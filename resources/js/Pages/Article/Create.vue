@@ -130,6 +130,7 @@ const submit = () => {
                                         {{ form.errors.category_id }}
                                     </span>
                                 </div>
+
                                 <div className="mb-4">
                                     <InputLabel
                                         for="thumbnail"

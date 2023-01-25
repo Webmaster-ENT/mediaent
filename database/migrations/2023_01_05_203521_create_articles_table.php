@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('thumbnail');
             $table->enum('status',['show', 'draft'])->default('draft');
             $table->unsignedBigInteger('like')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

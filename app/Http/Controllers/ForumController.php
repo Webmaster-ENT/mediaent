@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Forum;
+use App\Models\Comment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -136,7 +137,13 @@ class ForumController extends Controller
     public function destroy(Forum $forum)
     {
         try {
+            // delete forum
             $forum->delete();
+
+            // felete comment per forum
+            $comments = Comment::where('commentable_id', $forum->id)->where('commentable_type', 'App\Models\Article');
+            $comments->delete();
+
             return back()->with('success', __('app.label.deleted_successfully', ['name' => $forum->subject]));
         } catch (\Throwable $th) {
             return back()->with('error', __('app.label.deleted_error', ['name' => $forum->subject]) . $th->getMessage());
@@ -146,9 +153,25 @@ class ForumController extends Controller
         try {
             $forum = Forum::whereIn('id', $request->id);
             $forum->delete();
+
+            $comments = Comment::where('commentable_id', $request->id)->where('commentable_type', 'App\Models\Article');
+            $comments->delete();
+
             return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('Forum')]));
         } catch (\Throwable $th) {
             return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('Forum')]) . $th->getMessage());
         }
+    }
+
+    public function createComment(Request $request, $id)
+    {
+        $forum= Forum::find($id);
+        $forum->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
     }
 }

@@ -55,12 +55,16 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('article', ArticleController::class);
     Route::post('/article/destroy-bulk', [ArticleController::class, 'destroyBulk'])->name('article.destroy-bulk');
+    Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
+    Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
 
     Route::resource('video', VideoController::class);
     Route::post('/video/destroy-bulk', [VideoController::class, 'destroyBulk'])->name('video.destroy-bulk');
 
     Route::resource('forum', ForumController::class);
     Route::post('/forum/destroy-bulk', [ForumController::class, 'destroyBulk'])->name('forum.destroy-bulk');
+    Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
+    Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
 
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');

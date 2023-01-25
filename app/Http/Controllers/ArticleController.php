@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -93,6 +94,9 @@ class ArticleController extends Controller
                     'thumbnail' => $request['thumbnail'] = $url.$newName,
                     'like' => $like,
             ]);
+
+            // $article->comment()->create(['body' => $request->comment, 'user_id' => Auth::id()]);
+
             DB::commit();
             return redirect()->route('article.index')->with('success', __('app.label.created_successfully', ['name' => $article->title]));
         } catch (\Throwable $th) {
@@ -110,11 +114,13 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         // $article = Article::with('user')->get();
+        $comments = Comment::where('commentable_id', $article->id)->where('commentable_type', 'App\Models\Article')->get();
         $users = User::all();
         $categories = Category::all();
         return Inertia::render('Article/Show', [
             'article' => $article,
             'categories' => $categories,
+            'comments' => $comments,
             'users' => $users,
         ]);
     }
@@ -149,7 +155,6 @@ class ArticleController extends Controller
             // $article = Article::findOrFail($id);
             $slug = Str::slug(Str::words($request->title, 15));
             $url = 'storage/images/article/';
-            $comment = " ";
             $newName = "";
             $like = 0;
 
@@ -161,7 +166,6 @@ class ArticleController extends Controller
                 'body' => $request->body,
                 'summary' => Str::of(Str::words($request->body, 23)),
                 'status' => $request->status,
-                'comment' => $comment,
                 'like' => $like,
             ];
 
@@ -177,12 +181,12 @@ class ArticleController extends Controller
 
 
             $article->update($values);
-            // print_r($values);
-            // die();
-            DB::commit();
 
+            DB::commit();
             return redirect()->route('article.index')->with('success', __('app.label.updated_successfully', ['name' => $article->title]));
+
         } catch (\Throwable $th) {
+
             DB::rollback();
             return redirect()->route('article.index')->with('error', __('app.label.updated_error', ['name' => $article->title]) . $th->getMessage());
         }
@@ -197,22 +201,48 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        if ($article->thumbnail) {
-            unlink($article->thumbnail);
+        try {
+
+
+            if ($article->thumbnail) {
+                unlink($article->thumbnail);
+            }
+            // delete article
+            $article->delete();
+
+            // delete comment per article
+            $comments = Comment::where('commentable_id', $article->id)->where('commentable_type', 'App\Models\Article');
+            $comments->delete();
+
+            return redirect()->route('article.index')->with('success', __('app.label.deleted_successfully', ['name' => $article->title]));
+
+        } catch (\Throwable $th) {
+            return redirect()->route('article.index')->with('error', __('app.label.deleted_error', ['name' => $article->title]) . $th->getMessage());
         }
-        $article->delete();
-        return redirect()->route('article.index');
     }
 
     public function destroyBulk(Request $request)
     {
         try {
-            $article = Article::whereIn('id', $request->id);
-            // $article->unlink();
+            $article = Article::where('id', $request->id);
+            unlink($article->thumbnail);
+
             $article->delete();
             return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('Article')]));
         } catch (\Throwable $th) {
             return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('Article')]) . $th->getMessage());
         }
+    }
+
+    public function createComment(Request $request, $id)
+    {
+        $article= Article::find($id);
+        $article->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
     }
 }
