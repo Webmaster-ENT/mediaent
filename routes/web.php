@@ -28,6 +28,13 @@ use App\Http\Controllers\PermissionController;
 |
 */
 
+Route::get('storage-link-dep', function (){
+    Artisan::call('storage:link');
+    $target = '/home/entpens/media-ent/storage/app/public';
+    $shortcut = '/home/entpens/public_html/media-ent/storage';
+    symlink($target, $shortcut);
+});
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
