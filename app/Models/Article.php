@@ -37,4 +37,8 @@ class Article extends Model
     public function comment() {
         return $this->morphOne(Comment::class, 'commentable');
     }
+
+    public function like() {
+        return $this->morphOne(Like::class, 'likeable');
+    }
 }

@@ -1,4 +1,4 @@
-a<script setup>
+<script setup>
 import DangerButton from "@/Components/DangerButton.vue";
 import Modal from "@/Components/Modal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     show: Boolean,
-    comment: Object,
+    like: Object,
 });
 
 const emit = defineEmits(["close"]);
@@ -14,7 +14,7 @@ const emit = defineEmits(["close"]);
 const form = useForm({});
 
 const destory = () => {
-    form.delete(route("article.delete-comment", props.comment?.id), {
+    form.delete(route("article.delete-like", props.like?.id), {
         preserveScroll: true,
         onSuccess: () => {
             emit("close");
@@ -33,11 +33,11 @@ const destory = () => {
                 <h2
                     class="text-lg font-medium text-gray-900 dark:text-gray-100"
                 >
-                    {{ lang().label.delete }} {{ lang().label.comment }}
+                    {{ lang().label.delete }} {{ lang().label.like }}
                 </h2>
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ lang().label.delete_confirm }}
-                    <b>{{ props.comment?.body }}</b
+                    <b>{{ props.like?.like }}</b
                     >?
                 </p>
                 <div class="mt-6 flex justify-end">

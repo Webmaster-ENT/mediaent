@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('slug');
+            $table->bigInteger('likeable_id');
+            $table->string('likeable_type');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->text('summary');
-            $table->longText('body');
-            $table->text('thumbnail');
-            $table->enum('status',['show', 'draft'])->default('draft');
-            $table->softDeletes();
+            $table->boolean('like')->default(0);
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('likes');
     }
 };

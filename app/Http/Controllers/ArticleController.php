@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Article;
@@ -35,6 +36,7 @@ class ArticleController extends Controller
         if ($request->has(['field', 'order'])) {
             $articles->orderBy($request->field, $request->order);
         }
+        // $likes = Comment::where('likeable', $article->id)->where('commentable_type', 'App\Models\Article');
         $perPage = $request->has('perPage') ? $request->perPage : 10;
 
         return Inertia::render('Article/Index', [
@@ -76,7 +78,6 @@ class ArticleController extends Controller
             $slug = Str::slug(Str::words($request->title, 15));
             $url = 'storage/images/article/';
             $newName = '';
-            $like = 0;
 
             if ($request->file('thumbnail')) {
                 $extension = $request->file('thumbnail')->getClientOriginalExtension();
@@ -92,7 +93,6 @@ class ArticleController extends Controller
                     'summary' => Str::of(Str::words($request->body, 23)),
                     'status' => $request->status,
                     'thumbnail' => $request['thumbnail'] = $url.$newName,
-                    'like' => $like,
             ]);
 
             // $article->comment()->create(['body' => $request->comment, 'user_id' => Auth::id()]);
@@ -114,13 +114,26 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         // $article = Article::with('user')->get();
-        $comments = Comment::where('commentable_id', $article->id)->where('commentable_type', 'App\Models\Article')->get();
         $users = User::all();
         $categories = Category::all();
+        $comments = Comment::where('commentable_id', $article->id)->where('commentable_type', 'App\Models\Article')->get();
+        $likescount = (int) Like::where([
+            'likeable_id' => $article->id,
+            'likeable_type' => 'App\Models\Article'
+            ])->count();
+
+        $likes = Like::where([
+            'likeable_id' => $article->id,
+            'likeable_type' => 'App\Models\Article',
+            'user_id' => Auth::id(),
+            ])->get();
+
         return Inertia::render('Article/Show', [
             'article' => $article,
             'categories' => $categories,
             'comments' => $comments,
+            'likescount' => $likescount,
+            'likes' => $likes,
             'users' => $users,
         ]);
     }
@@ -156,7 +169,6 @@ class ArticleController extends Controller
             $slug = Str::slug(Str::words($request->title, 15));
             $url = 'storage/images/article/';
             $newName = "";
-            $like = 0;
 
             $values = [
                 'title' => $request->title,
@@ -166,7 +178,6 @@ class ArticleController extends Controller
                 'body' => $request->body,
                 'summary' => Str::of(Str::words($request->body, 23)),
                 'status' => $request->status,
-                'like' => $like,
             ];
 
             if ($request->hasFile('thumbnail')) {
@@ -224,7 +235,7 @@ class ArticleController extends Controller
     public function destroyBulk(Request $request)
     {
         try {
-            $article = Article::where('id', $request->id);
+            $article = Article::whereIn('id', $request->id);
             unlink($article->thumbnail);
 
             $article->delete();
@@ -244,5 +255,19 @@ class ArticleController extends Controller
     {
         $comment = Comment::find($id);
         $comment->delete();
+    }
+
+    public function createLike( $id)
+    {
+        $article= Article::find($id);
+        $article->like()->create(['like' => 1, 'user_id' => Auth::id()]);
+        return back();
+    }
+
+    public function deleteLike($id)
+    {
+        $like = Like::find($id);
+        $like->delete();
+        return back();
     }
 }

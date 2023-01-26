@@ -6,16 +6,40 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 // import Ckeditor from "@/Components/Ckeditor.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import Delete from "@/Pages/Article/DeleteComment.vue";
-import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { ChevronLeftIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import { reactive, watch } from "vue";
-import { TrashIcon } from "@heroicons/vue/24/solid";
 import moment from "moment";
 
 const props = defineProps({
     article: Object,
     users: Object,
+    comments: Object,
     categories: Object,
+    likescount: Number,
+    likes: Object,
 });
+
+const form = useForm({
+    id: props.article.id,
+    comment: props.article.comment,
+    like: props.article.like,
+    _method: "put",
+});
+
+const data = reactive({
+    deleteOpen: false,
+});
+
+function deleteLike(id) {
+    form.delete(route("article.delete-like", id));
+}
+
+const likeadd = () => {
+    form.post(route("article.create-like", props.article.id));
+};
+const comment = () => {
+    form.post(route("article.create-comment", props.article.id));
+};
 </script>
 <template>
     <Head title="Article" />
@@ -89,6 +113,116 @@ const props = defineProps({
                                 </div>
                             </div>
                         </section>
+                        <form
+                            @submit.prevent="comment"
+                            enctype="multipart/form-data"
+                        >
+                            <div class="mb-4">
+                                <InputLabel for="comment" value="Comment" />
+
+                                <TextInput
+                                    id="comment"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.comment"
+                                    autofocus
+                                />
+                                <span
+                                    className="text-red-600"
+                                    v-if="form.errors.comment"
+                                >
+                                    {{ form.errors.comment }}
+                                </span>
+                            </div>
+                            <div className="mt-4">
+                                <button
+                                    type="submit"
+                                    className="inline-flex items-center px-4 py-2 bg-primary dark:bg-primary border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-primary/80 dark:hover:bg-primary/90 focus:bg-primary/80 dark:focus:bg-primary/80 active:bg-primary dark:active:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-primary transition ease-in-out duration-150 disabled:bg-primary/80"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- <div v-for="like in likes"> -->
+                        <div v-if="likes == ''">
+                            <form @submit.prevent="likeadd">
+                                <div className="mt-4">
+                                    <button type="submit">like</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-else>
+                            <template v-for="like in likes" :key="like.id">
+                                <div
+                                    v-show="
+                                        like.user_id == $page.props.auth.user.id
+                                    "
+                                >
+                                    <button
+                                        @click="deleteLike(like.id)"
+                                        tabindex="-1"
+                                        type="button"
+                                        class="mt-4"
+                                    >
+                                        Unlike
+                                    </button>
+                                </div>
+                                <div
+                                    v-show="
+                                        like.user_id != $page.props.auth.user.id
+                                    "
+                                >
+                                    <form @submit.prevent="likeadd">
+                                        <div className="mt-4">
+                                            <button type="submit">like</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </template>
+                        </div>
+                        <p>{{ props.likescount }}</p>
+                        <Delete
+                            :show="data.deleteOpen"
+                            @close="data.deleteOpen = false"
+                            :comment="data.comment"
+                        />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>comment</td>
+                                    <td>author</td>
+                                    <td>action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="comment in comments">
+                                    <td>{{ comment.comment }}</td>
+                                    <td>
+                                        {{ users[-1 + comment.user_id].name }}
+                                    </td>
+                                    <td
+                                        v-if="
+                                            comment.user_id ==
+                                            $page.props.auth.user.id
+                                        "
+                                    >
+                                        <DangerButton
+                                            v-show="can(['delete user'])"
+                                            type="button"
+                                            @click="
+                                                (data.deleteOpen = true),
+                                                    (data.comment = comment)
+                                            "
+                                            class="px-2 py-1.5 rounded-none"
+                                            v-tooltip="lang().tooltip.delete"
+                                        >
+                                            <TrashIcon class="w-4 h-4" />
+                                        </DangerButton>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -39,9 +39,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'users'         => (int) User::count(),
-        'roles'         => (int) Role::count(),
-        'permissions'   => (int) Permission::count(),
         'articles'   => (int) Article::count(),
         'forums'    => (int) Forum::count(),
         'videos'    => (int) Video::count(),
@@ -57,6 +54,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/article/destroy-bulk', [ArticleController::class, 'destroyBulk'])->name('article.destroy-bulk');
     Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
     Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
+    Route::put('/article/create-like/{id}', [ArticleController::class, 'createLike'])->name('article.create-like');
+    Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
 
     Route::resource('video', VideoController::class);
     Route::post('/video/destroy-bulk', [VideoController::class, 'destroyBulk'])->name('video.destroy-bulk');
@@ -65,6 +64,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/forum/destroy-bulk', [ForumController::class, 'destroyBulk'])->name('forum.destroy-bulk');
     Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
     Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
+    Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
+    Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
 
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');

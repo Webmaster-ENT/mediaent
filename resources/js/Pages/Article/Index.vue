@@ -170,17 +170,6 @@ const select = () => {
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>
-                                <th
-                                    class="px-2 py-4 cursor-pointer"
-                                    v-on:click="order('like')"
-                                >
-                                    <div
-                                        class="flex justify-between items-center"
-                                    >
-                                        <span>Like</span>
-                                        <ChevronUpDownIcon class="w-4 h-4" />
-                                    </div>
-                                </th>
                                 <th class="px-2 py-4">Action</th>
                             </tr>
                         </thead>
@@ -218,9 +207,6 @@ const select = () => {
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     {{ article.status }}
-                                </td>
-                                <td class="whitespace-nowrap py-4 px-2 sm:py-3">
-                                    {{ article.like }}
                                 </td>
                                 <td class="whitespace-nowrap py-4 px-2 sm:py-3">
                                     <div
