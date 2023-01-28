@@ -15,6 +15,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\PermissionController;
 
 /*
@@ -44,6 +45,20 @@ Route::get('/', function () {
     ]);
 });
 
+// Route::get('/', [FrontEndController::class, 'index'])->name('index');
+Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
+Route::get('{name}/{id}', [FrontEndController::class, 'showforum'])->name('detail.showforum');
+
+Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
+Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
+Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
+Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
+
+Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
+Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
+Route::put('/article/create-like/{id}', [ArticleController::class, 'createLike'])->name('article.create-like');
+Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
         'articles'   => (int) Article::count(),
@@ -59,24 +74,17 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('article', ArticleController::class);
     Route::post('/article/destroy-bulk', [ArticleController::class, 'destroyBulk'])->name('article.destroy-bulk');
-    Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
-    Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
-    Route::put('/article/create-like/{id}', [ArticleController::class, 'createLike'])->name('article.create-like');
-    Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
 
     Route::resource('video', VideoController::class);
     Route::post('/video/destroy-bulk', [VideoController::class, 'destroyBulk'])->name('video.destroy-bulk');
 
     Route::resource('forum', ForumController::class);
     Route::post('/forum/destroy-bulk', [ForumController::class, 'destroyBulk'])->name('forum.destroy-bulk');
-    Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
-    Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
-    Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
-    Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
 
     // Route::get('article',[ArticleController::class, 'index'])->name('article.index');
     // Route::get('article/create',[ArticleController::class, 'create'])->name('article.create');
     // Route::post('article',[ArticleController::class, 'store'])->name('article.store');
+    // Route::get('article/{article}',[ArticleController::class, 'show'])->name('article.show');
     // Route::get('article/{article}/edit',[ArticleController::class, 'edit'])->name('article.edit');
     // Route::put('article/{article}',[ArticleController::class, 'update'])->name('article.update');
 

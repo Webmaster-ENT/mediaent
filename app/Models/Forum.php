@@ -20,12 +20,12 @@ class Forum extends Model
 
     public function getCreatedAtAttribute()
     {
-        return date('j F Y H:i:s', strtotime($this->attributes['created_at']));
+        return date('j F Y H:i', strtotime($this->attributes['created_at']));
     }
 
     public function getUpdatedAtAttribute()
     {
-        return date('j F Y H:i:s', strtotime($this->attributes['updated_at']));
+        return date('j F Y H:i', strtotime($this->attributes['updated_at']));
     }
 
     public function user()
@@ -33,8 +33,21 @@ class Forum extends Model
         return $this->belongsTo(User::class);
     }
 
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class);
+    // }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function comment() {
         return $this->morphOne(Comment::class, 'commentable');
+    }
+
+    public function likes() {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     public function like() {

@@ -83,9 +83,9 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Forum $forum)
     {
-        //
+
     }
 
     /**
@@ -94,7 +94,7 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Forum $forum)
     {
         //
     }

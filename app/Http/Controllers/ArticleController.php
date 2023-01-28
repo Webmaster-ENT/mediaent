@@ -111,30 +111,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($slug)
     {
-        // $article = Article::with('user')->get();
-        $users = User::all();
-        $categories = Category::all();
-        $comments = Comment::where('commentable_id', $article->id)->where('commentable_type', 'App\Models\Article')->get();
-        $likescount = (int) Like::where([
-            'likeable_id' => $article->id,
-            'likeable_type' => 'App\Models\Article'
-            ])->count();
-
-        $likes = Like::where([
-            'likeable_id' => $article->id,
-            'likeable_type' => 'App\Models\Article',
-            'user_id' => Auth::id(),
-            ])->get();
-
+        $articles = Article::where('slug' , $slug)->with(['user', 'category', 'like'])->get();
         return Inertia::render('Article/Show', [
-            'article' => $article,
-            'categories' => $categories,
-            'comments' => $comments,
-            'likescount' => $likescount,
-            'likes' => $likes,
-            'users' => $users,
+            'articles' => $articles,
         ]);
     }
 

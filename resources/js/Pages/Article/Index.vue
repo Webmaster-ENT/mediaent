@@ -218,7 +218,7 @@ const select = () => {
                                                 :href="
                                                     route(
                                                         'article.show',
-                                                        article.id
+                                                        article.slug
                                                     )
                                                 "
                                             >
