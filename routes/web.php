@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForumController;
