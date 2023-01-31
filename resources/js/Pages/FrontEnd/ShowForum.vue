@@ -76,6 +76,7 @@ const props = defineProps({
         <div
             class="max-w-xs md:max-w-2xl lg:max-w-5xl mx-auto rounded-xl overflow-hidden"
             v-for="comment in comments"
+            v-bind:key="comment.id"
         >
             <br />
             <br />
