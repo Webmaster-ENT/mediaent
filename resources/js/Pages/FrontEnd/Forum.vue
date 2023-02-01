@@ -12,75 +12,72 @@ const props = defineProps({
   forums: Object,
 });
 </script>
+<!-- L T H -->
+<!-- 24 20 16 -->
+<!-- 20 18 14 -->
+
 <template>
-  <NavbarUser />
-  <div class="bg-sky-900">
-    <br />
-    <br />
-    <p class="mx-36 text-xl text-white font-bold">FORUM</p>
-    <br />
-    <div
-      class="
-        max-w-xs
-        md:max-w-2xl
-        lg:max-w-5xl
-        mx-auto
-        rounded-xl
-        overflow-hidden
-      "
-      v-for="forum in forums"
-      :key="forum.id"
-    >
-      <div class="md:flex">
-        <div class="p-8">
-          <div class="flex">
-            <UserCircleIcon class="text-white w-14 h-14"></UserCircleIcon>
-            <div class="mt-1.5">
-              <div
-                class="
-                  ml-6
-                  uppercase
-                  tracking-wide
-                  text-sm text-white
-                  font-semibold
-                "
-              >
-                {{ forum.user.name }}
-              </div>
+    <NavbarUser />
+    <div class="bg-sky-900">
+        <div class=" max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
+        <br />
+        <br />
+        <p class="text-white font-bold text-base md:text-xl md:ml-24 lg:text-2xl lg:ml-32">FORUM</p>
+        <br />
+        <div
+            v-for="forum in forums"
+            :key="forum.id"
+        >
+            <div>
+                <div class="py-4 md:py-6 md:ml-24 lg:p-8">
+                    <div class="flex">
+                        <UserCircleIcon
+                            class="text-white w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14"
+                        ></UserCircleIcon>
+                        <div class="mt-1.5">
+                            <div
+                                class="ml-3 uppercase tracking-wide text-xs text-white font-semibold md:text-base lg:text-lg"
+                            >
+                                {{ forum.user.name }}
+                            </div>
 
-              <p class="ml-6 font-medium text-sm text-slate-400">
-                Asked On {{ forum.created_at }} WIB
-              </p>
-              <Link
-                :href="route('detail.showforum', [forum.user.name, forum.id])"
-              >
-                <div
-                  class="mt-2 ml-6 text-white font-medium text-2xl mt-7"
-                  v-html="forum.subject"
-                ></div>
-              </Link>
-              <div class="mt-7">
-                <div class="flex ml-6 text-xl text-white items-center">
-                  <HandThumbUpIcon class="w-6 h-6" />
-                  <span class="mx-2 mr-6">{{ forum.likes.length }} </span>
+                            <p class="ml-3 font-medium text-slate-400 text-xs md:text-sm lg:text-base">
+                                Asked On {{ forum.created_at }} WIB
+                            </p>
+                            <Link
+                                :href="route('detail.showforum', [forum.user.name, forum.id])"
+                            >
+                                <div
+                                    class="mt-2 ml-3 text-white font-medium mt-7 text-base md:text-xl lg:text-2xl"
+                                    v-html="forum.subject"
+                                ></div>
+                            </Link>
+                            <div class="mt-4 md:mt-6">
+                                <div
+                                    class="flex ml-3 text-white items-center text-sm md:text-xl"
+                                >
+                                    <HandThumbUpIcon class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+                                    <span class="mx-2 mr-6"
+                                        >{{ forum.likes.length }}
+                                    </span>
 
-                  <ChatBubbleLeftEllipsisIcon class="w-6 h-6" />
-                  <span class="mx-2">{{ forum.comments.length }}</span>
+                                    <ChatBubbleLeftEllipsisIcon class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+                                    <span class="mx-2">{{
+                                        forum.comments.length
+                                    }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
               </div>
+              <hr class=" m-auto border-t-2 my-2 w-4/5" />
             </div>
-          </div>
+            
         </div>
-      </div>
-      <hr class="w-4/5 m-auto border-t-2" />
-      <br />
+    <!-- <FooterUser /> -->
     </div>
-  </div>
-
-  <!-- <br />
-    <hr class="w-4/5 m-auto 1px border-t-2" />
-    <hr class="w-4/5 m-auto 1px border-t-2" /> -->
-  <FooterUser />
+    
 </template>
 
 <style setup>
