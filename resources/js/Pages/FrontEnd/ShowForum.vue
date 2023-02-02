@@ -35,14 +35,14 @@ const props = defineProps({
             <div class="flex">
               <UserCircleIcon class="text-sky-900 w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14"></UserCircleIcon>
               <div class="mt-1.5">
-                <div class="ml-3 uppercase tracking-wide text-xs text-black font-semibold md:text-base lg:text-lg">
+                <div class="ml-3 uppercase tracking-wide text-xs text-black font-medium md:text-base lg:text-lg">
                   {{ forum.user.name }}
                 </div>
                 <p class="ml-3 font-medium text-slate-400 text-xs md:text-sm lg:text-base">
                   Asked on {{ forum.created_at }} WIB
                 </p>
                 <div
-                  class="mt-2 ml-3 text-black font-medium mt-7 text-base md:text-xl lg:text-2xl"
+                  class="mt-2 ml-3 text-black font-semibold mt-7 text-base md:text-xl lg:text-2xl"
                   v-html="forum.subject"
                 ></div>
                 <div class="mt-4 md:mt-6">
@@ -120,9 +120,9 @@ const props = defineProps({
           <div>
             <div class="lg:p-8 w-full">
               <div class="flex max-w-xs overflow-hidden mx-auto md:max-w-xl  lg:max-w-3xl">
-                <UserCircleIcon class="text-sky-900 w-12 h-12 md:w-12 md:h-12 lg:w-14 lg:h-14"></UserCircleIcon>
-                  <input type="text" placeholder="Write Answer..." class="w-full  bg-sky-900 shadow appearance-none border rounded-2xl  py-2 px-3 mt-1  text-white leading-tight focus:outline-none focus:shadow-outline ">
-                <UserCircleIcon class="text-sky-900 w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14"></UserCircleIcon>
+                <UserCircleIcon class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"></UserCircleIcon>
+                  <input type="text" placeholder="Write Answer..." class="w-full h-10 bg-sky-900 shadow appearance-none border rounded-2xl  py-2 px-3 mt-1 md:mt-2 lg:mt-3 text-white leading-tight focus:outline-none focus:shadow-outline ">
+                <UserCircleIcon class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-1w-16"></UserCircleIcon>
                   <!-- <a href="" class="text-black">Post</a> -->
                 
               <!-- ngkok gantinen logo Pesawat opo opo ngunu gantine tombol kirim -->

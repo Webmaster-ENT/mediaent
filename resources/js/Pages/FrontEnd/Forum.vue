@@ -36,19 +36,19 @@ const props = defineProps({
                         ></UserCircleIcon>
                         <div class="mt-1.5">
                             <div
-                                class="ml-3 uppercase tracking-wide text-xs text-white font-semibold md:text-base lg:text-lg"
+                                class="ml-3 uppercase tracking-wide text-xs text-white font-medium md:text-base lg:text-lg"
                             >
                                 {{ forum.user.name }}
                             </div>
 
-                            <p class="ml-3 font-medium text-slate-400 text-xs md:text-sm lg:text-base">
+                            <p class="ml-3 font-medium text-slate-400 text-xs md:text-sm lg:text-base font">
                                 Asked On {{ forum.created_at }} WIB
                             </p>
                             <Link
                                 :href="route('detail.showforum', [forum.user.name, forum.id])"
                             >
                                 <div
-                                    class="mt-2 ml-3 text-white font-medium mt-7 text-base md:text-xl lg:text-2xl"
+                                    class="mt-2 ml-3 text-white font-semibold mt-7 text-base md:text-xl lg:text-2xl"
                                     v-html="forum.subject"
                                 ></div>
                             </Link>
