@@ -24,6 +24,16 @@ class Article extends Model
         'like',
     ];
 
+    public function getCreatedAtAttribute()
+    {
+        return date('F j, Y', strtotime($this->attributes['created_at']));
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return date('F j, Y', strtotime($this->attributes['updated_at']));
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -34,8 +44,16 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function comment() {
         return $this->morphOne(Comment::class, 'commentable');
+    }
+
+    public function likes() {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     public function like() {

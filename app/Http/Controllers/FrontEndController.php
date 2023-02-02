@@ -39,7 +39,7 @@ class FrontEndController extends Controller
 
     }
 
-    public function showforum($name, $id)
+    public function showforum($id)
     {
 
         $forums = Forum::with(['user', 'comments', 'likes'])->where([
@@ -91,4 +91,54 @@ class FrontEndController extends Controller
         return back();
     }
 
+
+    //ARTICLE
+    public function allarticle()
+    {
+
+        $articles = Article::with(['user','likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->get();
+
+        return Inertia::render('FrontEnd/Article',[
+            'articles' => $articles,
+        ]);
+
+    }
+
+    public function showArticle($id)
+    {
+
+        $articles = Article::with(['user', 'comments', 'likes', 'category'])->where([
+            'id' => $id,
+            ])->get();
+
+        // $forum = Forum::find($id);
+        // foreach ($forum as $foru) {
+        //    $arti = [$foru->id];
+
+        // }
+        // var_dump();
+        $comments = Comment::with('user')->where([
+            'commentable_id' => $id,
+            'commentable_type' => 'App\Models\Article'
+        ])->get();
+
+        return Inertia::render('FrontEnd/ShowArticle',[
+            'articles' => $articles,
+            'comments' => $comments
+        ]);
+
+    }
+
+
+    //VIDEO
+    public function allvideo()
+    {
+
+        $videos = Video::where('status', 'show')->orderBy('updated_at', 'desc')->get();
+
+        return Inertia::render('FrontEnd/Video',[
+            'videos' => $videos,
+        ]);
+
+    }
 }
