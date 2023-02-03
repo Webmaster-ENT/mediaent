@@ -51,9 +51,7 @@ const props = defineProps({
               <p class="ml-6 font-medium text-sm text-slate-400">
                 Asked On {{ forum.created_at }} WIB
               </p>
-              <Link
-                :href="route('detail.showforum', [forum.user.name, forum.id])"
-              >
+              <Link :href="route('detail-forum.showforum', forum.id)">
                 <div
                   class="mt-2 ml-6 text-white font-medium text-2xl mt-7"
                   v-html="forum.subject"

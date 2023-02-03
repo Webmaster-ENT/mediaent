@@ -39,7 +39,7 @@ class FrontEndController extends Controller
 
     }
 
-    public function showforum($name, $id)
+    public function showforum($id)
     {
 
         $forums = Forum::with(['user', 'comments', 'likes'])->where([
