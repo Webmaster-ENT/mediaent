@@ -48,7 +48,7 @@ Route::get('/', function () {
 
 // Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
-Route::get('{name}/{id}', [FrontEndController::class, 'showforum'])->name('detail.showforum');
+Route::get('detail-forum/{id}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
 
 Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
 Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
