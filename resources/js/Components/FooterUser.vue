@@ -14,23 +14,21 @@
         <div class="content-center text-gray-500 dark:text-gray-400">
           <a
             href="#article"
-            class="mr-4 hover:font-black md:mr-6 font-bold text-sm"
+            class="hover:font-black mr-4 md:mx-4 font-bold text-sm"
             >Article</a
           >
 
-          <a
-            href="#forum"
-            class="mr-4 hover:font-black md:mr-6 font-bold text-sm"
+          <a href="#forum" class="hover:font-black font-bold mx-4 text-sm"
             >Forum</a
           >
 
-          <a
-            href="#video"
-            class="mr-4 hover:font-black md:mr-6 font-bold text-sm"
+          <a href="#video" class="hover:font-black font-bold mx-4 text-sm"
             >Video</a
           >
 
-          <a href="#about" class="hover:font-black font-bold text-sm hover:"
+          <a
+            href="#about"
+            class="hover:font-black font-bold mx-4 text-sm hover:"
             >About</a
           >
         </div>
@@ -39,27 +37,30 @@
           ><i
             class="
               fa-brands fa-facebook-f
-              text-4xl text-slate-300
-              mr-3
+              text-xl text-slate-400
+              mx-3
               md:mt-8
               sm:mt-1
             "
           ></i
         ></a>
         <a href="https://www.instagram.com/entcrews" target="_blank">
-          <i class="fa-brands fa-instagram text-4xl text-slate-300 mx-3"></i>
+          <i
+            class="fa-brands fa-instagram text-xl text-slate-400 mt-4 mx-3"
+          ></i>
         </a>
         <a href="mailto: ent@gmail.com" target="_blank">
-          <i class="fa-solid fa-envelope text-4xl text-slate-300 mx-3"></i>
+          <i class="fa-solid fa-envelope text-xl text-slate-400 mx-3"></i>
         </a>
         <a href="https://www.twitter.com/entcrews" target="_blank">
-          <i class="fa-brands fa-twitter text-4xl text-slate-300 mx-3"></i>
+          <i class="fa-brands fa-twitter text-xl text-slate-400 mx-3"></i>
         </a>
         <a href="https://www.youtube.com/@entcrews" target="_Blank">
-          <i class="fa-brands fa-youtube text-4xl text-slate-300 mx-3"></i>
+          <i class="fa-brands fa-youtube text-xl text-slate-400 mx-3"></i>
         </a>
-        <span class="flex mt-4 text-lg font-medium text-slate-300"
-          >@2023 EEPIS News and Network Team</span
+        <br />
+        <span class="mt-4 text-xs font-bold text-slate-400"
+          >@ 2023 EEPIS News and Network Team</span
         >
       </div>
       <div>

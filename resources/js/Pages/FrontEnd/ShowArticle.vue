@@ -2,10 +2,10 @@
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ChevronLeftIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
   articles: Object,
-  previousOrNextArticle: Object,
 });
 </script>
 <template>
@@ -92,13 +92,6 @@ const props = defineProps({
                   <span v-html="article.body" class="text-xl"></span>
                 </div>
               </div>
-            </div>
-            <div
-              class="container mx-auto pt-10"
-              v-for="preornext in previousOrNextArticle"
-              :key="preornext.id"
-            >
-              <span>{{ preornext }}</span>
             </div>
           </section>
         </div>

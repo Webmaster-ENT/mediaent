@@ -43,6 +43,7 @@
         "@heroicons/vue": "^2.0.13",
         "@vueuse/core": "^9.7.0",
         "floating-vue": "^2.0.0-beta.20",
+        "laravel-vue-pagination": "^4.0.0",
         "moment": "^2.29.4",
         "vue-ckeditor2": "^2.1.5",
         "vue-markdown": "^2.1.3",

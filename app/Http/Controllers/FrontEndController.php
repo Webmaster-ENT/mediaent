@@ -111,7 +111,7 @@ class FrontEndController extends Controller
             'slug' => $slug,
             ])->get();
 
-        // $previousOrNextArticle = Article::all();
+
 
         // $forum = Forum::find($id);
         // foreach ($forum as $foru) {
@@ -126,7 +126,7 @@ class FrontEndController extends Controller
 
         return Inertia::render('FrontEnd/ShowArticle',[
             'articles' => $articles,
-            // 'previousOrNextArticle' => $previousOrNextArticle,
+
             // 'comments' => $comments
         ]);
 
