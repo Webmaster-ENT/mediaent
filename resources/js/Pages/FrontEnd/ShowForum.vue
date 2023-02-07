@@ -59,12 +59,7 @@ const props = defineProps({
                   {{ forum.user.name }}
                 </div>
                 <p
-                  class="
-                    ml-3
-                    font-medium
-                    text-slate-400 text-xs
-                    md:text-sm
-                    lg:text-base
+                  class="ml-3 font-medium text-sm opacity-50
                   "
                 >
                   Asked on {{ forum.created_at }} WIB
@@ -146,15 +141,29 @@ const props = defineProps({
                 ></UserCircleIcon>
                 <div class="mt-1.5">
                   <div
-                    class="ml-6 uppercase tracking-wide text-sm font-semibold"
+                    class="ml-3
+                    uppercase
+                    tracking-wide
+                    text-xs text-black
+                    font-medium
+                    md:text-base
+                    lg:text-lg"
                   >
                     {{ comment.user.name }}
                   </div>
-                  <p class="ml-6 font-medium text-sm opacity-50">
+                  <p class="ml-3 font-medium text-sm opacity-50">
                     Answered On {{ comment.created_at }} WIB
                   </p>
                   <div
-                    class="mt-2 ml-6 font-medium text-2xl mt-7"
+                    class="                    
+                    mt-2
+                    ml-3
+                    text-black
+                    font-normal
+                    mt-7
+                    text-base
+                    md:text-xl
+                    lg:text-2xl"
                     v-html="comment.comment"
                   ></div>
                 </div>
