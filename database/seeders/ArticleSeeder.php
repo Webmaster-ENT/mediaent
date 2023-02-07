@@ -27,7 +27,7 @@ class ArticleSeeder extends Seeder
             'category_id' => 2,
             'status' => 'show',
             'thumbnail' => 'storage/images/article/hiburan.jpg',
-            'slug' => 'Mengenal-Lebih-Jauh-tentang-Humor-dan-Relasinya-dengan-Ketersinggungan',
+            'slug' => 'mengenal-lebih-jauh-tentang-humor-dan-relasinya-dengan-ketersinggungan',
             'summary' => '<p>Tahukah kalian? Bahwa saat ini kebanyakan orang memahami humor tidak jauh berbeda dengan komedi, padahal dua hal tersebut bukanlah hal yang sama...',
             'body' => '<p>
 Tahukah kalian? Bahwa saat ini kebanyakan orang memahami humor tidak jauh berbeda dengan komedi, padahal dua hal tersebut bukanlah hal yang sama. Humor berasal dari bahasa latin yaitu “umor” yang artinya cairan. Di dunia medis kuno, cairan dalam tubuh seseorang yang tidak seimbang dapat menimbulkan suatu penyakit yang disebut gangguan kejiwaan.
@@ -51,7 +51,7 @@ Bagaimana menurut kalian? Semoga penjelasan diatas dapat bermanfaat untuk kita a
             'category_id' => 1,
             'status' => 'show',
             'thumbnail' => 'storage/images/article/lifestyle.jpg',
-            'slug' => 'Simak-Di-Sini!-4-Tips-Konsumsi-Mi-Instan-Tanpa-Naik-Berat-Badan',
+            'slug' => 'simak-di-sini!-4-tips-konsumsi-mi-instan-tanpa-naik-berat-badan',
             'summary' => 'Mi instan merupakan salah satu makanan favorit masyarakat Indonesia. Penyajiannya yang praktis...',
             'body' => '<p>
             Mi instan merupakan salah satu makanan favorit masyarakat Indonesia. Penyajiannya yang praktis, rasanya yang lezat, dan harganya yang terjangkau menjadi alasan mi instan digemari banyak orang. Makanan instan yang tinggi karbohidrat ini memang kerap dikaitkan dengan berbagai macam resiko kesehatan karena mengandung pengawet yang dapat membahayakan kesehatan tubuh apabila terlalu sering dikonsumsi. Selain itu, tingginya kalori dan minimnya nutrisi yang terkandung didalamnya membuat mi instan kerap dijadikan pantangan bagi sebagian orang yang sedang menurunkan berat badan.
@@ -74,7 +74,7 @@ Bagaimana menurut kalian? Semoga penjelasan diatas dapat bermanfaat untuk kita a
             'category_id' => 3,
             'status' => 'show',
             'thumbnail' => 'storage/images/article/teknologi.jpg',
-            'slug' => 'Cek-Lokasi-Rumah-Kamu-saat-Zaman-Dinosaurus-di-Peta-Ini',
+            'slug' => 'cek-lokasi-rumah-kamu-saat-zaman-dinosaurus-di-peta-ini',
             'summary' => '<p>Pernahkah kita membayangkan di mana letak rumah kita saat zaman dinosaurus?...',
             'body' => '<p>Pernahkah kita membayangkan di mana letak rumah kita saat zaman dinosaurus? Tentu menjadi sebuah pertanyaan besar karena dinosaurus pertama kali muncul pada periode Trias zaman Mesozoikum, tepatnya sekitar 201 hingga 252 juta tahun yang lalu. Kita semua tahu bahwa keadaan bumi jutaan tahun yang lalu jauh berbeda dengan keadaan bumi saat ini dikarenakan evolusi yang terjadi pada bumi.
             Lalu bagaimana caranya melihat rumah kita saat zaman dinosaurus?
