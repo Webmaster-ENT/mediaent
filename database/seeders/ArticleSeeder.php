@@ -20,7 +20,7 @@ class ArticleSeeder extends Seeder
             'user_id' => 1,
             'category_id' => 2,
             'status' => 'show',
-            'thumbnail' => 'hiburan.jpg',
+            'thumbnail' => 'storage/images/article/hiburan.jpg',
             'slug' => 'Mengenal-Lebih-Jauh-tentang-Humor-dan-Relasinya-dengan-Ketersinggungan',
             'summary' => '<p>Tahukah kalian? Bahwa saat ini kebanyakan orang memahami humor tidak jauh berbeda dengan komedi, padahal dua hal tersebut bukanlah hal yang sama...',
             'body' => '<p>
@@ -44,7 +44,7 @@ Bagaimana menurut kalian? Semoga penjelasan diatas dapat bermanfaat untuk kita a
             'user_id' => 1,
             'category_id' => 1,
             'status' => 'show',
-            'thumbnail' => 'lifestyle.jpg',
+            'thumbnail' => 'storage/images/article/lifestyle.jpg',
             'slug' => 'Simak-Di-Sini!-4-Tips-Konsumsi-Mi-Instan-Tanpa-Naik-Berat-Badan',
             'summary' => 'Mi instan merupakan salah satu makanan favorit masyarakat Indonesia. Penyajiannya yang praktis...',
             'body' => '<p>
@@ -67,7 +67,7 @@ Bagaimana menurut kalian? Semoga penjelasan diatas dapat bermanfaat untuk kita a
             'user_id' => 1,
             'category_id' => 3,
             'status' => 'show',
-            'thumbnail' => 'teknologi.jpg',
+            'thumbnail' => 'storage/images/article/teknologi.jpg',
             'slug' => 'Cek-Lokasi-Rumah-Kamu-saat-Zaman-Dinosaurus-di-Peta-Ini',
             'summary' => '<p>Pernahkah kita membayangkan di mana letak rumah kita saat zaman dinosaurus?...',
             'body' => '<p>Pernahkah kita membayangkan di mana letak rumah kita saat zaman dinosaurus? Tentu menjadi sebuah pertanyaan besar karena dinosaurus pertama kali muncul pada periode Trias zaman Mesozoikum, tepatnya sekitar 201 hingga 252 juta tahun yang lalu. Kita semua tahu bahwa keadaan bumi jutaan tahun yang lalu jauh berbeda dengan keadaan bumi saat ini dikarenakan evolusi yang terjadi pada bumi.
