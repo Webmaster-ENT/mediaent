@@ -104,12 +104,14 @@ class FrontEndController extends Controller
 
     }
 
-    public function showArticle($id)
+    public function showArticle($slug)
     {
 
         $articles = Article::with(['user', 'comments', 'likes', 'category'])->where([
-            'id' => $id,
+            'slug' => $slug,
             ])->get();
+
+
 
         // $forum = Forum::find($id);
         // foreach ($forum as $foru) {
@@ -117,14 +119,15 @@ class FrontEndController extends Controller
 
         // }
         // var_dump();
-        $comments = Comment::with('user')->where([
-            'commentable_id' => $id,
-            'commentable_type' => 'App\Models\Article'
-        ])->get();
+        // $comments = Comment::with('user')->where([
+        //     'commentable_id' => $articles->slug,
+        //     'commentable_type' => 'App\Models\Article'
+        // ])->get();
 
         return Inertia::render('FrontEnd/ShowArticle',[
             'articles' => $articles,
-            'comments' => $comments
+
+            // 'comments' => $comments
         ]);
 
     }

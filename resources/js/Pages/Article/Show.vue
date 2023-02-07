@@ -11,11 +11,15 @@ import { reactive, watch } from "vue";
 import moment from "moment";
 
 const props = defineProps({
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   articles: Object,
 =======
     articles: Object,
 >>>>>>> Stashed changes
+=======
+  articles: Object,
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
 });
 
 // const form = useForm({
@@ -41,7 +45,10 @@ const props = defineProps({
 // };
 </script>
 <template>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
   <Head title="Article" />
   <!-- <NavBarVue :open="sidebarOpened" @open="sidebarOpened = true" /> -->
   <div class="py-5">
@@ -97,6 +104,7 @@ const props = defineProps({
                         duration-150
                       "
                       disabled
+<<<<<<< HEAD
                     >
                       {{ article.category.name }}
                     </button>
@@ -193,6 +201,39 @@ const props = defineProps({
                         </section>
                         <!-- <form
 >>>>>>> Stashed changes
+=======
+                    >
+                      {{ article.category.name }}
+                    </button>
+                  </div>
+                  <div
+                    class="
+                      relative
+                      overflow-hidden
+                      bg-no-repeat bg-cover
+                      relative
+                      overflow-hidden
+                      bg-no-repeat bg-cover
+                      ripple
+                      my-4
+                    "
+                  >
+                    <img
+                      :src="'../../' + article.thumbnail"
+                      class="w-full rounded-3xl mt-4"
+                    />
+                  </div>
+                  <div
+                    class="my-10 prose lg:prose-xl"
+                    style="text-align: justify"
+                  >
+                    <span v-html="article.body" class="text-xl"></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- <form
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
                             @submit.prevent="comment"
                             enctype="multipart/form-data"
                         >
@@ -223,6 +264,7 @@ const props = defineProps({
                             </div>
                         </form> -->
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <!-- <div v-for="like in likes"> -->
             <!-- <div v-if="likes == ''">
@@ -230,6 +272,10 @@ const props = defineProps({
                         <!-- <div v-for="like in likes"> -->
                         <!-- <div v-if="likes == ''">
 >>>>>>> Stashed changes
+=======
+            <!-- <div v-for="like in likes"> -->
+            <!-- <div v-if="likes == ''">
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
                             <form @submit.prevent="likeadd">
                                 <div className="mt-4">
                                     <button type="submit">like</button>
@@ -271,11 +317,15 @@ const props = defineProps({
                             @close="data.deleteOpen = false"
                             :comment="data.comment"
                         /> -->
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <!-- <table>
 =======
                         <!-- <table>
 >>>>>>> Stashed changes
+=======
+            <!-- <table>
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
                             <thead>
                                 <tr>
                                     <td>comment</td>
@@ -311,6 +361,7 @@ const props = defineProps({
                                 </tr>
                             </tbody>
                         </table> -->
+<<<<<<< HEAD
 <<<<<<< Updated upstream
           </div>
         </div>
@@ -321,17 +372,29 @@ const props = defineProps({
                     </div>
                 </div>
             </div>
+=======
+          </div>
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
         </div>
+      </div>
     </div>
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+  </div>
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
 </template>
 
 <style>
 h1 {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   font-family: sans-serif;
 =======
     font-family: sans-serif;
 >>>>>>> Stashed changes
+=======
+  font-family: sans-serif;
+>>>>>>> acabfee555d0c6a341cb64a54654ddac7323d6a7
 }
 </style>
