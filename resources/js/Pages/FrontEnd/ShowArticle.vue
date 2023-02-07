@@ -15,10 +15,25 @@ const props = defineProps({
   articles: Object,
   previous: Object,
   next: Object,
+  articleid: Number,
+});
+const form = useForm({
+  id: props.articles.id,
+  comment: "",
+  like: props.articles.like,
+  _method: "put",
 });
 
+function deleteLike(id) {
+  form.delete(route("article.delete-like", id));
+}
+
 const likeadd = () => {
-  form.post(route("like.create-like", props.articles.id));
+  form.post(route("article.create-like", props.articleid));
+};
+
+const commentadd = () => {
+  form.post(route("article.create-comment", props.articleid));
 };
 </script>
 <template>
@@ -128,21 +143,27 @@ const likeadd = () => {
                       </form>
                     </div>
                     <div v-else>
-                      <template v-for="like in likes" :key="like.id">
+                      <template v-for="like in article.likes" :key="like">
                         <div v-show="like.user_id == 1">
                           <button
                             @click="deleteLike(like.id)"
                             tabindex="-1"
                             type="button"
-                            class="mt-4"
+                            class="mt-1"
                           >
-                            Unlike
+                            <HandThumbUpIcon
+                              class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                            />
                           </button>
                         </div>
                         <div v-show="like.user_id != 1">
                           <form @submit.prevent="likeadd">
                             <div className="mt-4">
-                              <button type="submit">like</button>
+                              <button type="submit">
+                                <HandThumbUpIcon
+                                  class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                                />
+                              </button>
                             </div>
                           </form>
                         </div>
@@ -302,30 +323,36 @@ const likeadd = () => {
                 <UserCircleIcon
                   class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
                 ></UserCircleIcon>
-                <Input
-                  type="text"
-                  placeholder="Write Answer..."
-                  class="
-                    w-full
-                    h-10
-                    bg-sky-900
-                    shadow
-                    appearance-none
-                    border
-                    rounded-2xl
-                    py-2
-                    px-3
-                    mt-1
-                    md:mt-2
-                    lg:mt-3
-                    text-white
-                    leading-tight
-                    focus:outline-none focus:shadow-outline
-                  "
-                ></Input>
-                <PaperAirplaneIcon
-                  class="text-slate-400 w-8 h-8 my-auto ml-2"
-                ></PaperAirplaneIcon>
+                <form @submit.prevent="commentadd">
+                  <Input
+                    type="text"
+                    v-model="article.comments"
+                    placeholder="Write Answer..."
+                    class="
+                      w-full
+                      h-10
+                      bg-sky-900
+                      shadow
+                      appearance-none
+                      border
+                      rounded-2xl
+                      py-2
+                      px-3
+                      mt-1
+                      md:mt-2
+                      lg:mt-3
+                      text-white
+                      leading-tight
+                      focus:outline-none focus:shadow-outline
+                    "
+                  ></Input>
+
+                  <button type="submit">
+                    <PaperAirplaneIcon
+                      class="text-slate-400 w-8 h-8 my-auto ml-2"
+                    ></PaperAirplaneIcon>
+                  </button>
+                </form>
                 <!-- <a href="" class="text-black">Post</a> -->
 
                 <!-- ngkok gantinen logo Pesawat opo opo ngunu gantine tombol kirim -->

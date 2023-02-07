@@ -60,10 +60,10 @@ Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComm
 Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
 Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
 
-Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
-Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
-Route::put('/like/create-like/{id}', [FrontEndController::class, 'createLikeArticle'])->name('like.create-like');
-Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
+Route::put('/article/create-comment/{id}', [FrontEndController::class, 'createCommentArticle'])->name('article.create-comment');
+Route::delete('/article/delete-comment/{id}', [FrontEndController::class, 'deleteCommentArticle'])->name('article.delete-comment');
+Route::put('/article/create-like/{id}', [FrontEndController::class, 'createLikeArticle'])->name('article.create-like');
+Route::delete('/article/delete-like/{id}', [FrontEndController::class, 'deleteLikeArticle'])->name('article.delete-like');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [

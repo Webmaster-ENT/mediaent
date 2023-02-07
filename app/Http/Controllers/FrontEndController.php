@@ -110,6 +110,7 @@ class FrontEndController extends Controller
 
         // var_dump($article);
         return Inertia::render('FrontEnd/ShowArticle',[
+            'articleid' => (int) $article->id,
             'articles' => $article->with(['user', 'comments.user', 'likes', 'category'])->where(['slug' => $article->slug])->get(),
             'next' => Article::where('id', '>', $article->id)->orderBy('id')->first(),
             'previous' => Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first(),
@@ -118,7 +119,7 @@ class FrontEndController extends Controller
     }
 
 
-    public function createLikeArticle( $id)
+    public function createLikeArticle($id)
     {
         $article= Article::find($id);
         $article->like()->create(['like' => 1, 'user_id' => 1]);
@@ -131,6 +132,18 @@ class FrontEndController extends Controller
         $like = Like::find($id);
         $like->delete();
         return back();
+    }
+
+    public function createCommentArticle(Request $request, $id)
+    {
+        $forum= Article::find($id);
+        $forum->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
+    }
+
+    public function deleteCommentArticle($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
     }
 
     //VIDEO
