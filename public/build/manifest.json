@@ -1,10 +1,14 @@
 {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
   "FooterUser.css": {
     "file": "assets/FooterUser-0e092e6b.css",
     "src": "FooterUser.css"
   },
   "resources/js/Pages/FrontEnd/Forum.css": {
+<<<<<<< Updated upstream
 =======
   "resources/js/Pages/FrontEnd/ShowForum.css": {
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
@@ -15,6 +19,11 @@
     "file": "assets/Forum-15e0528d.css",
     "src": "resources/js/Pages/FrontEnd/Forum.css"
   },
+=======
+    "file": "assets/ShowForum-2366732e.css",
+    "src": "resources/js/Pages/FrontEnd/Forum.css"
+  },
+>>>>>>> Stashed changes
   "resources/js/Pages/Article/Show.css": {
     "file": "assets/Show-e3751528.css",
     "src": "resources/js/Pages/Article/Show.css"
@@ -28,12 +37,16 @@
     "src": "Ckeditor.css"
   },
   "resources/js/app.css": {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
     "file": "assets/app-72677ca1.css",
     "src": "resources/js/app.css"
   },
   "_ChevronLeftIcon-1e460b9d.js": {
     "file": "assets/ChevronLeftIcon-1e460b9d.js",
+<<<<<<< Updated upstream
 =======
     "file": "assets/app-b416ad7f.css",
     "src": "resources/js/app.css"
@@ -41,10 +54,13 @@
   "_InputLabel-c1230c76.js": {
     "file": "assets/InputLabel-c1230c76.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "imports": [
       "resources/js/app.js"
     ]
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   "_SelectInput-bce7ac99.js": {
     "file": "assets/SelectInput-bce7ac99.js",
@@ -52,10 +68,15 @@
   "_TextInput-3391c49a.js": {
     "file": "assets/TextInput-3391c49a.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+  "_SelectInput-bce7ac99.js": {
+    "file": "assets/SelectInput-bce7ac99.js",
+>>>>>>> Stashed changes
     "imports": [
       "resources/js/app.js"
     ]
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   "_TextInput-8396224a.js": {
     "file": "assets/TextInput-8396224a.js",
@@ -164,6 +185,47 @@
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+=======
+  "_TextInput-8396224a.js": {
+    "file": "assets/TextInput-8396224a.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_InputLabel-a43e8c5e.js": {
+    "file": "assets/InputLabel-a43e8c5e.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "__plugin-vue_export-helper-c27b6911.js": {
+    "file": "assets/_plugin-vue_export-helper-c27b6911.js"
+  },
+  "_Checkbox-476f2bb4.js": {
+    "file": "assets/Checkbox-476f2bb4.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_DangerButton-9c2de98d.js": {
+    "file": "assets/DangerButton-9c2de98d.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_SecondaryButton-327dc077.js": {
+    "file": "assets/SecondaryButton-327dc077.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Article/Create.vue": {
+    "file": "assets/Create-d0b5edd3.js",
+    "src": "resources/js/Pages/Article/Create.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+>>>>>>> Stashed changes
       "_InputLabel-a43e8c5e.js",
       "_TextInput-8396224a.js",
       "_Ckeditor-080bec74.js",
@@ -230,15 +292,21 @@
   },
   "resources/js/Pages/Article/Index.vue": {
     "file": "assets/Index-0a719e81.js",
+<<<<<<< Updated upstream
 =======
   "resources/js/Pages/Article/Index.vue": {
     "file": "assets/Index-b7310b6a.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "src": "resources/js/Pages/Article/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_Breadcrumb-9c5858dc.js",
       "_TextInput-8396224a.js",
       "_SelectInput-bce7ac99.js",
@@ -301,6 +369,7 @@
   },
   "_ApplicationLogo-0cee92e4.js": {
     "file": "assets/ApplicationLogo-0cee92e4.js",
+<<<<<<< Updated upstream
 =======
       "_Breadcrumb-b045e99c.js",
       "_TextInput-3391c49a.js",
@@ -346,10 +415,14 @@
   },
   "_ChevronLeftIcon-ce7f5d8b.js": {
     "file": "assets/ChevronLeftIcon-ce7f5d8b.js",
+=======
+>>>>>>> Stashed changes
     "imports": [
+      "__plugin-vue_export-helper-c27b6911.js",
       "resources/js/app.js"
     ]
   },
+<<<<<<< Updated upstream
   "resources/js/Pages/Auth/ForgotPassword.vue": {
     "file": "assets/ForgotPassword-73971d39.js",
     "src": "resources/js/Pages/Auth/ForgotPassword.vue",
@@ -561,12 +634,31 @@
   "_InfoButton-cca54207.js": {
     "file": "assets/InfoButton-cca54207.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+  "resources/js/Pages/Auth/VerifyEmail.vue": {
+    "file": "assets/VerifyEmail-fb051621.js",
+    "src": "resources/js/Pages/Auth/VerifyEmail.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-b7b91f79.js",
+      "_PrimaryButton-92fef9db.js",
+      "_ApplicationLogo-0cee92e4.js",
+      "__plugin-vue_export-helper-c27b6911.js"
+    ]
+  },
+  "_GuestLayout-b7b91f79.js": {
+    "file": "assets/GuestLayout-b7b91f79.js",
+>>>>>>> Stashed changes
     "imports": [
       "_ApplicationLogo-0cee92e4.js",
       "resources/js/app.js"
     ]
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
   "resources/js/Pages/Auth/Login.vue": {
     "file": "assets/Login-3ccc8ccb.js",
     "src": "resources/js/Pages/Auth/Login.vue",
@@ -661,10 +753,13 @@
     "file": "assets/Video-62cf1830.js",
     "src": "resources/js/Pages/FrontEnd/Video.vue",
     "isDynamicEntry": true,
+<<<<<<< Updated upstream
 =======
   "_UserCircleIcon-9ba72668.js": {
     "file": "assets/UserCircleIcon-9ba72668.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "imports": [
       "resources/js/app.js"
     ],
@@ -696,6 +791,7 @@
       "assets/FooterUser-0e092e6b.css"
     ]
   },
+<<<<<<< Updated upstream
   "resources/js/Pages/Forum/Delete.vue": {
     "file": "assets/Delete-f9ff386c.js",
     "src": "resources/js/Pages/Forum/Delete.vue",
@@ -712,11 +808,18 @@
 =======
     "file": "assets/Index-6ba92274.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+  "resources/js/Pages/Forum/Index.vue": {
+    "file": "assets/Index-74a36f63.js",
+>>>>>>> Stashed changes
     "src": "resources/js/Pages/Forum/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_Breadcrumb-9c5858dc.js",
       "_TextInput-8396224a.js",
       "_PrimaryButton-92fef9db.js",
@@ -724,6 +827,7 @@
       "_SelectInput-bce7ac99.js",
       "_DangerButton-9c2de98d.js",
       "_Pagination-a8b3f9f9.js",
+<<<<<<< Updated upstream
 =======
       "_Breadcrumb-b045e99c.js",
       "_TextInput-3391c49a.js",
@@ -733,12 +837,17 @@
       "_DangerButton-474e4e82.js",
       "_Pagination-c3660f64.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
       "_moment-fbc5633a.js",
       "resources/js/Pages/Forum/Create.vue",
       "resources/js/Pages/Forum/Edit.vue",
       "resources/js/Pages/Forum/Delete.vue",
       "resources/js/Pages/Forum/DeleteBulk.vue",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_Checkbox-476f2bb4.js",
       "_use-outside-click-d7bd062b.js",
       "__plugin-vue_export-helper-c27b6911.js",
@@ -921,6 +1030,7 @@
   },
   "resources/js/Pages/Profile/Partials/DeleteUserForm.vue": {
     "file": "assets/DeleteUserForm-f51a7ddc.js",
+<<<<<<< Updated upstream
 =======
       "_Checkbox-1c80d1cc.js",
       "_use-outside-click-fe709061.js",
@@ -947,11 +1057,16 @@
   "resources/js/Pages/Profile/Partials/DeleteUserForm.vue": {
     "file": "assets/DeleteUserForm-acd7a4ef.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "src": "resources/js/Pages/Profile/Partials/DeleteUserForm.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_DangerButton-9c2de98d.js",
       "_InputError-f5501a64.js",
       "_InputLabel-a43e8c5e.js",
@@ -971,6 +1086,7 @@
   },
   "resources/js/Pages/Role/Index.vue": {
     "file": "assets/Index-e4a59a56.js",
+<<<<<<< Updated upstream
 =======
       "_DangerButton-474e4e82.js",
       "_InputError-186f53b4.js",
@@ -1029,11 +1145,16 @@
   "resources/js/Pages/Role/Index.vue": {
     "file": "assets/Index-1bcb1694.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "src": "resources/js/Pages/Role/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_Breadcrumb-9c5858dc.js",
       "_TextInput-8396224a.js",
       "_PrimaryButton-92fef9db.js",
@@ -1041,6 +1162,7 @@
       "_SelectInput-bce7ac99.js",
       "_DangerButton-9c2de98d.js",
       "_Pagination-a8b3f9f9.js",
+<<<<<<< Updated upstream
 =======
       "_Breadcrumb-b045e99c.js",
       "_TextInput-3391c49a.js",
@@ -1050,11 +1172,16 @@
       "_DangerButton-474e4e82.js",
       "_Pagination-c3660f64.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
       "resources/js/Pages/Role/Create.vue",
       "resources/js/Pages/Role/Edit.vue",
       "resources/js/Pages/Role/Delete.vue",
       "resources/js/Pages/Role/DeleteBulk.vue",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "_Checkbox-476f2bb4.js",
       "resources/js/Pages/Role/Permission.vue",
       "_use-outside-click-d7bd062b.js",
@@ -1141,6 +1268,7 @@
     "isDynamicEntry": true,
     "imports": [
       "_ApplicationLogo-0cee92e4.js",
+<<<<<<< Updated upstream
 =======
       "_Checkbox-1c80d1cc.js",
       "resources/js/Pages/Role/Permission.vue",
@@ -1297,11 +1425,16 @@
     "imports": [
       "_ApplicationLogo-c0b38ff1.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
       "resources/js/app.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ]
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
   "resources/js/Pages/Video/Edit.vue": {
     "file": "assets/Edit-f3cdbef2.js",
     "src": "resources/js/Pages/Video/Edit.vue",
@@ -1313,6 +1446,7 @@
       "_SecondaryButton-327dc077.js",
       "_PrimaryButton-92fef9db.js",
       "_TextInput-8396224a.js"
+<<<<<<< Updated upstream
 =======
   "resources/js/Pages/Video/Delete.vue": {
     "file": "assets/Delete-90bcc06a.js",
@@ -1372,12 +1506,17 @@
       "_DangerButton-474e4e82.js",
       "_SecondaryButton-88dedcfc.js"
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     ]
   },
   "_moment-fbc5633a.js": {
     "file": "assets/moment-fbc5633a.js"
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
   "resources/js/Pages/User/Index.vue": {
     "file": "assets/Index-d8d59aeb.js",
     "src": "resources/js/Pages/User/Index.vue",
@@ -1467,14 +1606,18 @@
   },
   "resources/js/Pages/FrontEnd/ShowForum.vue": {
     "file": "assets/ShowForum-54dff469.js",
+<<<<<<< Updated upstream
 =======
   "resources/js/Pages/FrontEnd/ShowForum.vue": {
     "file": "assets/ShowForum-6782690e.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "src": "resources/js/Pages/FrontEnd/ShowForum.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       "_ChevronLeftIcon-1e460b9d.js",
       "_UserCircleIcon-ee5e9fcd.js"
@@ -1482,12 +1625,19 @@
       "_ChevronLeftIcon-ce7f5d8b.js",
       "_UserCircleIcon-9ba72668.js"
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+      "_ChevronLeftIcon-1e460b9d.js",
+      "_UserCircleIcon-ee5e9fcd.js"
+>>>>>>> Stashed changes
     ],
     "css": [
       "assets/ShowForum-2366732e.css"
     ]
   },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
   "resources/js/Pages/FrontEnd/Forum.vue": {
     "file": "assets/Forum-d7b1e5e6.js",
     "src": "resources/js/Pages/FrontEnd/Forum.vue",
@@ -1507,6 +1657,7 @@
     "imports": [
       "resources/js/app.js",
       "_use-outside-click-d7bd062b.js",
+<<<<<<< Updated upstream
 =======
   "resources/js/Pages/Article/Show.vue": {
     "file": "assets/Show-20ae6699.js",
@@ -1566,6 +1717,8 @@
       "resources/js/app.js",
       "_use-outside-click-fe709061.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "css": [
@@ -1573,11 +1726,15 @@
     ]
   },
   "resources/js/app.js": {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     "file": "assets/app-951b8744.js",
 =======
     "file": "assets/app-54cd0e01.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+    "file": "assets/app-951b8744.js",
+>>>>>>> Stashed changes
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -1634,12 +1791,16 @@
       "resources/js/Pages/Welcome.vue"
     ],
     "css": [
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "assets/app-72677ca1.css"
     ]
   },
   "_Ckeditor-080bec74.js": {
     "file": "assets/Ckeditor-080bec74.js",
+<<<<<<< Updated upstream
 =======
       "assets/app-b416ad7f.css"
     ]
@@ -1647,6 +1808,8 @@
   "_Ckeditor-7d57ffea.js": {
     "file": "assets/Ckeditor-7d57ffea.js",
 >>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb
+=======
+>>>>>>> Stashed changes
     "imports": [
       "resources/js/app.js"
     ],

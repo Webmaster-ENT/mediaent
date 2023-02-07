@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+<<<<<<< Updated upstream
 use App\Models\Article;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+=======
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+>>>>>>> Stashed changes
 
 class ArticleSeeder extends Seeder
 {
@@ -15,6 +20,7 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< Updated upstream
         Article::create([
             'title' => 'Mengenal Lebih Jauh tentang Humor dan Relasinya dengan Ketersinggungan',
             'user_id' => 1,
@@ -88,5 +94,8 @@ Bagaimana menurut kalian? Semoga penjelasan diatas dapat bermanfaat untuk kita a
                 Bagaimana menurut kalian? Sangat tertarik bukan untuk mengecek lokasi rumah kita pada zaman dinosaurus.Semoga informasi diatas dapat bermanfaat dan memberikan pengetahuan terbaru tentang perkembangan teknologi saat ini.</p>
 '
         ]);
+=======
+        //
+>>>>>>> Stashed changes
     }
 }

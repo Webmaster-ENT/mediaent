@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 <<<<<<<< HEAD:public/build/assets/InfoButton-dc4b19f6.js
 import{o,c as n,i as r}from"./app-951b8744.js";const s=["type"],a={__name:"InfoButton",props:{type:{type:String,default:"submit"}},setup(e){return(t,i)=>(o(),n("button",{type:e.type,class:"inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"},[r(t.$slots,"default")],8,s))}};export{a as _};
 ========
 import{o,c as n,i as r}from"./app-54cd0e01.js";const s=["type"],a={__name:"InfoButton",props:{type:{type:String,default:"submit"}},setup(e){return(t,i)=>(o(),n("button",{type:e.type,class:"inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"},[r(t.$slots,"default")],8,s))}};export{a as _};
 >>>>>>>> 194ef19a618395a2d7ba3951227ad70577c442cb:public/build/assets/InfoButton-cca54207.js
+=======
+import{o,c as n,i as r}from"./app-951b8744.js";const s=["type"],a={__name:"InfoButton",props:{type:{type:String,default:"submit"}},setup(e){return(t,i)=>(o(),n("button",{type:e.type,class:"inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"},[r(t.$slots,"default")],8,s))}};export{a as _};
+>>>>>>> Stashed changes
