@@ -51,7 +51,7 @@ Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-foru
 Route::get('detail-forum/{id}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
 
 Route::get('all-article', [FrontEndController::class, 'allarticle'])->name('all-article.allarticle');
-Route::get('detail-article/{id}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
+Route::get('detail-article/{article:slug}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
 
 Route::get('all-video', [FrontEndController::class, 'allvideo'])->name('all-video.allvideo');
 

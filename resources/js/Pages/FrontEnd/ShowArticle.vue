@@ -1,12 +1,25 @@
 <script setup>
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import { ChevronLeftIcon, TrashIcon } from "@heroicons/vue/24/solid";
-import Pagination from "@/Components/Pagination.vue";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  TrashIcon,
+  ChatBubbleLeftEllipsisIcon,
+  HandThumbUpIcon,
+  UserCircleIcon,
+  PaperAirplaneIcon,
+} from "@heroicons/vue/24/solid";
 
 const props = defineProps({
   articles: Object,
+  previous: Object,
+  next: Object,
 });
+
+const likeadd = () => {
+  form.post(route("article.create-like", props.article.id));
+};
 </script>
 <template>
   <Head title="Article" />
@@ -21,6 +34,7 @@ const props = defineProps({
           </div>
         </Link>
       </div>
+
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div
           class="container mx-auto pt-10"
@@ -91,10 +105,232 @@ const props = defineProps({
                 >
                   <span v-html="article.body" class="text-xl"></span>
                 </div>
+
+                <!-- Like Comment Count -->
+                <div class="mt-4 md:mt-6">
+                  <div
+                    class="
+                      flex
+                      mb-12
+                      text-black
+                      items-center
+                      text-sm
+                      md:text-xl
+                    "
+                  >
+                    <div v-if="article.likes == ''">
+                      <form @submit.prevent="likeadd">
+                        <Button type="submit">
+                          <HandThumbUpIcon
+                            class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                        /></Button>
+                      </form>
+                    </div>
+
+                    <span class="mx-2 mr-6">{{ article.likes.length }} </span>
+
+                    <ChatBubbleLeftEllipsisIcon
+                      class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                    />
+                    <span class="mx-2">{{ article.comments.length }}</span>
+                  </div>
+                </div>
+
+                <div class="flex justify-between">
+                  <div v-if="previous != null">
+                    <Link
+                      :href="route('detail-article.showArticle', previous.slug)"
+                      class="
+                        flex
+                        text-md
+                        font-semibold
+                        text-slate-900
+                        hover:font-black
+                      "
+                    >
+                      <ChevronLeftIcon class="w-5 h-5 mt-0.5" /> Previous</Link
+                    >
+                  </div>
+                  <div v-else>
+                    <span>This First Article</span>
+                  </div>
+                  <div class="flex" v-if="next != null">
+                    <Link
+                      :href="route('detail-article.showArticle', next.slug)"
+                      class="
+                        flex
+                        text-md
+                        font-semibold
+                        text-slate-900
+                        hover:font-black
+                      "
+                      >Next <ChevronRightIcon class="w-5 h-5 mt-0.5"
+                    /></Link>
+                  </div>
+                  <div v-else>
+                    <span>This Last Article</span>
+                  </div>
+                </div>
+
+                <!-- Comment -->
+                <div
+                  class="
+                    mt-7
+                    flex
+                    max-w-xs
+                    overflow-hidden
+                    mx-auto
+                    md:max-w-xl
+                    lg:max-w-3xl
+                  "
+                >
+                  <a
+                    class="
+                      w-full
+                      text-white
+                      py-2
+                      h-full
+                      bg-sky-900
+                      rounded-xl
+                      text-center
+                    "
+                    type=""
+                    href="#comment"
+                  >
+                    <b class="text-white">Answer Question</b>
+                  </a>
+                </div>
+                <div
+                  v-for="comment in article.comments"
+                  v-bind:key="comment.id"
+                >
+                  <br />
+                  <br />
+
+                  <hr class="m-auto border-t-2" />
+
+                  <br />
+                  <br />
+
+                  <div>
+                    <div class="py-4 md:py-6 md:ml-24 lg:p-8">
+                      <div class="flex">
+                        <UserCircleIcon
+                          class="
+                            text-sky-900
+                            w-10
+                            h-10
+                            md:w-12 md:h-12
+                            lg:w-14 lg:h-14
+                          "
+                        ></UserCircleIcon>
+                        <div class="mt-1.5">
+                          <div
+                            class="
+                              ml-3
+                              uppercase
+                              tracking-wide
+                              text-xs text-black
+                              font-medium
+                              md:text-base
+                              lg:text-lg
+                            "
+                          >
+                            {{ comment.user.name }}
+                          </div>
+                          <p class="ml-3 font-medium text-sm opacity-50">
+                            Answered On {{ comment.created_at }} WIB
+                          </p>
+                          <div
+                            class="
+                              mt-2
+                              ml-3
+                              text-black
+                              font-normal
+                              mt-7
+                              text-base
+                              md:text-xl
+                              lg:text-2xl
+                            "
+                            v-html="comment.comment"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </div>
+
+        <section id="comment">
+          <div>
+            <div class="lg:p-8 w-full">
+              <div
+                class="
+                  flex
+                  max-w-xs
+                  overflow-hidden
+                  mx-auto
+                  md:max-w-xl
+                  lg:max-w-3xl
+                "
+              >
+                <UserCircleIcon
+                  class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
+                ></UserCircleIcon>
+                <Input
+                  type="text"
+                  placeholder="Write Answer..."
+                  class="
+                    w-full
+                    h-10
+                    bg-sky-900
+                    shadow
+                    appearance-none
+                    border
+                    rounded-2xl
+                    py-2
+                    px-3
+                    mt-1
+                    md:mt-2
+                    lg:mt-3
+                    text-white
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
+                ></Input>
+                <PaperAirplaneIcon
+                  class="text-slate-400 w-8 h-8 my-auto ml-2"
+                ></PaperAirplaneIcon>
+                <!-- <a href="" class="text-black">Post</a> -->
+
+                <!-- ngkok gantinen logo Pesawat opo opo ngunu gantine tombol kirim -->
+
+                <!-- <div class="ml-4 pr-1 bg-sky-900 rounded-2xl w-full ">
+                  <Textarea
+                    class="
+                      ml-4
+                      mt-2
+                      bg-sky-900
+                      text-white
+                      w-auto
+                      w-11/12
+                      md:w-10/12
+                      lg:w-11/12
+                    "
+                    name=""
+                    id=""
+                    placeholder="Write Answer"
+                    rows="6"
+                  ></Textarea>
+
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </HomeLayout>

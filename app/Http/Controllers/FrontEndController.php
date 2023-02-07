@@ -104,30 +104,14 @@ class FrontEndController extends Controller
 
     }
 
-    public function showArticle($slug)
+    public function showArticle(Article $article)
     {
 
-        $articles = Article::with(['user', 'comments', 'likes', 'category'])->where([
-            'slug' => $slug,
-            ])->get();
-
-
-
-        // $forum = Forum::find($id);
-        // foreach ($forum as $foru) {
-        //    $arti = [$foru->id];
-
-        // }
-        // var_dump();
-        // $comments = Comment::with('user')->where([
-        //     'commentable_id' => $articles->slug,
-        //     'commentable_type' => 'App\Models\Article'
-        // ])->get();
-
+        // var_dump($article);
         return Inertia::render('FrontEnd/ShowArticle',[
-            'articles' => $articles,
-
-            // 'comments' => $comments
+            'articles' => $article->with(['user', 'comments.user', 'likes', 'category'])->where(['slug' => $article->slug])->get(),
+            'next' => Article::where('id', '>', $article->id)->orderBy('id')->first(),
+            'previous' => Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first(),
         ]);
 
     }
