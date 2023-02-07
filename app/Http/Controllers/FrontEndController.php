@@ -84,6 +84,7 @@ class FrontEndController extends Controller
         return back();
     }
 
+
     public function deleteLikeForum($id)
     {
         $like = Like::find($id);
@@ -116,6 +117,21 @@ class FrontEndController extends Controller
 
     }
 
+
+    public function createLikeArticle( $id)
+    {
+        $article= Article::find($id);
+        $article->like()->create(['like' => 1, 'user_id' => 1]);
+        return back();
+    }
+
+
+    public function deleteLikeArticle($id)
+    {
+        $like = Like::find($id);
+        $like->delete();
+        return back();
+    }
 
     //VIDEO
     public function allvideo()

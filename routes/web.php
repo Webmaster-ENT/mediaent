@@ -62,7 +62,7 @@ Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])
 
 Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
 Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
-Route::put('/article/create-like/{id}', [ArticleController::class, 'createLike'])->name('article.create-like');
+Route::put('/like/create-like/{id}', [FrontEndController::class, 'createLikeArticle'])->name('like.create-like');
 Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
 
 Route::get('/dashboard', function () {

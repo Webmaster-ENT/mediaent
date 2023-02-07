@@ -18,7 +18,7 @@ const props = defineProps({
 });
 
 const likeadd = () => {
-  form.post(route("article.create-like", props.article.id));
+  form.post(route("like.create-like", props.articles.id));
 };
 </script>
 <template>
@@ -120,11 +120,33 @@ const likeadd = () => {
                   >
                     <div v-if="article.likes == ''">
                       <form @submit.prevent="likeadd">
-                        <Button type="submit">
+                        <button type="submit">
                           <HandThumbUpIcon
                             class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
-                        /></Button>
+                          />
+                        </button>
                       </form>
+                    </div>
+                    <div v-else>
+                      <template v-for="like in likes" :key="like.id">
+                        <div v-show="like.user_id == 1">
+                          <button
+                            @click="deleteLike(like.id)"
+                            tabindex="-1"
+                            type="button"
+                            class="mt-4"
+                          >
+                            Unlike
+                          </button>
+                        </div>
+                        <div v-show="like.user_id != 1">
+                          <form @submit.prevent="likeadd">
+                            <div className="mt-4">
+                              <button type="submit">like</button>
+                            </div>
+                          </form>
+                        </div>
+                      </template>
                     </div>
 
                     <span class="mx-2 mr-6">{{ article.likes.length }} </span>
