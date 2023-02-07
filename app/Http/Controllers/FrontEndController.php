@@ -136,8 +136,9 @@ class FrontEndController extends Controller
 
     public function createCommentArticle(Request $request, $id)
     {
-        $forum= Article::find($id);
-        $forum->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
+        var_dump($request);
+        $article= Article::find($id);
+        // $article->comment()->create(['comment' => $request->comment, 'user_id' => 1]);
     }
 
     public function deleteCommentArticle($id)

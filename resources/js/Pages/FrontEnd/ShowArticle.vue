@@ -1,6 +1,7 @@
 <script setup>
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import Textarea from "@/Components/Textarea.vue";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -19,7 +20,7 @@ const props = defineProps({
 });
 const form = useForm({
   id: props.articles.id,
-  comment: "",
+  comment: props.articles.comment,
   like: props.articles.like,
   _method: "put",
 });
@@ -324,9 +325,26 @@ const commentadd = () => {
                   class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
                 ></UserCircleIcon>
                 <form @submit.prevent="commentadd">
-                  <Input
+                  <div class="ml-4 pr-1 bg-sky-900 rounded-2xl w-full">
+                    <Textarea
+                      class="
+                        ml-4
+                        mt-2
+                        bg-sky-900
+                        text-white
+                        w-auto w-11/12
+                        md:w-10/12
+                        lg:w-11/12
+                      "
+                      type="text"
+                      v-model="form.comment"
+                      placeholder="Write Answer..."
+                      rows="6"
+                    ></Textarea>
+                  </div>
+                  <!-- <Input
                     type="text"
-                    v-model="article.comments"
+                    v-model="form.comment"
                     placeholder="Write Answer..."
                     class="
                       w-full
@@ -345,7 +363,7 @@ const commentadd = () => {
                       leading-tight
                       focus:outline-none focus:shadow-outline
                     "
-                  ></Input>
+                  ></Input> -->
 
                   <button type="submit">
                     <PaperAirplaneIcon
