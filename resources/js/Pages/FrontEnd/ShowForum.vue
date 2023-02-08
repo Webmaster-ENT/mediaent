@@ -48,7 +48,7 @@ const props = defineProps({
                 <div
                   class="
                     ml-3
-                    uppercase
+                    
                     tracking-wide
                     text-xs text-black
                     font-medium
@@ -66,7 +66,6 @@ const props = defineProps({
                 </p>
                 <div
                   class="
-                    mt-2
                     ml-3
                     text-black
                     font-semibold
@@ -142,7 +141,6 @@ const props = defineProps({
                 <div class="mt-1.5">
                   <div
                     class="ml-3
-                    uppercase
                     tracking-wide
                     text-xs text-black
                     font-medium
@@ -156,7 +154,6 @@ const props = defineProps({
                   </p>
                   <div
                     class="                    
-                    mt-2
                     ml-3
                     text-black
                     font-normal

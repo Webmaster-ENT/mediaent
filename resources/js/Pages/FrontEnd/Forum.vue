@@ -44,7 +44,6 @@ const props = defineProps({
                   <div
                     class="
                       ml-3
-                      uppercase
                       tracking-wide
                       text-xs text-white
                       font-medium
@@ -70,7 +69,6 @@ const props = defineProps({
                   <Link :href="route('detail-forum.showforum', forum.id)">
                     <div
                       class="
-                        mt-2
                         ml-3
                         text-white
                         font-semibold
