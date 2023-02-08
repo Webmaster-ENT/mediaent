@@ -2,6 +2,7 @@
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import Textarea from "@/Components/Textarea.vue";
+import TextInput from "@/Components/TextInput.vue";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -20,7 +21,7 @@ const props = defineProps({
 });
 const form = useForm({
   id: props.articles.id,
-  comment: props.articles.comment,
+  comment: "",
   like: props.articles.like,
   _method: "put",
 });
@@ -192,7 +193,8 @@ const commentadd = () => {
                         hover:font-black
                       "
                     >
-                      <ChevronLeftIcon class="w-5 h-5 mt-0.5" /> Previous</Link
+                      <ChevronLeftIcon class="w-5 h-5 mt-0.5" />
+                      Previous</Link
                     >
                   </div>
                   <div v-else>
@@ -241,7 +243,11 @@ const commentadd = () => {
                     type=""
                     href="#comment"
                   >
-                    <b class="text-white">Answer Question</b>
+                    <b class="text-white"
+                      >Add a Comment<i
+                        class="fa-solid fa-pen-to-square ml-4"
+                      ></i
+                    ></b>
                   </a>
                 </div>
                 <div
@@ -283,7 +289,9 @@ const commentadd = () => {
                             {{ comment.user.name }}
                           </div>
                           <p class="ml-3 font-medium text-sm opacity-50">
-                            Answered On {{ comment.created_at }} WIB
+                            Commented On
+                            {{ comment.created_at }}
+                            WIB
                           </p>
                           <div
                             class="
@@ -311,90 +319,72 @@ const commentadd = () => {
         <section id="comment">
           <div>
             <div class="lg:p-8 w-full">
-              <div
-                class="
-                  flex
-                  max-w-xs
-                  overflow-hidden
-                  mx-auto
-                  md:max-w-xl
-                  lg:max-w-3xl
-                "
-              >
-                <UserCircleIcon
-                  class="text-sky-900 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
-                ></UserCircleIcon>
-                <form @submit.prevent="commentadd">
-                  <div class="ml-4 pr-1 bg-sky-900 rounded-2xl w-full">
-                    <Textarea
-                      class="
-                        ml-4
-                        mt-2
-                        bg-sky-900
-                        text-white
-                        w-auto w-11/12
-                        md:w-10/12
-                        lg:w-11/12
-                      "
-                      type="text"
-                      v-model="form.comment"
-                      placeholder="Write Answer..."
-                      rows="6"
-                    ></Textarea>
-                  </div>
-                  <!-- <Input
-                    type="text"
-                    v-model="form.comment"
-                    placeholder="Write Answer..."
+              <form @submit.prevent="commentadd">
+                <div
+                  class="
+                    flex
+                    max-w-xs
+                    overflow-hidden
+                    mx-auto
+                    w-full
+                    md:max-w-xl
+                    lg:max-w-3xl
+                  "
+                >
+                  <UserCircleIcon
                     class="
-                      w-full
-                      h-10
-                      bg-sky-900
-                      shadow
-                      appearance-none
-                      border
-                      rounded-2xl
-                      py-2
-                      px-3
-                      mt-1
-                      md:mt-2
-                      lg:mt-3
-                      text-white
-                      leading-tight
-                      focus:outline-none focus:shadow-outline
+                      text-sky-900
+                      w-12
+                      h-12
+                      my-auto
+                      mr-2
+                      md:w-14 md:h-14
+                      lg:w-16 lg:h-16
                     "
-                  ></Input> -->
+                  ></UserCircleIcon>
 
-                  <button type="submit">
-                    <PaperAirplaneIcon
-                      class="text-slate-400 w-8 h-8 my-auto ml-2"
-                    ></PaperAirplaneIcon>
-                  </button>
-                </form>
-                <!-- <a href="" class="text-black">Post</a> -->
+                  <TextInput
+                    id="title"
+                    type="text"
+                    placeholder="Comment"
+                    class="
+                      mt-4
+                      mb-4
+                      bg-sky-900
+                      text-white
+                      block
+                      w-full
+                      placeholder:text-slate-100
+                      focus:border-sky-900 focus:ring-sky-900
+                    "
+                    v-model="form.comment"
+                  />
 
-                <!-- ngkok gantinen logo Pesawat opo opo ngunu gantine tombol kirim -->
-
-                <!-- <div class="ml-4 pr-1 bg-sky-900 rounded-2xl w-full ">
-                  <Textarea
+                  <!-- <Textarea
                     class="
                       ml-4
                       mt-2
                       bg-sky-900
                       text-white
-                      w-auto
-                      w-11/12
+                      w-auto w-11/12
                       md:w-10/12
                       lg:w-11/12
+                      placeholder:text-slate-200
                     "
-                    name=""
-                    id=""
-                    placeholder="Write Answer"
-                    rows="6"
-                  ></Textarea>
-
-                </div> -->
-              </div>
+                    v-model="form.comment"
+                    id="comment"
+                    placeholder="Comment"
+                    rows="3"
+                  >
+                  </Textarea> -->
+                  <button type="submit">
+                    <!-- <i class="fa-solid fa-paper-plane"></i> -->
+                    <PaperAirplaneIcon
+                      class="text-sky-900 w-8 h-8 my-auto ml-2"
+                    ></PaperAirplaneIcon>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>

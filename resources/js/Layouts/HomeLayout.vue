@@ -15,4 +15,5 @@ import FooterUser from "@/Components/FooterUser.vue";
 </script>
 
 <style>
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css);
 </style>
