@@ -39,12 +39,12 @@ class FrontEndController extends Controller
 
     }
 
-    public function showforum($id)
+    public function showforum(Forum $forum)
     {
 
-        $forums = Forum::with(['user', 'comments', 'likes'])->where([
-            'id' => $id,
-            ])->get();
+        // $forums = Forum::with(['user', 'comments', 'likes'])->where([
+        //     'id' => $id,
+        //     ])->get();
 
         // $forum = Forum::find($id);
         // foreach ($forum as $foru) {
@@ -52,14 +52,14 @@ class FrontEndController extends Controller
 
         // }
         // var_dump();
-        $comments = Comment::with('user')->where([
-            'commentable_id' => $id,
-            'commentable_type' => 'App\Models\Forum'
-        ])->get();
+        // $comments = Comment::with('user')->where([
+        //     'commentable_id' => $id,
+        //     'commentable_type' => 'App\Models\Forum'
+        // ])->get();
 
         return Inertia::render('FrontEnd/ShowForum',[
-            'forums' => $forums,
-            'comments' => $comments
+            'forumid' => $forum->id,
+            'forums' => $forum->with(['user', 'comments.user', 'likes', 'likes_user'])->where(['slug' => $forum->slug,])->get(),
         ]);
 
     }
@@ -69,18 +69,21 @@ class FrontEndController extends Controller
     {
         $forum= Forum::find($id);
         $forum->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
+        return back();
+
     }
 
     public function deleteCommentForum($id)
     {
         $comment = Comment::find($id);
         $comment->delete();
+        return back();
     }
 
     public function createLikeForum( $id)
     {
-        $article= Article::find($id);
-        $article->like()->create(['like' => 1, 'user_id' => Auth::id()]);
+        $forum= Forum::find($id);
+        $forum->like()->create(['like' => 1, 'user_id' => Auth::id()]);
         return back();
     }
 
@@ -111,7 +114,7 @@ class FrontEndController extends Controller
         // var_dump($article);
         return Inertia::render('FrontEnd/ShowArticle',[
             'articleid' => (int) $article->id,
-            'articles' => $article->with(['user', 'comments.user', 'likes', 'category'])->where(['slug' => $article->slug])->get(),
+            'articles' => $article->with(['user', 'comments.user', 'likes', 'category', 'likes_user'])->where(['slug' => $article->slug])->get(),
             'next' => Article::where('id', '>', $article->id)->orderBy('id')->first(),
             'previous' => Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first(),
         ]);
@@ -122,7 +125,7 @@ class FrontEndController extends Controller
     public function createLikeArticle($id)
     {
         $article= Article::find($id);
-        $article->like()->create(['like' => 1, 'user_id' => 1]);
+        $article->like()->create(['like' => 1, 'user_id' => Auth::id()]);
         return back();
     }
 
@@ -138,7 +141,7 @@ class FrontEndController extends Controller
     {
         // var_dump($request);
         $article= Article::find($id);
-        $article->comment()->create(['comment' => $request->comment, 'user_id' => 1]);
+        $article->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
     }
 
     public function deleteCommentArticle($id)

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
@@ -54,6 +55,9 @@ class Article extends Model
 
     public function likes() {
         return $this->morphMany(Like::class, 'likeable');
+    }
+    public function likes_user() {
+        return $this->morphMany(Like::class, 'likeable')->where('user_id','=', Auth::id());
     }
 
     public function like() {

@@ -67,7 +67,7 @@ const props = defineProps({
                   >
                     Asked On {{ forum.created_at }} WIB
                   </p>
-                  <Link :href="route('detail-forum.showforum', forum.id)">
+                  <Link :href="route('detail-forum.showforum', forum.slug)">
                     <div
                       class="
                         mt-2

@@ -48,17 +48,17 @@ Route::get('/', function () {
 
 // Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
-Route::get('detail-forum/{id}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
+Route::get('detail-forum/{forum:slug}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
 
 Route::get('all-article', [FrontEndController::class, 'allarticle'])->name('all-article.allarticle');
 Route::get('detail-article/{article:slug}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
 
 Route::get('all-video', [FrontEndController::class, 'allvideo'])->name('all-video.allvideo');
 
-Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
-Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
-Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
-Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
+Route::put('/forum/create-comment/{id}', [FrontEndController::class, 'createCommentForum'])->name('forum.create-comment');
+Route::delete('/forum/delete-comment/{id}', [FrontEndController::class, 'deleteCommentForum'])->name('forum.delete-comment');
+Route::put('/forum/create-like/{id}', [FrontEndController::class, 'createLikeForum'])->name('forum.create-like');
+Route::delete('/forum/delete-like/{id}', [FrontEndController::class, 'deleteLikeForum'])->name('forum.delete-like');
 
 Route::put('/article/create-comment/{id}', [FrontEndController::class, 'createCommentArticle'])->name('article.create-comment');
 Route::delete('/article/delete-comment/{id}', [FrontEndController::class, 'deleteCommentArticle'])->name('article.delete-comment');

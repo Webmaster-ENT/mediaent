@@ -19,6 +19,7 @@ const props = defineProps({
   next: Object,
   articleid: Number,
 });
+
 const form = useForm({
   id: props.articles.id,
   comment: "",
@@ -33,6 +34,10 @@ function deleteLike(id) {
 const likeadd = () => {
   form.post(route("article.create-like", props.articleid));
 };
+
+function deleteComment(id) {
+  form.delete(route("article.delete-comment", id));
+}
 
 const commentadd = () => {
   form.post(route("article.create-comment", props.articleid));
@@ -64,7 +69,7 @@ const commentadd = () => {
                 <h1 class="font-bold text-6xl text-center text-gray-900 mb-4">
                   {{ article.title }}
                 </h1>
-                <p class="text-xl text-center">
+                <p class="text-xl text-center capitalize">
                   {{ article.updated_at }}
                   |
                   {{ article.user.name }}
@@ -135,18 +140,18 @@ const commentadd = () => {
                       md:text-xl
                     "
                   >
-                    <div v-if="article.likes == ''">
+                    <div v-if="article.likes_user == ''">
                       <form @submit.prevent="likeadd">
                         <button type="submit">
                           <HandThumbUpIcon
-                            class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                            class="w-4 h-4 mt-1 md:w-5 md:h-5 lg:w-6 lg:h-6"
                           />
                         </button>
                       </form>
                     </div>
                     <div v-else>
-                      <template v-for="like in article.likes" :key="like">
-                        <div v-show="like.user_id == 1">
+                      <template v-for="like in article.likes_user" :key="like">
+                        <div v-show="like.user_id == $page.props.auth.user.id">
                           <button
                             @click="deleteLike(like.id)"
                             tabindex="-1"
@@ -154,16 +159,28 @@ const commentadd = () => {
                             class="mt-1"
                           >
                             <HandThumbUpIcon
-                              class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                              class="
+                                w-4
+                                h-4
+                                text-yellow-700
+                                md:w-5 md:h-5
+                                lg:w-6 lg:h-6
+                              "
                             />
                           </button>
                         </div>
-                        <div v-show="like.user_id != 1">
+                        <div v-show="like.user_id != $page.props.auth.user.id">
                           <form @submit.prevent="likeadd">
                             <div className="mt-4">
                               <button type="submit">
                                 <HandThumbUpIcon
-                                  class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                                  class="
+                                    w-4
+                                    h-4
+                                    mt-1
+                                    md:w-5 md:h-5
+                                    lg:w-6 lg:h-6
+                                  "
                                 />
                               </button>
                             </div>
@@ -172,12 +189,16 @@ const commentadd = () => {
                       </template>
                     </div>
 
-                    <span class="mx-2 mr-6">{{ article.likes.length }} </span>
+                    <span class="mx-2 mr-6 font-medium text-md"
+                      >{{ article.likes.length }}
+                    </span>
 
                     <ChatBubbleLeftEllipsisIcon
                       class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
                     />
-                    <span class="mx-2">{{ article.comments.length }}</span>
+                    <span class="mx-2 font-medium text-md">{{
+                      article.comments.length
+                    }}</span>
                   </div>
                 </div>
 
@@ -288,11 +309,34 @@ const commentadd = () => {
                           >
                             {{ comment.user.name }}
                           </div>
-                          <p class="ml-3 font-medium text-sm opacity-50">
-                            Commented On
-                            {{ comment.created_at }}
-                            WIB
-                          </p>
+                          <div class="flex justify-between">
+                            <p class="flex ml-3 font-medium text-sm opacity-50">
+                              Commented On
+                              {{ comment.created_at }}
+                              WIB
+                            </p>
+                            <div
+                              v-if="comment.user_id == $page.props.auth.user.id"
+                            >
+                              <button
+                                @click="deleteComment(comment.id)"
+                                tabindex="-1"
+                                type="button"
+                                class="mx-4 my-auto"
+                              >
+                                <TrashIcon
+                                  class="
+                                    w-4
+                                    h-4
+                                    md:w-4 md:h-4
+                                    lg:w-4 lg:h-4
+                                    text-rose-700
+                                  "
+                                />
+                              </button>
+                            </div>
+                          </div>
+
                           <div
                             class="
                               mt-2
@@ -346,7 +390,7 @@ const commentadd = () => {
                   <TextInput
                     id="title"
                     type="text"
-                    placeholder="Comment"
+                    placeholder="Comment .."
                     class="
                       mt-4
                       mb-4
@@ -354,7 +398,7 @@ const commentadd = () => {
                       text-white
                       block
                       w-full
-                      placeholder:text-slate-100
+                      placeholder:text-slate-100 placeholder:italic
                       focus:border-sky-900 focus:ring-sky-900
                     "
                     v-model="form.comment"
@@ -393,8 +437,12 @@ const commentadd = () => {
   </HomeLayout>
 </template>
 
-<style>
+<style setup>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 h1 {
   font-family: sans-serif;
+}
+div {
+  font-family: Roboto;
 }
 </style>
