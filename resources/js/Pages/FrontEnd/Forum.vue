@@ -18,8 +18,11 @@ const props = defineProps({
 <template>
   <HomeLayout>
     <div class="bg-sky-900">
+      <div class="mx-auto max-w-7xl sm:px-4 px-4 lg:px-8">
+        <p class="text-white font-bold text-xl pt-8 mb-4">FORUM</p>
+      </div>
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
-        <br />
+        <!-- <br />
         <br />
         <p
           class="
@@ -32,7 +35,7 @@ const props = defineProps({
         >
           FORUM
         </p>
-        <br />
+        <br /> -->
         <div v-for="forum in forums" :key="forum.id">
           <div>
             <div class="py-4 md:py-6 md:ml-24 lg:p-8">
@@ -119,7 +122,7 @@ const props = defineProps({
 /* @import url("https://fonts.googleapis.com"); */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-div {
+/* div {
   font-family: Roboto;
-}
+} */
 </style>

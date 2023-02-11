@@ -53,6 +53,9 @@ Route::get('detail-forum/{forum:slug}', [FrontEndController::class, 'showforum']
 Route::get('all-article', [FrontEndController::class, 'allarticle'])->name('all-article.allarticle');
 Route::get('detail-article/{article:slug}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
 
+
+Route::get('category/{category}', [FrontEndController::class, 'showCategory'])->name('category.show');
+
 Route::get('all-video', [FrontEndController::class, 'allvideo'])->name('all-video.allvideo');
 
 Route::put('/forum/create-comment/{id}', [FrontEndController::class, 'createCommentForum'])->name('forum.create-comment');

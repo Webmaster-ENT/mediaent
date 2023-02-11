@@ -13,16 +13,16 @@
       <div class="md:text-center">
         <div class="content-center text-gray-500 dark:text-gray-400">
           <a
-            href="#article"
+            href="all-article"
             class="hover:font-black mr-4 md:mx-4 font-bold text-sm"
             >Article</a
           >
 
-          <a href="#forum" class="hover:font-black font-bold mx-4 text-sm"
+          <a href="all-forum" class="hover:font-black font-bold mx-4 text-sm"
             >Forum</a
           >
 
-          <a href="#video" class="hover:font-black font-bold mx-4 text-sm"
+          <a href="all-video" class="hover:font-black font-bold mx-4 text-sm"
             >Video</a
           >
 
@@ -37,7 +37,9 @@
           ><i
             class="
               fa-brands fa-facebook-f
-              text-xl text-slate-400
+              text-xl
+              hover:text-yellow-700
+              text-slate-400
               mx-3
               md:mt-8
               sm:mt-1
@@ -46,17 +48,48 @@
         ></a>
         <a href="https://www.instagram.com/entcrews" target="_blank">
           <i
-            class="fa-brands fa-instagram text-xl text-slate-400 mt-4 mx-3"
+            class="
+              fa-brands fa-instagram
+              text-xl
+              hover:text-yellow-700
+              text-slate-400
+              mt-4
+              mx-3
+            "
           ></i>
         </a>
         <a href="mailto: ent@gmail.com" target="_blank">
-          <i class="fa-solid fa-envelope text-xl text-slate-400 mx-3"></i>
+          <i
+            class="
+              fa-solid fa-envelope
+              text-xl
+              hover:text-yellow-700
+              text-slate-400
+              mx-3
+            "
+          ></i>
         </a>
         <a href="https://www.twitter.com/entcrews" target="_blank">
-          <i class="fa-brands fa-twitter text-xl text-slate-400 mx-3"></i>
+          <i
+            class="
+              fa-brands fa-twitter
+              text-xl
+              hover:text-yellow-700
+              text-slate-400
+              mx-3
+            "
+          ></i>
         </a>
         <a href="https://www.youtube.com/@entcrews" target="_Blank">
-          <i class="fa-brands fa-youtube text-xl text-slate-400 mx-3"></i>
+          <i
+            class="
+              fa-brands fa-youtube
+              text-xl
+              hover:text-yellow-700
+              text-slate-400
+              mx-3
+            "
+          ></i>
         </a>
         <br />
         <span class="mt-4 text-xs font-bold text-slate-400"
@@ -66,8 +99,8 @@
       <div>
         <h2 class="my-2 font-semibold text-md">Location</h2>
         <!-- <p>
-            Jl. Raya ITS, Keputih, Kec. Sukolilo, Kota SBY, <br />Jawa Timur 60111
-          </p> -->
+          Jl. Raya ITS, Keputih, Kec. Sukolilo, Kota SBY, <br />Jawa Timur 60111
+        </p> -->
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.691977074115!2d112.79156701477496!3d-7.2758470947483636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fa10ea2ae883%3A0xbe22c55d60ef09c7!2sPoliteknik%20Elektronika%20Negeri%20Surabaya!5e0!3m2!1sid!2sid!4v1675351583121!5m2!1sid!2sid"
           width="300"

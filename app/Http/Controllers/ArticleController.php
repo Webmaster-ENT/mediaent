@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
         $articles = Article::query();
         if ($request->has('search')) {
-            $articles->where('title', 'LIKE', "%" . $request->search . "%");
+            $articles->where('category_id', 'LIKE', "%" . $request->search . "%");
             $articles->orWhere('status', 'LIKE', "%" . $request->search . "%");
         }
         if ($request->has(['field', 'order'])) {

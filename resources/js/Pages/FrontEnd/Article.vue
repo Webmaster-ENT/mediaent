@@ -23,7 +23,9 @@ const props = defineProps({
           class="
             container
             mx-auto
+            my-auto
             px-6
+            pb-12
             sm:flex sm:flex-wrap sm:gap-6 sm:justify-center
           "
         >
