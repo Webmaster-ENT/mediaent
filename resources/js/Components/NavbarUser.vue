@@ -77,10 +77,9 @@
                           mt-3
                           mr-7
                           font-medium
-                          hover:font-bold
+                          hover:font-black
                           text-sm
                           normal-case
-                          hover:text-white
                           transition
                           duration-150
                           ease-in-out
@@ -330,10 +329,9 @@
                       mt-3
                       mr-7
                       font-medium
-                      hover:font-bold
+                      hover:font-black
                       text-sm
                       normal-case
-                      hover:text-white
                       transition
                       duration-150
                       ease-in-out

@@ -74,9 +74,9 @@ Route::get('/dashboard', function () {
         'forums'    => (int) Forum::count(),
         'videos'    => (int) Video::count(),
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['role:superadmin'])->name('dashboard');
 
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware(['role:superadmin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -106,5 +106,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::resource('/permission', PermissionController::class);
     Route::post('/permission/destroy-bulk', [PermissionController::class, 'destroyBulk'])->name('permission.destroy-bulk');
 });
+
 
 require __DIR__.'/auth.php';
