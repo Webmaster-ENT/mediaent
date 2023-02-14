@@ -47,10 +47,10 @@ const commentadd = () => {
   <HomeLayout>
     <div class="bg-white pt-5">
       <div class="mx-auto max-w-7xl sm:px-6 px-4 lg:px-8">
-        <Link :href="route('all-article.allarticle')">
+        <Link :href="route('all-forum.allforum')">
           <div class="flex items-center pt-2 md:text-lg text-xs">
             <i class="fa-solid fa-chevron-left mr-1"></i>
-            <span class="font-bold">Back to Article</span>
+            <span class="font-bold">Back to Forum</span>
           </div>
         </Link>
       </div>

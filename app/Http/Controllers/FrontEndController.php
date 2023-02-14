@@ -20,14 +20,14 @@ class FrontEndController extends Controller
     public function index()
     {
         // $articles = Article::with('user')->where('status', 'publish')->orderBy('updated_at', 'desc')->limit('3')->get();
-        $forums = Forum::orderBy('updated_at', 'desc')->limit('3')->get();
+        // $forums = Forum::orderBy('updated_at', 'desc')->limit('3')->get();
         // $videos = Video::orderBy('updated_at', 'desc')->limit('3')->get();
 
-        return Inertia::render('Forum',[
+        // return Inertia::render('Forum',[
             // 'articles' => $articles,
-            'forums' => $forums,
+            // 'forums' => $forums,
             // 'videos' => $videos,
-        ]);
+        // ]);
     }
 
     public function allforum()

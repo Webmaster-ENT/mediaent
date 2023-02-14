@@ -18,9 +18,9 @@ const props = defineProps({
 <template>
   <HomeLayout>
     <div class="bg-sky-900">
-      <div class="mx-auto max-w-7xl sm:px-4 px-4 lg:px-8">
+      <!-- <div class="mx-auto max-w-7xl sm:px-4 px-4 lg:px-8">
         <p class="text-white font-bold text-xl pt-8 mb-4">FORUM</p>
-      </div>
+      </div> -->
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
         <!-- <br />
         <br />
