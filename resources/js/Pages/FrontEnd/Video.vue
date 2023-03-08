@@ -48,27 +48,11 @@ const props = defineProps({
         <br />
         <!-- md:p-0 md:w-1/2 -->
         <div
-          class="
-            container
-            mx-auto
-            px-6
-            sm:flex sm:flex-wrap sm:gap-6 sm:justify-center
-          "
+          class="container mx-auto px-6 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
         >
           <div v-for="video in videos" :key="video.id">
             <div
-              class="
-                p-4
-                rounded-2xl
-                shadow-lg
-                overflow-hidden
-                mb-10
-                bg-white
-                sm:mb-0 sm:w-64
-                md:w-80
-                lg:w-72
-                xl:w-96
-              "
+              class="p-4 rounded-2xl shadow-lg overflow-hidden mb-10 bg-white sm:mb-0 sm:w-64 md:w-80 lg:w-72 xl:w-96"
             >
               <iframe
                 :src="video.video_url"
@@ -88,19 +72,7 @@ const props = defineProps({
                 </div>  -->
 
               <div
-                class="
-                  mt-3
-                  float-right
-                  inline-block
-                  text-xs
-                  px-6
-                  py-2
-                  rounded-3xl
-                  font-semibold
-                  bg-sky-900
-                  text-white
-                  w-auto
-                "
+                class="mt-3 float-right inline-block text-xs px-6 py-2 rounded-3xl font-semibold bg-sky-900 text-white w-auto"
               >
                 <a href="">Play</a>
               </div>

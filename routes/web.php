@@ -68,6 +68,9 @@ Route::delete('/article/delete-comment/{id}', [FrontEndController::class, 'delet
 Route::put('/article/create-like/{id}', [FrontEndController::class, 'createLikeArticle'])->name('article.create-like');
 Route::delete('/article/delete-like/{id}', [FrontEndController::class, 'deleteLikeArticle'])->name('article.delete-like');
 
+
+Route::get('home', [FrontEndController::class, 'index'])->name('home.index');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
         'articles'   => (int) Article::count(),

@@ -29,7 +29,7 @@
             sm:items-stretch sm:justify-start
           "
         >
-          <div class="flex flex-shrink-0 items-center mr-16">
+          <div class="flex flex-shrink-0 items-center">
             <img
               class="block h-12 w-auto lg:hidden"
               src="../../../public/Logo-ENT-Gelap.svg"
@@ -215,15 +215,29 @@
                       inline-flex
                       items-center
                       justify-center
-                      p-2
-                      rounded-md
+                      bg-sky-300
+                      rounded-full
+                      px-4
+                      py-1
+                      mr-4
+                      ml-2
+                      my-auto
+                      font-semibold
+                      hover:font-bold hover:bg-yellow-700
+                      text-xs
+                      normal-case
+                      text-sky-900
+                      hover:text-white
                       transition
                       duration-150
                       ease-in-out
                       sm:hidden
                     "
                   >
-                    <UserIcon class="h-4 w-4" />
+                    <span class="flex justify-between items-center capitalize">
+                      {{ $page.props.auth.user.name.split(" ")[0] }}
+                    </span>
+                    <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                   </button>
                   <button
                     type="button"
@@ -272,6 +286,7 @@
               rounded-full
               px-4
               py-1
+              mr-2
               my-auto
               font-medium
               hover:font-bold hover:bg-yellow-700
