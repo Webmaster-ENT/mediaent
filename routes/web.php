@@ -37,14 +37,14 @@ Route::get('storage-link-dep', function (){
     symlink($target, $shortcut);
 });
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 // Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
@@ -69,7 +69,7 @@ Route::put('/article/create-like/{id}', [FrontEndController::class, 'createLikeA
 Route::delete('/article/delete-like/{id}', [FrontEndController::class, 'deleteLikeArticle'])->name('article.delete-like');
 
 
-Route::get('home', [FrontEndController::class, 'index'])->name('home.index');
+Route::get('/', [FrontEndController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [

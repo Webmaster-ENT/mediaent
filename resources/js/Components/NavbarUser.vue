@@ -16,16 +16,20 @@
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
-            <img
-              class="block h-12 w-auto lg:hidden"
-              src="../../../public/Logo-ENT-Gelap.svg"
-              alt="Logo ENT"
-            />
-            <img
-              class="hidden h-12 w-auto lg:block"
-              src="../../../public/Logo-ENT-Gelap.svg"
-              alt="Logo ENT"
-            />
+            <a href="/">
+              <img
+                class="block h-12 w-auto lg:hidden"
+                src="../../../public/Logo-ENT-Gelap.svg"
+                alt="Logo ENT"
+              />
+            </a>
+            <a href="/">
+              <img
+                class="hidden h-12 w-auto lg:block"
+                src="../../../public/Logo-ENT-Gelap.svg"
+                alt="Logo ENT"
+              />
+            </a>
           </div>
           <div class="hidden sm:ml-6 sm:block mt-1">
             <div class="flex">
