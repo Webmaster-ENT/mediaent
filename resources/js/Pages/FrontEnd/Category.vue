@@ -68,12 +68,12 @@ const props = defineProps({
                 {{ article.category.name }}
               </div>
 
-              <div class="mt-3 text-sm font-bold h-14">
-                <p>{{ article.title }}</p>
+              <div class="mt-3 text-sm font-bold h-14 mx-2">
+                <p>{{ article.title.substring(0, 100) }}</p>
               </div>
 
               <div class="text-xs font-medium opacity-80 mt-3">
-                <span v-html="article.summary"></span>
+                <span v-html="article.summary.substring(0, 200)"></span>
               </div>
 
               <div

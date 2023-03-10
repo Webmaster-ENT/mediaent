@@ -5,16 +5,7 @@
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <DisclosureButton
-            class="
-              inline-flex
-              items-center
-              justify-center
-              rounded-md
-              p-2
-              text-gray-400
-              hover:bg-gray-700 hover:text-white
-              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
-            "
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span class="sr-only">Open main menu</span>
             <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
@@ -22,24 +13,23 @@
           </DisclosureButton>
         </div>
         <div
-          class="
-            flex flex-1
-            items-center
-            justify-center
-            sm:items-stretch sm:justify-start
-          "
+          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
-          <div class="flex flex-shrink-0 items-center mr-16">
-            <img
-              class="block h-12 w-auto lg:hidden"
-              src="../../../public/Logo-ENT-Gelap.svg"
-              alt="Logo ENT"
-            />
-            <img
-              class="hidden h-12 w-auto lg:block"
-              src="../../../public/Logo-ENT-Gelap.svg"
-              alt="Logo ENT"
-            />
+          <div class="flex flex-shrink-0 items-center">
+            <a href="/">
+              <img
+                class="block h-12 w-auto lg:hidden"
+                src="../../../public/Logo-ENT-Gelap.svg"
+                alt="Logo ENT"
+              />
+            </a>
+            <a href="/">
+              <img
+                class="hidden h-12 w-auto lg:block"
+                src="../../../public/Logo-ENT-Gelap.svg"
+                alt="Logo ENT"
+              />
+            </a>
           </div>
           <div class="hidden sm:ml-6 sm:block mt-1">
             <div class="flex">
@@ -55,37 +45,13 @@
                     <span class="inline-flex rounded-md">
                       <button
                         type="button"
-                        class="
-                          inline-flex
-                          items-center
-                          justify-center
-                          p-2
-                          rounded-md
-                          transition
-                          duration-150
-                          ease-in-out
-                          sm:hidden
-                        "
+                        class="inline-flex items-center justify-center p-2 rounded-md transition duration-150 ease-in-out sm:hidden"
                       >
                         <UserIcon class="h-4 w-4" />
                       </button>
                       <button
                         type="button"
-                        class="
-                          items-center
-                          justify-center
-                          mt-3
-                          mr-7
-                          font-medium
-                          hover:font-black
-                          text-sm
-                          normal-case
-                          transition
-                          duration-150
-                          ease-in-out
-                          hidden
-                          sm:inline-flex
-                        "
+                        class="items-center justify-center mt-3 mr-7 font-medium hover:font-black text-sm normal-case transition duration-150 ease-in-out hidden sm:inline-flex"
                       >
                         <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                       </button>
@@ -188,18 +154,7 @@
         <div v-if="$page.props.auth.user != null" class="flex">
           <div v-if="$page.props.auth.user.name == 'Superadmin'">
             <Link
-              class="
-                bg-sky-900
-                rounded-full
-                px-4
-                py-1
-                my-auto
-                font-medium
-                hover:font-bold hover:bg-yellow-700
-                text-sm
-                normal-case
-                text-white
-              "
+              class="bg-sky-900 rounded-full px-4 py-1 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
               href="/dashboard"
               >Dashboard</Link
             >
@@ -211,43 +166,16 @@
                 <span class="inline-flex rounded-md">
                   <button
                     type="button"
-                    class="
-                      inline-flex
-                      items-center
-                      justify-center
-                      p-2
-                      rounded-md
-                      transition
-                      duration-150
-                      ease-in-out
-                      sm:hidden
-                    "
+                    class="inline-flex items-center justify-center bg-sky-300 rounded-full px-4 py-1 mr-4 ml-2 my-auto font-semibold hover:font-bold hover:bg-yellow-700 text-xs normal-case text-sky-900 hover:text-white transition duration-150 ease-in-out sm:hidden"
                   >
-                    <UserIcon class="h-4 w-4" />
+                    <span class="flex justify-between items-center capitalize">
+                      {{ $page.props.auth.user.name.split(" ")[0] }}
+                    </span>
+                    <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                   </button>
                   <button
                     type="button"
-                    class="
-                      ml-4
-                      items-center
-                      justify-center
-                      bg-sky-300
-                      rounded-full
-                      px-4
-                      py-1
-                      my-auto
-                      font-medium
-                      hover:font-bold hover:bg-yellow-700
-                      text-sm
-                      normal-case
-                      text-sky-900
-                      hover:text-white
-                      transition
-                      duration-150
-                      ease-in-out
-                      hidden
-                      sm:inline-flex
-                    "
+                    class="ml-4 items-center justify-center bg-sky-300 rounded-full px-4 py-1 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-sky-900 hover:text-white transition duration-150 ease-in-out hidden sm:inline-flex"
                   >
                     <span class="flex justify-between items-center capitalize">
                       {{ $page.props.auth.user.name.split(" ")[0] }}
@@ -267,18 +195,7 @@
         </div>
         <div v-else>
           <Link
-            class="
-              bg-sky-900
-              rounded-full
-              px-4
-              py-1
-              my-auto
-              font-medium
-              hover:font-bold hover:bg-yellow-700
-              text-sm
-              normal-case
-              text-white
-            "
+            class="bg-sky-900 rounded-full px-4 py-1 mr-2 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
             href="/login"
             >Login</Link
           >
@@ -301,43 +218,14 @@
                 <span class="inline-flex rounded-md">
                   <button
                     type="button"
-                    class="
-                      inline-flex
-                      items-center
-                      justify-center
-                      mt-3
-                      mr-7
-                      font-medium
-                      hover:font-bold
-                      text-sm
-                      normal-case
-                      hover:text-white
-                      transition
-                      duration-150
-                      ease-in-out
-                      sm:hidden
-                    "
+                    class="inline-flex items-center justify-center mt-3 mr-7 font-medium hover:font-bold text-sm normal-case hover:text-white transition duration-150 ease-in-out sm:hidden"
                   >
                     <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                     <!-- <UserIcon class="h-4 w-4" /> -->
                   </button>
                   <button
                     type="button"
-                    class="
-                      items-center
-                      justify-center
-                      mt-3
-                      mr-7
-                      font-medium
-                      hover:font-black
-                      text-sm
-                      normal-case
-                      transition
-                      duration-150
-                      ease-in-out
-                      hidden
-                      sm:inline-flex
-                    "
+                    class="items-center justify-center mt-3 mr-7 font-medium hover:font-black text-sm normal-case transition duration-150 ease-in-out hidden sm:inline-flex"
                   >
                     <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                   </button>

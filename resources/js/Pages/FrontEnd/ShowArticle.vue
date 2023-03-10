@@ -33,22 +33,26 @@ function deleteLike(id) {
 }
 
 const likeadd = () => {
-  form.post(route("article.create-like", props.articleid));
+  form.post(
+    route("article.create-like", props.articleid, {
+      preserveScroll: (page) => Object.keys(page.props.errors).length,
+    })
+  );
 };
 
 function deleteComment(id) {
-  form.delete(route("article.delete-comment", id));
+  form.delete(route("article.delete-comment", id, { preserveScroll: true }));
 }
 
 const commentadd = () => {
   form.post(route("article.create-comment", props.articleid));
 };
 </script>
-<template>
+<template >
   <Head title="Article" />
 
   <HomeLayout>
-    <div class="pt-5">
+    <div class="pt-5 overflow-y-auto" scroll-region>
       <div class="mx-auto max-w-7xl sm:px-6 px-4 lg:px-8">
         <Link :href="route('all-article.allarticle')">
           <div class="flex items-center pt-2 md:text-lg text-xs">
@@ -72,6 +76,7 @@ const commentadd = () => {
                   md:w-1/2 md:text-6xl
                   text-3xl text-center text-gray-900
                   mb-4
+                  px-2
                 "
               >
                 {{ article.title }}
@@ -242,6 +247,7 @@ const commentadd = () => {
                         :href="
                           route('detail-article.showArticle', previous.slug)
                         "
+                        preserve-scroll
                         ><div class="text-md font-bold text-slate-900">
                           <i class="fa-solid fa-chevron-left"></i>
                           PREVIOUS
@@ -262,6 +268,7 @@ const commentadd = () => {
                     <div class="flex text-right" v-if="next != null">
                       <Link
                         :href="route('detail-article.showArticle', next.slug)"
+                        preserve-scroll
                       >
                         <div
                           class="
