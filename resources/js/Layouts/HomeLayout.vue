@@ -2,7 +2,6 @@
   <div class="w-full">
     <NavbarUser />
 
-
     <main>
       <slot />
     </main>

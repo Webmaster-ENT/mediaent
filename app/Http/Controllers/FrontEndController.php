@@ -10,8 +10,10 @@ use App\Models\Video;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest;
 
@@ -22,15 +24,15 @@ class FrontEndController extends Controller
 
         $articles = Article::with(['user','likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->limit('3')->get();
         $forums = Forum::with(['user','likes', 'comments'])->orderBy('updated_at', 'desc')->limit('3')->get();
-        $videos = Video::orderBy('updated_at', 'desc')->limit('3')->get();
+        $vidRecent = Video::where('status', '=', 'show')->orderBy('id','desc')->limit(1)->first();
+        $videos = Video::where('id', '<', $vidRecent->id)->where('status','show')->orderBy('updated_at', 'desc')->limit('3')->get();
 
 
         return Inertia::render('FrontEnd/Home',[
             'articles' => $articles,
             'forums' => $forums,
             'videos' => $videos,
-            'vidRecent' => Video::where('id', '=', 1)->orderBy('id')->first()
-
+            'vidRecent' => $vidRecent,
         ]);
     }
 
@@ -38,7 +40,6 @@ class FrontEndController extends Controller
     {
 
         $forums = Forum::with(['user','likes', 'comments'])->orderBy('updated_at', 'desc')->get();
-
         return Inertia::render('FrontEnd/Forum',[
             'forums' => $forums,
         ]);
@@ -169,5 +170,25 @@ class FrontEndController extends Controller
             'articles' => $articles,
         ]);
 
+    }
+
+    public function storeForum(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $slug = Str::slug(Str::words($request->subject, 15));
+            $like = 0;
+            $forum = Forum::create([
+                'user_id' => Auth::id(),
+                'subject' => $request->subject,
+                'slug' => $slug,
+                'like' => $like,
+            ]);
+            DB::commit();
+            return back()->with('success', __('app.label.created_successfully', ['name' => $forum->title]));
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.forum')]) . $th->getMessage());
+        }
     }
 }

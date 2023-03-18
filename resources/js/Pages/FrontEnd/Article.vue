@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 
 import {
@@ -15,6 +15,7 @@ const props = defineProps({
 
 <template>
   <HomeLayout>
+    <Head title="Article" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
         <br />

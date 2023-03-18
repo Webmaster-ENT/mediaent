@@ -5,90 +5,61 @@
         <a class="flex items-center mb-4 sm:mb-0">
           <img
             src="../../../public/Logo-ENT-Gelap.svg"
-            class="h-52 pt-6 bg-sky-100 rounded-b-xl p-2"
+            class="md:h-52 h-28 pt-6 bg-sky-100 rounded-b-xl p-2"
             alt="Logo ENT"
           />
         </a>
       </div>
-      <div class="md:text-center">
-        <div class="content-center text-gray-500 dark:text-gray-400">
+      <div class="text-center">
+        <div class="content-center text-gray-500 dark:text-gray-400 ml-5">
           <a
             href="all-article"
-            class="hover:font-black mr-4 md:mx-4 font-bold text-sm"
+            class="hover:font-black mr-4 md:mx-4 font-bold text-xs md:text-sm"
             >Article</a
           >
 
-          <a href="all-forum" class="hover:font-black font-bold mx-4 text-sm"
+          <a
+            href="all-forum"
+            class="hover:font-black font-bold mx-4 text-xs md:text-sm"
             >Forum</a
           >
 
-          <a href="all-video" class="hover:font-black font-bold mx-4 text-sm"
+          <a
+            href="all-video"
+            class="hover:font-black font-bold mx-4 text-xs md:text-sm"
             >Video</a
           >
 
           <a
             href="#about"
-            class="hover:font-black font-bold mx-4 text-sm hover:"
+            class="hover:font-black font-bold mx-4 text-sm text-xs md:text-sm"
             >About</a
           >
         </div>
 
         <a href="https://www.facebook.com"
           ><i
-            class="
-              fa-brands fa-facebook-f
-              text-xl
-              hover:text-yellow-700
-              text-slate-400
-              mx-3
-              md:mt-8
-              sm:mt-1
-            "
+            class="fa-brands fa-facebook-f text-xl hover:text-yellow-700 text-slate-400 mx-3 md:mt-8 sm:mt-1"
           ></i
         ></a>
         <a href="https://www.instagram.com/entcrews" target="_blank">
           <i
-            class="
-              fa-brands fa-instagram
-              text-xl
-              hover:text-yellow-700
-              text-slate-400
-              mt-4
-              mx-3
-            "
+            class="fa-brands fa-instagram text-xl hover:text-yellow-700 text-slate-400 mt-4 mx-3"
           ></i>
         </a>
         <a href="mailto: ent@gmail.com" target="_blank">
           <i
-            class="
-              fa-solid fa-envelope
-              text-xl
-              hover:text-yellow-700
-              text-slate-400
-              mx-3
-            "
+            class="fa-solid fa-envelope text-xl hover:text-yellow-700 text-slate-400 mx-3"
           ></i>
         </a>
         <a href="https://www.twitter.com/entcrews" target="_blank">
           <i
-            class="
-              fa-brands fa-twitter
-              text-xl
-              hover:text-yellow-700
-              text-slate-400
-              mx-3
-            "
+            class="fa-brands fa-twitter text-xl hover:text-yellow-700 text-slate-400 mx-3"
           ></i>
         </a>
         <a href="https://www.youtube.com/@entcrews" target="_Blank">
           <i
-            class="
-              fa-brands fa-youtube
-              text-xl
-              hover:text-yellow-700
-              text-slate-400
-              mx-3
-            "
+            class="fa-brands fa-youtube text-xl hover:text-yellow-700 text-slate-400 mx-3"
           ></i>
         </a>
         <br />
@@ -108,7 +79,7 @@
           style="border: 0"
           allowfullscreen=""
           loading="lazy"
-          class="rounded-xl"
+          class="rounded-xl w-full"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>

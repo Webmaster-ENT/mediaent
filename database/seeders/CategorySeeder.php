@@ -25,7 +25,7 @@ class CategorySeeder extends Seeder
             'name' => 'Teknologi'
         ]);
         Category::create([
-            'name' => 'Otomotif'
+            'name' => 'Explore'
         ]);
     }
 }

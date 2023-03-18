@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import {
   HandThumbUpIcon,
@@ -12,41 +12,14 @@ const props = defineProps({
 });
 </script>
 
-<!-- <div v-for="video in videos" :key="video.id">
-  <p>{{ video.title }}</p>
-  <iframe
-    :src="video.video_url"
-    class="rounded"
-    frameborder="0"
-    title="YouTube video player"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-  ></iframe>
-</div> -->
-
 <template>
   <HomeLayout>
-    <!-- <div class=""> -->
+    <Head title="Video" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
         <br />
         <br />
-        <!-- <div>
-          <p
-            class="
-              text-white
-              font-bold
-              text-base
-
-              md:text-xl md:ml-24
-              lg:text-2xl lg:ml-32
-            "
-          >
-            Article
-          </p>
-        </div> -->
         <br />
-        <!-- md:p-0 md:w-1/2 -->
         <div
           class="container mx-auto px-6 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
         >
@@ -66,18 +39,12 @@ const props = defineProps({
               <div class="mt-3 text-sm font-bold text-center h-14">
                 <p>{{ video.title }}</p>
               </div>
-
-              <!-- <div class="inline-block text-xs font-normal mt-4 text-white bg-sky-900 py-1 px-2 rounded-3xl w-auto flex-none">
-                  {{ article.category.name }}
-                </div>  -->
-
               <div
                 class="mt-3 float-right inline-block text-xs px-6 py-2 rounded-3xl font-semibold bg-sky-900 text-white w-auto"
               >
                 <a href="">Play</a>
               </div>
             </div>
-
             <br />
           </div>
         </div>

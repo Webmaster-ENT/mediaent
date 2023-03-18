@@ -70,6 +70,7 @@ Route::delete('/article/delete-like/{id}', [FrontEndController::class, 'deleteLi
 
 
 Route::get('/', [FrontEndController::class, 'index']);
+Route::post('storeforum', [FrontEndController::class, 'storeForum'])->name('storeforum.storeForum');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [

@@ -19,6 +19,7 @@ class VideoSeeder extends Seeder
             'title'=>'Menjelajah Ekowisata Mangrove dikala Jenuh dengan Padatnya Perkotaan Surabaya',
             'video_url' => 'https://www.youtube.com/embed/-ipmZU3gBvE',
             'status' => 'show',
+            'thumbnail' => 'test.jpg'
         ]);
     }
 }

@@ -11,11 +11,7 @@
             <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
-        </div>
-        <div
-          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
-        >
-          <div class="flex flex-shrink-0 items-center">
+          <div class="ml-1 flex flex-shrink-0 items-center">
             <a href="/">
               <img
                 class="block h-12 w-auto lg:hidden"
@@ -23,6 +19,12 @@
                 alt="Logo ENT"
               />
             </a>
+          </div>
+        </div>
+        <div
+          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+        >
+          <div class="flex flex-shrink-0 items-center">
             <a href="/">
               <img
                 class="hidden h-12 w-auto lg:block"
@@ -69,67 +71,11 @@
                       Teknologi
                     </DropdownLink>
                     <DropdownLink :href="route('category.show', 4)" as="button">
-                      Otomotif
+                      Explore
                     </DropdownLink>
                   </template>
                 </Dropdown>
               </div>
-              <!-- <ChevronDownIcon class="w-3 h-3 mt-3" /> -->
-              <!-- <Menu as="div" class="relative">
-                <div>
-                  <MenuButton class="flex">
-                    <i
-                      class="
-                        fa-solid fa-chevron-down
-                        text-xs
-                        mt-3
-                        ml-1
-                        font-medium
-                        hover:font-bold
-                        pr-7
-                      "
-                    ></i>
-                  </MenuButton>
-                </div>
-                <transition
-                  enter-active-class="transition ease-out duration-100"
-                  enter-from-class="transform opacity-0 scale-95"
-                  enter-to-class="transform opacity-100 scale-100"
-                  leave-active-class="transition ease-in duration-75"
-                  leave-from-class="transform opacity-100 scale-100"
-                  leave-to-class="transform opacity-0 scale-95"
-                >
-                  <MenuItems
-                    class="
-                      absolute
-                      mt-2
-                      w-48
-                      origin-top-center
-                      rounded-md
-                      bg-white
-                      py-1
-                      shadow-lg
-                      ring-1 ring-black ring-opacity-5
-                      focus:outline-none
-                    "
-                  >
-                    <MenuItem
-                      v-slot="{ active }"
-                      v-for="category in categories"
-                      :key="category.name"
-                    >
-                      <a
-                        :href="category.href"
-                        :class="[
-                          active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700',
-                        ]"
-                        >{{ category.name }}</a
-                      >
-                    </MenuItem>
-                  </MenuItems>
-                </transition>
-              </Menu> -->
               <Link
                 key="forum"
                 :href="route('all-forum.allforum')"
@@ -152,7 +98,15 @@
         </div>
 
         <div v-if="$page.props.auth.user != null" class="flex">
-          <div v-if="$page.props.auth.user.name == 'Superadmin'">
+          <div
+            v-if="
+              $page.props.auth.user.name == 'Superadmin' ||
+              'maya' ||
+              'arman' ||
+              'erina' ||
+              'harun'
+            "
+          >
             <Link
               class="bg-sky-900 rounded-full px-4 py-1 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
               href="/dashboard"
@@ -195,7 +149,7 @@
         </div>
         <div v-else>
           <Link
-            class="bg-sky-900 rounded-full px-4 py-1 mr-2 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
+            class="bg-sky-900 rounded-full px-4 py-1 mr-3 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
             href="/login"
             >Login</Link
           >
@@ -243,67 +197,11 @@
                   Teknologi
                 </DropdownLink>
                 <DropdownLink :href="route('category.show', 4)" as="button">
-                  Otomotif
+                  Explore
                 </DropdownLink>
               </template>
             </Dropdown>
           </div>
-          <!-- <ChevronDownIcon class="w-3 h-3 mt-3" /> -->
-          <!-- <Menu as="div" class="relative">
-            <div>
-              <MenuButton class="flex">
-                <i
-                  class="
-                    fa-solid fa-chevron-down
-                    text-xs
-                    mt-3
-                    ml-1
-                    font-medium
-                    hover:font-bold
-                    pr-7
-                  "
-                ></i>
-              </MenuButton>
-            </div>
-            <transition
-              enter-active-class="transition ease-out duration-100"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-              <MenuItems
-                class="
-                  absolute
-                  mt-2
-                  w-48
-                  origin-top-center
-                  rounded-md
-                  bg-white
-                  py-1
-                  shadow-lg
-                  ring-1 ring-black ring-opacity-5
-                  focus:outline-none
-                "
-              >
-                <MenuItem
-                  v-slot="{ active }"
-                  v-for="category in categories"
-                  :key="category.name"
-                >
-                  <a
-                    href="category.href"
-                    :class="[
-                      active ? 'bg-gray-100' : '',
-                      'block px-4 py-2 text-sm text-gray-700',
-                    ]"
-                    >{{ category.name }}</a
-                  >
-                </MenuItem>
-              </MenuItems>
-            </transition>
-          </Menu> -->
           <DisclosureButton
             key="forum"
             as="a"
