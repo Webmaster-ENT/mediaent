@@ -90,6 +90,7 @@
               >
               <Link
                 key="about"
+                :href="route('about.about')"
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
                 >About</Link
               >
@@ -219,6 +220,7 @@
           <DisclosureButton
             key="about"
             as="a"
+            :href="route('about.about')"
             class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
             >About</DisclosureButton
           >

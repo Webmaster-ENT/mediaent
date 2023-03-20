@@ -36,6 +36,10 @@ class FrontEndController extends Controller
         ]);
     }
 
+    public function about(){
+        return Inertia::render('FrontEnd/About');
+    }
+
     public function allforum()
     {
 

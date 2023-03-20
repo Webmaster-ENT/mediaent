@@ -17,11 +17,8 @@ const props = defineProps({
     <Head title="Video" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
-        <br />
-        <br />
-        <br />
         <div
-          class="container mx-auto px-6 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
+          class="container mx-auto py-8 md:py-12 px-6 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
         >
           <div v-for="video in videos" :key="video.id">
             <div
@@ -49,11 +46,6 @@ const props = defineProps({
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   </HomeLayout>
 </template>

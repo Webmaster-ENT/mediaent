@@ -18,11 +18,8 @@ const props = defineProps({
     <Head title="Article" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
-        <br />
-        <br />
-        <br />
         <div
-          class="container mx-auto my-auto px-6 pb-12 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
+          class="container mx-auto my-auto py-8 md:py-12 px-6 pb-12 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
         >
           <div v-for="article in articles" :key="article.id">
             <div

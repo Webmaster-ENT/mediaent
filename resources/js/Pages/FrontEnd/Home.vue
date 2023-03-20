@@ -165,20 +165,20 @@ let md = "";
                 <template v-for="video in videos" :key="video.id">
                   <a :href="video.video_url">
                     <div class="md:flex mx-1">
-                      <img
+                      <!-- <img
                         :src="'storage/images/video/' + video.thumbnail"
                         :alt="video.title"
                         class="rounded-md md:rounded-2xl w-full md:w-1/2 aspect-video ml-0 md:ml-5 mb-2 md:mb-14"
-                      />
-                      <!-- <iframe
-                      :src="video.video_url"
-                      class="rounded-md md:rounded-2xl w-full md:w-1/2 aspect-video ml-0 md:ml-5 mb-2 md:mb-14"
-                      frameborder="0"
-                      title="YouTube video player"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    >
-                    </iframe> -->
+                      /> -->
+                      <iframe
+                        :src="video.video_url"
+                        class="rounded-md md:rounded-2xl w-full md:w-1/2 aspect-video ml-0 md:ml-5 mb-2 md:mb-14"
+                        frameborder="0"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      >
+                      </iframe>
                       <p class="ml-0 md:ml-5 text-white text-xs mb-1 md:mb-4">
                         {{ video.title }}
                       </p>

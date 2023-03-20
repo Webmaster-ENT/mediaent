@@ -58,6 +58,8 @@ Route::get('category/{category}', [FrontEndController::class, 'showCategory'])->
 
 Route::get('all-video', [FrontEndController::class, 'allvideo'])->name('all-video.allvideo');
 
+Route::get('about', [FrontEndController::class, 'about'])->name('about.about');
+
 Route::put('/forum/create-comment/{id}', [FrontEndController::class, 'createCommentForum'])->name('forum.create-comment');
 Route::delete('/forum/delete-comment/{id}', [FrontEndController::class, 'deleteCommentForum'])->name('forum.delete-comment');
 Route::put('/forum/create-like/{id}', [FrontEndController::class, 'createLikeForum'])->name('forum.create-like');
