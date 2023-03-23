@@ -13,5 +13,6 @@ class video extends Model
         'title',
         'video_url',
         'status',
+        'thumbnail'
     ];
 }

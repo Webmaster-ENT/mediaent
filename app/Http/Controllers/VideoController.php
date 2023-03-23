@@ -58,10 +58,22 @@ class VideoController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $title = $request->title;
+            $url = 'storage/images/video/';
+            $newName = null;
+
+            if ($request->file('thumbnail')) {
+                $extension = $request->file('thumbnail')->getClientOriginalExtension();
+                $newName = $title . '-' . now()->timestamp . '.' . $extension;
+                $request->file('thumbnail')->storeAs('images/video', $newName);
+            }
+
             $video = Video::create([
-                'title' => $request->title,
+                'title' => $title,
                 'video_url' => $request->video_url,
                 'status' => $request->status,
+                'thumbnail' => $request['thumbnail'] = $newName,
             ]);
             DB::commit();
             return back()->with('success', __('app.label.created_successfully', ['name' => $video->title]));
@@ -105,11 +117,26 @@ class VideoController extends Controller
         DB::beginTransaction();
         try {
             $video = Video::findOrFail($id);
-            $video->update([
-                'title' => $request->title,
+
+            $title = $request->title;
+            $url = 'storage/images/video/';
+            $newName = null;
+            $values=[
+                'title' => $title,
                 'video_url' => $request->video_url,
                 'status' => $request->status,
-            ]);
+            ];
+            if ($request->hasFile('thumbnail')) {
+                if ($video->thumbnail) {
+                    unlink($video->thumbnail);
+                    $extension = $request->file('thumbnail')->getClientOriginalExtension();
+                    $newName = $title . '-' . now()->timestamp . '.' . $extension;
+                    $request->file('thumbnail')->storeAs('images/video', $newName);
+                }
+                $values['thumbnail'] = $newName;
+            }
+
+            $video->update($values);
             DB::commit();
             return back()->with('success', __('app.label.updated_successfully', ['name' => $video->title]));
         } catch (\Throwable $th) {
@@ -127,6 +154,9 @@ class VideoController extends Controller
     public function destroy(Video $video)
     {
         try {
+            if ($video->thumbnail) {
+                unlink($video->thumbnail);
+            }
             $video->delete();
             return back()->with('success', __('app.label.deleted_successfully', ['name' => $video->title]));
         } catch (\Throwable $th) {

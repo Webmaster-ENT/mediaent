@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
         $articles = Article::query();
         if ($request->has('search')) {
-            $articles->where('title', 'LIKE', "%" . $request->search . "%");
+            $articles->where('category_id', 'LIKE', "%" . $request->search . "%");
             $articles->orWhere('status', 'LIKE', "%" . $request->search . "%");
         }
         if ($request->has(['field', 'order'])) {
@@ -90,7 +90,7 @@ class ArticleController extends Controller
                     'user_id' => Auth::id(),
                     'category_id' => $request->category_id,
                     'body' => $request->body,
-                    'summary' => Str::of(Str::words($request->body, 23)),
+                    'summary' => Str::of(Str::words($request->body, 21)),
                     'status' => $request->status,
                     'thumbnail' => $request['thumbnail'] = $url.$newName,
             ]);
@@ -157,7 +157,7 @@ class ArticleController extends Controller
                 'user_id' => Auth::id(),
                 'category_id' => $request->category_id,
                 'body' => $request->body,
-                'summary' => Str::of(Str::words($request->body, 23)),
+                'summary' => Str::of(Str::words($request->body, 21)),
                 'status' => $request->status,
             ];
 

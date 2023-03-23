@@ -16,9 +16,10 @@ class VideoSeeder extends Seeder
     public function run()
     {
         Video::create([
-            'title'=>'Peringatan Hari Pahlawan, PENS Tanamkan Nilai Perjuangan Pahlawan Dalam Kehidupan',
-            'video_url' => 'https://youtu.be/UXmjF8VNZuQ',
-            // 'status' => 'draft',
+            'title'=>'Menjelajah Ekowisata Mangrove dikala Jenuh dengan Padatnya Perkotaan Surabaya',
+            'video_url' => 'https://www.youtube.com/embed/-ipmZU3gBvE',
+            'status' => 'show',
+            'thumbnail' => 'test.jpg'
         ]);
     }
 }

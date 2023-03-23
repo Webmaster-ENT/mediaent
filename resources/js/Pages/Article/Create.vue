@@ -79,21 +79,7 @@ const submit = () => {
                   <select
                     id="status"
                     v-model="form.status"
-                    class="
-                      mt-1
-                      block
-                      w-full
-                      border-gray-300
-                      dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
-                      focus:border-indigo-500
-                      dark:focus:border-indigo-600
-                      focus:ring-indigo-500
-                      dark:focus:ring-indigo-600
-                      rounded-md
-                      shadow-sm
-                      placeholder:text-gray-400
-                      placeholder:dark:text-gray-400/50
-                    "
+                    class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm placeholder:text-gray-400 placeholder:dark:text-gray-400/50"
                   >
                     <option value="draft" selected>Draft</option>
                     <option value="show">Show</option>
@@ -109,21 +95,7 @@ const submit = () => {
                   <select
                     id="category_id"
                     v-model="form.category_id"
-                    class="
-                      mt-1
-                      block
-                      w-full
-                      border-gray-300
-                      dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
-                      focus:border-indigo-500
-                      dark:focus:border-indigo-600
-                      focus:ring-indigo-500
-                      dark:focus:ring-indigo-600
-                      rounded-md
-                      shadow-sm
-                      placeholder:text-gray-400
-                      placeholder:dark:text-gray-400/50
-                    "
+                    class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm placeholder:text-gray-400 placeholder:dark:text-gray-400/50"
                     autofocus
                   >
                     <option

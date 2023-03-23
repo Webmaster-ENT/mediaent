@@ -37,33 +37,42 @@ Route::get('storage-link-dep', function (){
     symlink($target, $shortcut);
 });
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 // Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
-Route::get('detail-forum/{id}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
+Route::get('detail-forum/{forum:slug}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
 
 Route::get('all-article', [FrontEndController::class, 'allarticle'])->name('all-article.allarticle');
-Route::get('detail-article/{id}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
+Route::get('detail-article/{article:slug}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
+
+
+Route::get('category/{category}', [FrontEndController::class, 'showCategory'])->name('category.show');
 
 Route::get('all-video', [FrontEndController::class, 'allvideo'])->name('all-video.allvideo');
 
-Route::put('/forum/create-comment/{id}', [ForumController::class, 'createComment'])->name('forum.create-comment');
-Route::delete('/forum/delete-comment/{id}', [ForumController::class, 'deleteComment'])->name('forum.delete-comment');
-Route::put('/forum/create-like/{id}', [ForumController::class, 'createLike'])->name('forum.create-like');
-Route::delete('/forum/delete-like/{id}', [ForumController::class, 'deleteLike'])->name('forum.delete-like');
+Route::get('about', [FrontEndController::class, 'about'])->name('about.about');
 
-Route::put('/article/create-comment/{id}', [ArticleController::class, 'createComment'])->name('article.create-comment');
-Route::delete('/article/delete-comment/{id}', [ArticleController::class, 'deleteComment'])->name('article.delete-comment');
-Route::put('/article/create-like/{id}', [ArticleController::class, 'createLike'])->name('article.create-like');
-Route::delete('/article/delete-like/{id}', [ArticleController::class, 'deleteLike'])->name('article.delete-like');
+Route::put('/forum/create-comment/{id}', [FrontEndController::class, 'createCommentForum'])->name('forum.create-comment');
+Route::delete('/forum/delete-comment/{id}', [FrontEndController::class, 'deleteCommentForum'])->name('forum.delete-comment');
+Route::put('/forum/create-like/{id}', [FrontEndController::class, 'createLikeForum'])->name('forum.create-like');
+Route::delete('/forum/delete-like/{id}', [FrontEndController::class, 'deleteLikeForum'])->name('forum.delete-like');
+
+Route::put('/article/create-comment/{id}', [FrontEndController::class, 'createCommentArticle'])->name('article.create-comment');
+Route::delete('/article/delete-comment/{id}', [FrontEndController::class, 'deleteCommentArticle'])->name('article.delete-comment');
+Route::put('/article/create-like/{id}', [FrontEndController::class, 'createLikeArticle'])->name('article.create-like');
+Route::delete('/article/delete-like/{id}', [FrontEndController::class, 'deleteLikeArticle'])->name('article.delete-like');
+
+
+Route::get('/', [FrontEndController::class, 'index']);
+Route::post('storeforum', [FrontEndController::class, 'storeForum'])->name('storeforum.storeForum');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
@@ -71,9 +80,9 @@ Route::get('/dashboard', function () {
         'forums'    => (int) Forum::count(),
         'videos'    => (int) Video::count(),
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['role:superadmin'])->name('dashboard');
 
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware(['role:superadmin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -103,5 +112,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::resource('/permission', PermissionController::class);
     Route::post('/permission/destroy-bulk', [PermissionController::class, 'destroyBulk'])->name('permission.destroy-bulk');
 });
+
 
 require __DIR__.'/auth.php';

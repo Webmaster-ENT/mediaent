@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Like;
 use App\Models\Comment;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -48,6 +50,10 @@ class Forum extends Model
 
     public function likes() {
         return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function likes_user() {
+        return $this->morphMany(Like::class, 'likeable')->where('user_id','=', Auth::id());
     }
 
     public function like() {
