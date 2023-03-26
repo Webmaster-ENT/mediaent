@@ -51,20 +51,6 @@ const createforum = () => {
                 <UserCircleIcon
                   class="text-white h-12 my-auto md:w-10 md:h-10 lg:w-16 lg:h-12"
                 ></UserCircleIcon>
-<<<<<<< HEAD
-                <div class="mt-1.5">
-                  <div
-                    class="
-                      ml-3
-                      tracking-wide
-                      text-xs text-white
-                      font-medium
-                      md:text-base
-                      lg:text-lg
-                    "
-                  >
-                    {{ forum.user.name }}
-=======
 
                 <TextInput
                   id="title"
@@ -79,7 +65,6 @@ const createforum = () => {
                     <PaperAirplaneIcon
                       class="text-sky-900 md:w-6 md:h-6 w-4 h-4 my-auto mx-1"
                     ></PaperAirplaneIcon>
->>>>>>> 728748d07c8f4f59e32fc551df9dadb4f47cb2d7
                   </div>
                 </button>
               </div>
@@ -143,44 +128,10 @@ const createforum = () => {
                   <div
                     class="flex ml-3 text-white items-center text-sm md:text-xl"
                   >
-<<<<<<< HEAD
-                    Asked On {{ forum.created_at }} WIB
-                  </p>
-                  <Link :href="route('detail-forum.showforum', forum.id)">
-                    <div
-                      class="
-                        ml-3
-                        text-white
-                        font-semibold
-                        mt-7
-                        text-base
-                        md:text-xl
-                        lg:text-2xl
-                      "
-                      v-html="forum.subject"
-                    ></div>
-                  </Link>
-                  <div class="mt-4 md:mt-6">
-                    <div
-                      class="
-                        flex
-                        ml-3
-                        text-white
-                        items-center
-                        text-sm
-                        md:text-xl
-                      "
-                    >
-                      <HandThumbUpIcon
-                        class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
-                      />
-                      <span class="mx-2 mr-6">{{ forum.likes.length }} </span>
-=======
                     <HandThumbUpIcon
                       class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
                     />
                     <span class="mx-2 mr-6">{{ forum.likes.length }} </span>
->>>>>>> 728748d07c8f4f59e32fc551df9dadb4f47cb2d7
 
                     <ChatBubbleLeftEllipsisIcon
                       class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"

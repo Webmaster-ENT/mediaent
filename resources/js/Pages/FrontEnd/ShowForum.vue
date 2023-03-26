@@ -44,86 +44,6 @@ const commentadd = () => {
 </script>
 
 <template>
-<<<<<<< HEAD
-  <div class="bg-white">
-    <br />
-    <br />
-    <Link :href="route('all-forum.allforum')" class="flex">
-      <p
-        class="
-          flex
-          text-black
-          font-medium
-          text-base
-          ml-12
-          md:text-xl md:ml-24
-          lg:text-2xl lg:ml-32
-        "
-      >
-        <ChevronLeftIcon class="w-5 h-6 md:w-6 md:h-7 lg:w-7 lg:h-8" />Back To
-        Forum
-      </p>
-    </Link>
-    <br />
-    <br />
-    <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
-      <div v-for="forum in forums" :key="forum.id">
-        <div class="">
-          <div class="py-4 md:py-6 md:ml-24 lg:p-8">
-            <div class="flex">
-              <UserCircleIcon
-                class="text-sky-900 w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14"
-              ></UserCircleIcon>
-              <div class="mt-1.5">
-                <div
-                  class="
-                    ml-3
-                    
-                    tracking-wide
-                    text-xs text-black
-                    font-medium
-                    md:text-base
-                    lg:text-lg
-                  "
-                >
-                  {{ forum.user.name }}
-                </div>
-                <p
-                  class="ml-3 font-medium text-sm opacity-50
-                  "
-                >
-                  Asked on {{ forum.created_at }} WIB
-                </p>
-                <div
-                  class="
-                    ml-3
-                    text-black
-                    font-semibold
-                    mt-7
-                    text-base
-                    md:text-xl
-                    lg:text-2xl
-                  "
-                  v-html="forum.subject"
-                ></div>
-                <div class="mt-4 md:mt-6">
-                  <div
-                    class="flex ml-3 text-black items-center text-sm md:text-xl"
-                  >
-                    <HandThumbUpIcon
-                      class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
-                    />
-                    <span class="mx-2 mr-6">{{ forum.likes.length }} </span>
-
-                    <ChatBubbleLeftEllipsisIcon
-                      class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
-                    />
-                    <span class="mx-2">{{ forum.comments.length }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-=======
   <HomeLayout>
     <div class="bg-white pt-5">
       <div class="mx-auto max-w-7xl sm:px-6 px-4 lg:px-8">
@@ -131,7 +51,6 @@ const commentadd = () => {
           <div class="flex items-center pt-2 md:text-lg text-xs">
             <i class="fa-solid fa-chevron-left mr-1"></i>
             <span class="font-bold">Back to Forum</span>
->>>>>>> 728748d07c8f4f59e32fc551df9dadb4f47cb2d7
           </div>
         </Link>
       </div>
@@ -145,14 +64,6 @@ const commentadd = () => {
                 ></UserCircleIcon>
                 <div class="mt-1.5">
                   <div
-<<<<<<< HEAD
-                    class="ml-3
-                    tracking-wide
-                    text-xs text-black
-                    font-medium
-                    md:text-base
-                    lg:text-lg"
-=======
                     class="
                       ml-3
                       uppercase
@@ -162,7 +73,6 @@ const commentadd = () => {
                       md:text-base
                       lg:text-lg
                     "
->>>>>>> 728748d07c8f4f59e32fc551df9dadb4f47cb2d7
                   >
                     {{ forum.user.name }}
                   </div>
@@ -170,17 +80,6 @@ const commentadd = () => {
                     Asked on {{ forum.created_at }} WIB
                   </p>
                   <div
-<<<<<<< HEAD
-                    class="                    
-                    ml-3
-                    text-black
-                    font-normal
-                    mt-7
-                    text-base
-                    md:text-xl
-                    lg:text-2xl"
-                    v-html="comment.comment"
-=======
                     class="
                       mt-2
                       ml-3
@@ -192,7 +91,6 @@ const commentadd = () => {
                       lg:text-2xl
                     "
                     v-html="forum.subject"
->>>>>>> 728748d07c8f4f59e32fc551df9dadb4f47cb2d7
                   ></div>
                   <div class="mt-4 md:mt-6">
                     <div
