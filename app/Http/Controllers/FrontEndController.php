@@ -117,9 +117,9 @@ class FrontEndController extends Controller
     {
         return Inertia::render('FrontEnd/ShowArticle',[
             'articleid' => (int) $article->id,
-            'articles' => $article->with(['user', 'comments.user', 'likes', 'category', 'likes_user'])->where(['slug' => $article->slug])->get(),
-            'next' => Article::where('id', '>', $article->id)->orderBy('id')->first(),
-            'previous' => Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first(),
+            'articles' => $article->with(['user', 'comments.user', 'likes', 'category', 'likes_user'])->where(['slug' => $article->slug])->where('status', 'show')->get(),
+            'next' => Article::where('id', '>', $article->id)->where('status', 'show')->orderBy('id')->first(),
+            'previous' => Article::where('id', '<', $article->id)->where('status', 'show')->orderBy('id', 'desc')->first(),
             'userid' => Auth::id(),
         ]);
 

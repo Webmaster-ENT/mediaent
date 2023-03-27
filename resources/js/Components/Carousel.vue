@@ -25,10 +25,12 @@
                   memberi informasi seputar kampus, teknologi, dan berita
                   terkini.
                 </p>
-                <span
-                  class="rounded-lg p-1 md:p-3 px-3 md:px-8 bg-white text-sky-900 text-xs md:text-lg font-bold"
-                  >About ENT</span
-                >
+                <a href="about">
+                  <span
+                    class="rounded-lg p-1 md:p-3 px-3 md:px-8 bg-white text-sky-900 text-xs md:text-lg font-bold"
+                    >About ENT
+                  </span>
+                </a>
               </div>
             </div>
           </div>

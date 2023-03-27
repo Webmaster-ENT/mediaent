@@ -12,9 +12,21 @@ const props = defineProps({
 });
 </script>
 
+<!-- <div v-for="video in videos" :key="video.id">
+  <p>{{ video.title }}</p>
+  <iframe
+    :src="video.video_url"
+    class="rounded"
+    frameborder="0"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div> -->
+
 <template>
+  <Head title="Video" />
   <HomeLayout>
-    <Head title="Video" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
         <div

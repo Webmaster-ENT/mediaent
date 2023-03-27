@@ -100,12 +100,12 @@
 
         <div v-if="$page.props.auth.user != null" class="flex">
           <div
-            v-if="
-              $page.props.auth.user.name == 'Superadmin' ||
-              'maya' ||
-              'arman' ||
-              'erina' ||
-              'harun'
+            v-show="
+              $page.props.auth.user.name === 'Superadmin' ||
+              $page.props.auth.user.name === 'maya' ||
+              $page.props.auth.user.name === 'arman' ||
+              $page.props.auth.user.name === 'erina' ||
+              $page.props.auth.user.name === 'harun'
             "
           >
             <Link
