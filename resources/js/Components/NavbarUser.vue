@@ -102,6 +102,13 @@
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
                 >Video</Link
               >
+              <a 
+                href="https://online.fliphtml5.com/jrzcd/ciqi/"
+                class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
+                target="_blank"
+                >
+                CoreMagz
+              </a>
               <Link
                 key="about"
                 :href="route('about.about')"
