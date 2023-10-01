@@ -52,7 +52,7 @@
     ]
   },
   "_GuestLayout-d35e592f.js": {
-    "file": "assets/GuestLayout-d35e592f.js",
+    "file": "assets/GuestLayout-d35e592f.js"
     "imports": [
       "resources/js/app.js"
     ]
@@ -451,12 +451,12 @@
     "src": "resources/js/Pages/FrontEnd/Category.vue"
   },
   "resources/js/Pages/FrontEnd/Forum.css": {
-    "file": "assets/Forum-cfb39767.css",
-    "src": "resources/js/Pages/FrontEnd/Home.css"
+    "file": "assets/Home-cfb39767.css",
+    "src": "resources/js/Pages/FrontEnd/Forum.css"
   },
   "resources/js/Pages/FrontEnd/Forum.vue": {
     "css": [
-      "assets/Forum-cfb39767.css"
+      "assets/Home-cfb39767.css"
     ],
     "file": "assets/Forum-ba9185a6.js",
     "imports": [
@@ -472,12 +472,12 @@
     "src": "resources/js/Pages/FrontEnd/Forum.vue"
   },
   "resources/js/Pages/FrontEnd/Home.css": {
-    "file": "assets/Forum-cfb39767.css",
-    "src": "resources/js/Pages/FrontEnd/Home.css"
+    "file": "assets/Home-cfb39767.css",
+    "src": "resources/js/Pages/FrontEnd/Forum.css"
   },
   "resources/js/Pages/FrontEnd/Home.vue": {
     "css": [
-      "assets/Forum-cfb39767.css"
+      "assets/Home-cfb39767.css"
     ],
     "file": "assets/Home-745ba6fe.js",
     "imports": [
