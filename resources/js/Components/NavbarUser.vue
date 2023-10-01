@@ -14,6 +14,13 @@
           <div class="ml-1 flex flex-shrink-0 items-center">
             <a href="/">
               <img
+                class="block h-9 mr-4 w-auto lg:hidden"
+                src="../../../public/pens1.png"
+                alt="Logo pens"
+              />
+            </a>
+            <a href="/">
+              <img
                 class="block h-12 w-auto lg:hidden"
                 src="../../../public/Logo-ENT-Gelap.svg"
                 alt="Logo ENT"
@@ -25,6 +32,13 @@
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
+            <a href="/">
+              <img
+                class="hidden h-9 mr-4 w-auto lg:block"
+                src="../../../public/pens1.png"
+                alt="Logo PENS"
+              />
+            </a>
             <a href="/">
               <img
                 class="hidden h-12 w-auto lg:block"
