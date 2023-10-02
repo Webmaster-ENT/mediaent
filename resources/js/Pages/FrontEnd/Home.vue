@@ -194,7 +194,15 @@ let md = "";
   </HomeLayout>
 </template>
 
-<style setup>
+<style>
 /* @import url("https://fonts.googleapis.com"); */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.ytp-large-play-button {
+  width: 0px;
+  height: 0px;
+}
+.ytp-impression-link {
+  visibility: collapse;
+}
 </style>

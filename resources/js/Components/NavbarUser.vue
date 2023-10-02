@@ -102,6 +102,12 @@
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
                 >Video</Link
               >
+              <a
+                href="https://online.fliphtml5.com/jrzcd/ciqi/"
+                class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
+                target="__blank"
+                >CoreMagz</a
+              >
               <Link
                 key="about"
                 :href="route('about.about')"
@@ -173,63 +179,76 @@
     </div>
     <DisclosurePanel class="sm:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3">
-        <div class="flex">
-          <DisclosureButton
-            key="article"
-            as="a"
-            :href="route('all-article.allarticle')"
-            class="pl-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-            >Article</DisclosureButton
-          >
-          <div class="relative">
-            <Dropdown align="left" width="48">
-              <template #trigger>
-                <span class="inline-flex rounded-md">
-                  <button
-                    type="button"
-                    class="inline-flex items-center justify-center mt-3 mr-7 font-medium hover:font-bold text-sm normal-case hover:text-white transition duration-150 ease-in-out sm:hidden"
-                  >
-                    <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                    <!-- <UserIcon class="h-4 w-4" /> -->
-                  </button>
-                  <button
-                    type="button"
-                    class="items-center justify-center mt-3 mr-7 font-medium hover:font-black text-sm normal-case transition duration-150 ease-in-out hidden sm:inline-flex"
-                  >
-                    <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                  </button>
-                </span>
-              </template>
+        <div class="text-center mx-10">
+          <div class="flex">
+            <DisclosureButton
+              key="article"
+              as="a"
+              :href="route('all-article.allarticle')"
+              class="pl-7 py-2 rounded-md text-sm font-medium hover:font-bold"
+              >Article</DisclosureButton
+            >
+            <div class="relative">
+              <Dropdown align="left" width="48">
+                <template #trigger>
+                  <span class="inline-flex rounded-md">
+                    <button
+                      type="button"
+                      class="inline-flex items-center justify-center mt-3 mr-7 font-medium hover:font-bold text-sm normal-case hover:text-white transition duration-150 ease-in-out sm:hidden"
+                    >
+                      <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                      <!-- <UserIcon class="h-4 w-4" /> -->
+                    </button>
+                    <button
+                      type="button"
+                      class="items-center justify-center mt-3 mr-7 font-medium hover:font-black text-sm normal-case transition duration-150 ease-in-out hidden sm:inline-flex"
+                    >
+                      <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                  </span>
+                </template>
 
-              <template #content>
-                <DropdownLink :href="route('category.show', 1)" as="button">
-                  Lifestyle
-                </DropdownLink>
-                <DropdownLink :href="route('category.show', 2)" as="button">
-                  Hiburan
-                </DropdownLink>
-                <DropdownLink :href="route('category.show', 3)" as="button">
-                  Teknologi
-                </DropdownLink>
-                <DropdownLink :href="route('category.show', 4)" as="button">
-                  Explore
-                </DropdownLink>
-              </template>
-            </Dropdown>
+                <template #content>
+                  <DropdownLink :href="route('category.show', 1)" as="button">
+                    Lifestyle
+                  </DropdownLink>
+                  <DropdownLink :href="route('category.show', 2)" as="button">
+                    Hiburan
+                  </DropdownLink>
+                  <DropdownLink :href="route('category.show', 3)" as="button">
+                    Teknologi
+                  </DropdownLink>
+                  <DropdownLink :href="route('category.show', 4)" as="button">
+                    Explore
+                  </DropdownLink>
+                </template>
+              </Dropdown>
+            </div>
+
+            <DisclosureButton
+              key="forum"
+              as="a"
+              :href="route('all-forum.allforum')"
+              class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
+              >Forum</DisclosureButton
+            >
+
+            <DisclosureButton
+              key="video"
+              as="a"
+              :href="route('all-video.allvideo')"
+              class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
+              >Video</DisclosureButton
+            >
           </div>
+        </div>
+        <div class="text-center">
           <DisclosureButton
-            key="forum"
+            key="coremagz"
             as="a"
-            :href="route('all-forum.allforum')"
+            href="https://online.fliphtml5.com/jrzcd/ciqi/"
             class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-            >Forum</DisclosureButton
-          >
-          <DisclosureButton
-            key="video"
-            as="a"
-            :href="route('all-video.allvideo')"
-            class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-            >Video</DisclosureButton
+            >CoreMagz</DisclosureButton
           >
           <DisclosureButton
             key="about"
