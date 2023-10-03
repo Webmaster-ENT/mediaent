@@ -29,10 +29,16 @@
             class="hover:font-black font-bold mx-4 text-xs md:text-sm"
             >Video</a
           >
+          <a
+            href="https://online.fliphtml5.com/jrzcd/ciqi/"
+            class="hover:font-black font-bold mx-4 text-xs md:text-sm"
+            target="_blank"
+            >CoreMagz</a
+          >
 
           <a
             href="#about"
-            class="hover:font-black font-bold mx-4 text-sm text-xs md:text-sm"
+            class="hover:font-black font-bold mx-4 text-xs md:text-sm"
             >About</a
           >
         </div>
