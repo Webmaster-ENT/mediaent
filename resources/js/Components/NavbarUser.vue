@@ -90,17 +90,17 @@
                   </template>
                 </Dropdown>
               </div>
-              <Link
+              <a
                 key="forum"
                 :href="route('all-forum.allforum')"
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-                >Forum</Link
+                >Forum</a
               >
-              <Link
+              <a
                 key="video"
                 :href="route('all-video.allvideo')"
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-                >Video</Link
+                >Video</a
               >
               <a
                 href="https://online.fliphtml5.com/jrzcd/ciqi/"
@@ -108,11 +108,11 @@
                 target="__blank"
                 >CoreMagz</a
               >
-              <Link
+              <a
                 key="about"
                 :href="route('about.about')"
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-                >About</Link
+                >About</a
               >
             </div>
           </div>
@@ -128,10 +128,10 @@
               $page.props.auth.user.name === 'harun'
             "
           >
-            <Link
+            <a
               class="bg-sky-900 rounded-full px-4 py-1 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
-              href="/dashboard"
-              >Dashboard</Link
+              href="/mediaent/dashboard"
+              >Dashboard</a
             >
           </div>
 
@@ -169,10 +169,15 @@
           </div>
         </div>
         <div v-else>
-          <Link
+          <a
+            class="outline outline-1 outline-sky-900 rounded-full px-4 py-0.5 mr-3 my-auto font-medium hover:font-bold hover:outline-yellow-700 text-sm normal-case text-sky-900 hover:text-yellow-700"
+            href="/mediaent/register"
+            >Sign Up</a
+          >
+          <a
             class="bg-sky-900 rounded-full px-4 py-1 mr-3 my-auto font-medium hover:font-bold hover:bg-yellow-700 text-sm normal-case text-white"
-            href="/login"
-            >Login</Link
+            href="/mediaent/login"
+            >Sign In</a
           >
         </div>
       </div>
@@ -225,37 +230,37 @@
               </Dropdown>
             </div>
 
-            <DisclosureButton
+            <a
               key="forum"
               as="a"
               :href="route('all-forum.allforum')"
               class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-              >Forum</DisclosureButton
+              >Forum</a
             >
 
-            <DisclosureButton
+            <a
               key="video"
               as="a"
               :href="route('all-video.allvideo')"
               class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-              >Video</DisclosureButton
+              >Video</a
             >
           </div>
         </div>
         <div class="text-center">
-          <DisclosureButton
+          <a
             key="coremagz"
             as="a"
             href="https://online.fliphtml5.com/jrzcd/ciqi/"
             class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-            >CoreMagz</DisclosureButton
+            >CoreMagz</a
           >
-          <DisclosureButton
+          <a
             key="about"
             as="a"
             :href="route('about.about')"
             class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
-            >About</DisclosureButton
+            >About</a
           >
         </div>
       </div>

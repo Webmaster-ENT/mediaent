@@ -18,6 +18,12 @@ const props = defineProps({
     <Head title="Article" />
     <div class="bg-sky-900">
       <div class="max-w-xs mx-auto overflow-hidden md:max-w-5xl lg:max-w-7xl">
+        <div class="text-white pt-10 md:pt-16 mb-4 md:mb-10 text-center">
+          <h1 class="text-lg md:text-2xl font-bold">Artikel</h1>
+          <p class="text-xs md:text-sm">
+            Kumpulan artikel seputar kampus, teknologi, dan tren terkini.
+          </p>
+        </div>
         <div
           class="container mx-auto my-auto py-8 md:py-12 px-6 pb-12 sm:flex sm:flex-wrap sm:gap-6 sm:justify-center"
         >

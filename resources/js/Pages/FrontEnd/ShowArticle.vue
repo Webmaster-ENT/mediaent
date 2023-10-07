@@ -71,13 +71,7 @@ const commentadd = () => {
           <section class="text-gray-500 bg-white rounded-lg">
             <div class="flex flex-wrap justify-center">
               <h1
-                class="
-                  font-bold
-                  md:w-1/2 md:text-6xl
-                  text-3xl text-center text-gray-900
-                  mb-4
-                  px-2
-                "
+                class="font-bold md:w-1/2 md:text-6xl text-3xl text-center text-gray-900 mb-4 px-2"
               >
                 {{ article.title }}
               </h1>
@@ -89,66 +83,22 @@ const commentadd = () => {
                 </p>
                 <div class="text-center my-4">
                   <button
-                    class="
-                      inline-flex
-                      items-center
-                      md:px-4
-                      px-3
-                      md:py-2
-                      py-1
-                      bg-blue-600
-                      border border-transparent
-                      rounded-full
-                      font-semibold
-                      md:text-xs
-                      text-xs text-white
-                      uppercase
-                      tracking-widest
-                      hover:bg-blue-500
-                      active:bg-blue-700
-                      focus:outline-none
-                      focus:ring-2
-                      focus:ring-blue-500
-                      focus:ring-offset-2
-                      dark:focus:ring-offset-gray-800
-                      transition
-                      ease-in-out
-                      duration-150
-                    "
+                    class="inline-flex items-center md:px-4 px-3 md:py-2 py-1 bg-blue-600 border border-transparent rounded-full font-semibold md:text-xs text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                     disabled
                   >
                     {{ article.category.name }}
                   </button>
                 </div>
                 <div
-                  class="
-                    relative
-                    overflow-hidden
-                    bg-no-repeat bg-cover
-                    relative
-                    overflow-hidden
-                    bg-no-repeat bg-cover
-                    ripple
-                    md:my-4
-                    my-2
-                    px-5
-                  "
+                  class="relative overflow-hidden bg-no-repeat bg-cover relative overflow-hidden bg-no-repeat bg-cover ripple md:my-4 my-2 px-5"
                 >
                   <img
-                    :src="'../../' + article.thumbnail"
+                    v-bind:src="article.thumbnail"
                     class="w-full rounded-3xl mt-4"
                   />
                 </div>
                 <div
-                  class="
-                    md:my-10
-                    mt-10
-                    prose
-                    lg:prose-xl
-                    md:max-w-4xl md:px-6
-                    px-12
-                    mx-auto
-                  "
+                  class="md:my-10 mt-10 prose lg:prose-xl md:max-w-4xl md:px-6 px-12 mx-auto"
                   style="text-align: justify"
                 >
                   <span v-html="article.body" class="md:text-xl text-sm"></span>
@@ -157,15 +107,7 @@ const commentadd = () => {
                 <!-- Like Comment Count -->
                 <div class="md:mt-6 px-6">
                   <div
-                    class="
-                      flex
-                      md:mb-12
-                      my-4
-                      text-black
-                      items-center
-                      text-sm
-                      md:text-xl
-                    "
+                    class="flex md:mb-12 my-4 text-black items-center text-sm md:text-xl"
                   >
                     <div v-if="userid != null">
                       <div v-if="article.likes_user == ''">
@@ -190,13 +132,7 @@ const commentadd = () => {
                               class="mt-1"
                             >
                               <HandThumbUpIcon
-                                class="
-                                  w-4
-                                  h-4
-                                  text-yellow-700
-                                  md:w-5 md:h-5
-                                  lg:w-6 lg:h-6
-                                "
+                                class="w-4 h-4 text-yellow-700 md:w-5 md:h-5 lg:w-6 lg:h-6"
                               />
                             </button>
                           </div>
@@ -205,13 +141,7 @@ const commentadd = () => {
                               <div className="mt-4">
                                 <button type="submit">
                                   <HandThumbUpIcon
-                                    class="
-                                      w-4
-                                      h-4
-                                      mt-1
-                                      md:w-5 md:h-5
-                                      lg:w-6 lg:h-6
-                                    "
+                                    class="w-4 h-4 mt-1 md:w-5 md:h-5 lg:w-6 lg:h-6"
                                   />
                                 </button>
                               </div>
@@ -271,12 +201,7 @@ const commentadd = () => {
                         preserve-scroll
                       >
                         <div
-                          class="
-                            text-md
-                            font-semibold
-                            text-slate-900
-                            hover:font-black
-                          "
+                          class="text-md font-semibold text-slate-900 hover:font-black"
                         >
                           NEXT <i class="fa-solid fa-chevron-right"></i>
                         </div>
@@ -296,28 +221,10 @@ const commentadd = () => {
                 <br />
                 <!-- Comment -->
                 <div
-                  class="
-                    mt-7
-                    flex
-                    max-w-xs
-                    overflow-hidden
-                    mx-auto
-                    md:max-w-xl
-                    lg:max-w-3xl
-                  "
+                  class="mt-7 flex max-w-xs overflow-hidden mx-auto md:max-w-xl lg:max-w-3xl"
                 >
                   <a
-                    class="
-                      md:w-full
-                      w-3/4
-                      mx-auto
-                      text-white
-                      md:py-2
-                      h-full
-                      bg-sky-900
-                      rounded-xl
-                      text-center
-                    "
+                    class="md:w-full w-3/4 mx-auto text-white md:py-2 h-full bg-sky-900 rounded-xl text-center"
                     type=""
                     href="#comment"
                   >
@@ -342,27 +249,12 @@ const commentadd = () => {
                       <div class="flex">
                         <div class="">
                           <UserCircleIcon
-                            class="
-                              text-sky-900
-                              w-10
-                              h-10
-                              my-auto
-                              md:w-12 md:h-12
-                              lg:w-14 lg:h-14
-                            "
+                            class="text-sky-900 w-10 h-10 my-auto md:w-12 md:h-12 lg:w-14 lg:h-14"
                           ></UserCircleIcon>
                         </div>
                         <div>
                           <div
-                            class="
-                              ml-3
-                              uppercase
-                              tracking-wide
-                              text-xs text-black
-                              font-medium
-                              md:text-base
-                              lg:text-lg
-                            "
+                            class="ml-3 uppercase tracking-wide text-xs text-black font-medium md:text-base lg:text-lg"
                           >
                             {{ comment.user.name }}
                           </div>
@@ -382,29 +274,14 @@ const commentadd = () => {
                                 class="mx-4 my-auto"
                               >
                                 <TrashIcon
-                                  class="
-                                    w-4
-                                    h-4
-                                    md:w-4 md:h-4
-                                    lg:w-4 lg:h-4
-                                    text-rose-700
-                                  "
+                                  class="w-4 h-4 md:w-4 md:h-4 lg:w-4 lg:h-4 text-rose-700"
                                 />
                               </button>
                             </div>
                           </div>
 
                           <div
-                            class="
-                              md:mt-4
-                              mt-2
-                              ml-3
-                              text-black
-                              font-normal
-                              text-base
-                              md:text-xl
-                              lg:text-2xl
-                            "
+                            class="md:mt-4 mt-2 ml-3 text-black font-normal text-base md:text-xl lg:text-2xl"
                             v-html="comment.comment"
                           ></div>
                         </div>
@@ -416,27 +293,12 @@ const commentadd = () => {
                       <div class="flex">
                         <div class="">
                           <UserCircleIcon
-                            class="
-                              text-sky-900
-                              w-10
-                              h-10
-                              my-auto
-                              md:w-12 md:h-12
-                              lg:w-14 lg:h-14
-                            "
+                            class="text-sky-900 w-10 h-10 my-auto md:w-12 md:h-12 lg:w-14 lg:h-14"
                           ></UserCircleIcon>
                         </div>
                         <div>
                           <div
-                            class="
-                              ml-3
-                              uppercase
-                              tracking-wide
-                              text-xs text-black
-                              font-medium
-                              md:text-base
-                              lg:text-lg
-                            "
+                            class="ml-3 uppercase tracking-wide text-xs text-black font-medium md:text-base lg:text-lg"
                           >
                             {{ comment.user.name }}
                           </div>
@@ -449,16 +311,7 @@ const commentadd = () => {
                           </div>
 
                           <div
-                            class="
-                              md:mt-4
-                              mt-2
-                              ml-3
-                              text-black
-                              font-normal
-                              text-base
-                              md:text-xl
-                              lg:text-2xl
-                            "
+                            class="md:mt-4 mt-2 ml-3 text-black font-normal text-base md:text-xl lg:text-2xl"
                             v-html="comment.comment"
                           ></div>
                         </div>
@@ -475,42 +328,17 @@ const commentadd = () => {
           <div class="lg:p-8 w-full">
             <form @submit.prevent="commentadd">
               <div
-                class="
-                  flex
-                  max-w-xs
-                  overflow-hidden
-                  mx-auto
-                  w-full
-                  md:max-w-xl
-                  lg:max-w-3xl
-                "
+                class="flex max-w-xs overflow-hidden mx-auto w-full md:max-w-xl lg:max-w-3xl"
               >
                 <UserCircleIcon
-                  class="
-                    text-sky-900
-                    w-12
-                    h-12
-                    my-auto
-                    mr-2
-                    md:w-14 md:h-14
-                    lg:w-16 lg:h-16
-                  "
+                  class="text-sky-900 w-12 h-12 my-auto mr-2 md:w-14 md:h-14 lg:w-16 lg:h-16"
                 ></UserCircleIcon>
 
                 <TextInput
                   id="title"
                   type="text"
                   placeholder="Comment .."
-                  class="
-                    mt-4
-                    mb-4
-                    bg-sky-900
-                    text-white
-                    block
-                    w-full
-                    placeholder:text-slate-100 placeholder:italic
-                    focus:border-sky-900 focus:ring-sky-900
-                  "
+                  class="mt-4 mb-4 bg-sky-900 text-white block w-full placeholder:text-slate-100 placeholder:italic focus:border-sky-900 focus:ring-sky-900"
                   v-model="form.comment"
                 />
 
@@ -544,42 +372,17 @@ const commentadd = () => {
         <div id="comment" v-else>
           <div class="lg:p-8 w-full">
             <div
-              class="
-                flex
-                max-w-xs
-                overflow-hidden
-                mx-auto
-                w-full
-                md:max-w-xl
-                lg:max-w-3xl
-              "
+              class="flex max-w-xs overflow-hidden mx-auto w-full md:max-w-xl lg:max-w-3xl"
             >
               <UserCircleIcon
-                class="
-                  text-sky-900
-                  w-12
-                  h-12
-                  my-auto
-                  mr-2
-                  md:w-14 md:h-14
-                  lg:w-16 lg:h-16
-                "
+                class="text-sky-900 w-12 h-12 my-auto mr-2 md:w-14 md:h-14 lg:w-16 lg:h-16"
               ></UserCircleIcon>
 
               <TextInput
                 id="title"
                 type="text"
                 placeholder="Login for comment .."
-                class="
-                  mt-4
-                  mb-4
-                  bg-sky-900
-                  text-white
-                  block
-                  w-full
-                  placeholder:text-slate-100 placeholder:italic
-                  focus:border-sky-900 focus:ring-sky-900
-                "
+                class="mt-4 mb-4 bg-sky-900 text-white block w-full placeholder:text-slate-100 placeholder:italic focus:border-sky-900 focus:ring-sky-900"
                 v-model="form.comment"
                 disabled
               />

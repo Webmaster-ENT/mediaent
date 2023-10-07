@@ -22,13 +22,13 @@ class FrontEndController extends Controller
     public function index()
     {
 
-        $articles = Article::with(['user','likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->limit('3')->get();
-        $forums = Forum::with(['user','likes', 'comments'])->orderBy('updated_at', 'desc')->limit('3')->get();
-        $vidRecent = Video::where('status', '=', 'show')->orderBy('id','desc')->limit(1)->first();
-        $videos = Video::where('id', '<', $vidRecent->id)->where('status','show')->orderBy('updated_at', 'desc')->limit('3')->get();
+        $articles = Article::with(['user', 'likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->limit('3')->get();
+        $forums = Forum::with(['user', 'likes', 'comments'])->orderBy('updated_at', 'desc')->limit('3')->get();
+        $vidRecent = Video::where('status', '=', 'show')->orderBy('id', 'desc')->limit(1)->first();
+        $videos = Video::where('id', '<', $vidRecent->id)->where('status', 'show')->orderBy('updated_at', 'desc')->limit('3')->get();
 
 
-        return Inertia::render('FrontEnd/Home',[
+        return Inertia::render('FrontEnd/Home', [
             'articles' => $articles,
             'forums' => $forums,
             'videos' => $videos,
@@ -36,38 +36,36 @@ class FrontEndController extends Controller
         ]);
     }
 
-    public function about(){
+    public function about()
+    {
         return Inertia::render('FrontEnd/About');
     }
 
     public function allforum()
     {
 
-        $forums = Forum::with(['user','likes', 'comments'])->orderBy('updated_at', 'desc')->get();
-        return Inertia::render('FrontEnd/Forum',[
+        $forums = Forum::with(['user', 'likes', 'comments'])->orderBy('updated_at', 'desc')->get();
+        return Inertia::render('FrontEnd/Forum', [
             'forums' => $forums,
         ]);
-
     }
 
     public function showforum(Forum $forum)
     {
 
-        return Inertia::render('FrontEnd/ShowForum',[
+        return Inertia::render('FrontEnd/ShowForum', [
             'forumid' => $forum->id,
             'forums' => $forum->with(['user', 'comments.user', 'likes', 'likes_user'])->where(['slug' => $forum->slug,])->get(),
             'userid' => Auth::id(),
         ]);
-
     }
 
-// FORUM
+    // FORUM
     public function createCommentForum(Request $request, $id)
     {
-        $forum= Forum::find($id);
+        $forum = Forum::find($id);
         $forum->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
         return back();
-
     }
 
     public function deleteCommentForum($id)
@@ -77,9 +75,9 @@ class FrontEndController extends Controller
         return back();
     }
 
-    public function createLikeForum( $id)
+    public function createLikeForum($id)
     {
-        $forum= Forum::find($id);
+        $forum = Forum::find($id);
         $forum->like()->create(['like' => 1, 'user_id' => Auth::id()]);
         return back();
     }
@@ -105,30 +103,28 @@ class FrontEndController extends Controller
             $articles->orderBy($request->field, $request->order);
         }
 
-        $articles = Article::with(['user','likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->get();
+        $articles = Article::with(['user', 'likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->get();
 
-        return Inertia::render('FrontEnd/Article',[
+        return Inertia::render('FrontEnd/Article', [
             'articles' => $articles,
         ]);
-
     }
 
     public function showArticle(Article $article)
     {
-        return Inertia::render('FrontEnd/ShowArticle',[
+        return Inertia::render('FrontEnd/ShowArticle', [
             'articleid' => (int) $article->id,
             'articles' => $article->with(['user', 'comments.user', 'likes', 'category', 'likes_user'])->where(['slug' => $article->slug])->where('status', 'show')->get(),
             'next' => Article::where('id', '>', $article->id)->where('status', 'show')->orderBy('id')->first(),
             'previous' => Article::where('id', '<', $article->id)->where('status', 'show')->orderBy('id', 'desc')->first(),
             'userid' => Auth::id(),
         ]);
-
     }
 
 
     public function createLikeArticle($id)
     {
-        $article= Article::find($id);
+        $article = Article::find($id);
         $article->like()->create(['like' => 1, 'user_id' => Auth::id()]);
         // return back();
     }
@@ -144,7 +140,7 @@ class FrontEndController extends Controller
     public function createCommentArticle(Request $request, $id)
     {
         // var_dump($request);
-        $article= Article::find($id);
+        $article = Article::find($id);
         $article->comment()->create(['comment' => $request->comment, 'user_id' => Auth::id()]);
     }
 
@@ -160,20 +156,19 @@ class FrontEndController extends Controller
 
         $videos = Video::where('status', 'show')->orderBy('updated_at', 'desc')->get();
 
-        return Inertia::render('FrontEnd/Video',[
+        return Inertia::render('FrontEnd/Video', [
             'videos' => $videos,
         ]);
-
     }
 
     //Category
     public function showCategory(Category $category)
     {
-        $articles = $category->article()->with(['user','likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->get();
-        return Inertia::render('FrontEnd/Category',[
+        $articles = $category->article()->with(['user', 'likes', 'comments', 'category'])->where('status', 'show')->orderBy('updated_at', 'desc')->get();
+        return Inertia::render('FrontEnd/Category', [
             'articles' => $articles,
+            'category' => $category,
         ]);
-
     }
 
     public function storeForum(Request $request)

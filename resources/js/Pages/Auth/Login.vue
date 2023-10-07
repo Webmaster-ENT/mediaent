@@ -36,9 +36,9 @@ const logo = "Logo-ENT-Gelap.svg";
     </div>
 
     <form @submit.prevent="submit">
-      <Link class="mx-auto mb-8" href="/">
+      <a class="mx-auto mb-8" href="/">
         <img :src="logo" class="w-24 mx-auto" />
-      </Link>
+      </a>
       <div>
         <InputLabel for="email" :value="lang().label.email" />
         <TextInput
@@ -77,13 +77,13 @@ const logo = "Logo-ENT-Gelap.svg";
         </label>
       </div>
       <div class="flex items-center justify-between mt-4">
-        <Link
+        <a
           v-if="canResetPassword"
           :href="route('password.request')"
           class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
         >
           {{ lang().label.lost_password }}
-        </Link>
+        </a>
         <PrimaryButton
           class="ml-4"
           :class="{ 'opacity-25': form.processing }"

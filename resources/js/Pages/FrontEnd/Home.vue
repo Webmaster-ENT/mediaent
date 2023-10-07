@@ -53,21 +53,27 @@ let md = "";
                 {{ article.category.name }}
               </div>
 
+              <div
+                class="inline-block text-xs capitalize font-normal mt-4 py-1 px-2 rounded-3xl w-auto flex-none"
+              >
+                {{ article.created_at }}
+              </div>
+
               <div class="mt-3 text-sm font-bold h-14">
                 <Link :href="route('detail-article.showArticle', article.slug)"
                   ><p>{{ article.title.substring(0, 100) }}</p></Link
                 >
               </div>
-              <div class="text-xs font-medium opacity-80 mt-0 mt-3">
+              <div class="text-xs font-medium opacity-80 mt-3">
                 <span v-html="article.summary.substring(0, 200)"></span>
               </div>
 
               <div
-                class="pt-3 float-right inline-block text-xs font-semibold text-sky-900 w-auto"
+                class="pt-3 float-right inline-block mx-2 text-xs font-semibold text-sky-900 w-auto"
               >
                 <Link :href="route('detail-article.showArticle', article.slug)"
-                  >Readmore</Link
-                >
+                  >Readmore
+                </Link>
               </div>
             </div>
             <br />
@@ -102,28 +108,28 @@ let md = "";
                   </div>
 
                   <p
-                    class="font-medium text-slate-400 text-xs md:text-sm lg:text-base font"
+                    class="font-medium text-slate-400 text-xs md:text-xs lg:text-xs font"
                   >
                     Asked On {{ forum.created_at }} WIB
                   </p>
                   <Link :href="route('detail-forum.showforum', forum.slug)">
                     <div
-                      class="mt-2 text-dark font-semibold mt-7 text-xs md:text-lg"
+                      class="text-dark font-semibold mt-7 text-xs md:text-lg"
                       v-html="forum.subject"
                     ></div>
                   </Link>
                   <div class="mt-4 md:mt-6">
                     <Link :href="route('detail-forum.showforum', forum.slug)">
                       <div
-                        class="flex text-dark items-center text-sm md:text-xl"
+                        class="flex text-dark items-center text-xs md:text-xs"
                       >
                         <HandThumbUpIcon
-                          class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                          class="w-2 h-2 md:w-5 md:h-5 lg:w-6 lg:h-6"
                         />
                         <span class="mx-2 mr-6">{{ forum.likes.length }} </span>
 
                         <ChatBubbleLeftEllipsisIcon
-                          class="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
+                          class="w-2 h-2 md:w-5 md:h-5 lg:w-6 lg:h-6"
                         />
                         <span class="mx-2">{{ forum.comments.length }}</span>
                       </div>
