@@ -93,7 +93,7 @@ const commentadd = () => {
                   class="relative overflow-hidden bg-no-repeat bg-cover relative overflow-hidden bg-no-repeat bg-cover ripple md:my-4 my-2 px-5"
                 >
                   <img
-                    v-bind:src="article.thumbnail"
+                    v-bind:src="'../'+article.thumbnail"
                     class="w-full rounded-3xl mt-4"
                   />
                 </div>

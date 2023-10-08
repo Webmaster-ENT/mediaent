@@ -12,14 +12,14 @@
             <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
           <div class="ml-1 flex flex-shrink-0 items-center">
-            <a href="/">
+            <a href="/mediaent">
               <img
                 class="block h-9 mr-4 w-auto lg:hidden"
                 src="../../../public/pens1.png"
                 alt="Logo pens"
               />
             </a>
-            <a href="/">
+            <a href="/mediaent">
               <img
                 class="block h-12 w-auto lg:hidden"
                 src="../../../public/Logo-ENT-Gelap.svg"
@@ -32,14 +32,14 @@
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
-            <a href="/">
+            <a href="/mediaent">
               <img
                 class="hidden h-9 mr-4 w-auto lg:block"
                 src="../../../public/pens1.png"
                 alt="Logo PENS"
               />
             </a>
-            <a href="/">
+            <a href="/mediaent">
               <img
                 class="hidden h-12 w-auto lg:block"
                 src="../../../public/Logo-ENT-Gelap.svg"
@@ -103,7 +103,7 @@
                 >Video</a
               >
               <a
-                href="https://online.fliphtml5.com/jrzcd/ciqi/"
+                href="https://online.fliphtml5.com/jrzcd/yhnl/"
                 class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
                 target="__blank"
                 >CoreMagz</a
@@ -251,7 +251,7 @@
           <a
             key="coremagz"
             as="a"
-            href="https://online.fliphtml5.com/jrzcd/ciqi/"
+            href="https://online.fliphtml5.com/jrzcd/yhnl/"
             class="px-7 py-2 rounded-md text-sm font-medium hover:font-bold"
             >CoreMagz</a
           >
