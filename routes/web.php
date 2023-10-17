@@ -30,7 +30,7 @@ use App\Http\Controllers\PermissionController;
 |
 */
 
-Route::get('storage-link-dep', function (){
+Route::get('storage-link-dep', function () {
     Artisan::call('storage:link');
     $target = '/home/entpens/media-ent/storage/app/public';
     $shortcut = '/home/entpens/public_html/media-ent/storage';
@@ -48,7 +48,7 @@ Route::get('storage-link-dep', function (){
 
 // Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('all-forum', [FrontEndController::class, 'allforum'])->name('all-forum.allforum');
-Route::get('detail-forum/{forum:slug}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
+Route::get('/detail-forum/{forum:slug}', [FrontEndController::class, 'showforum'])->name('detail-forum.showforum');
 
 Route::get('all-article', [FrontEndController::class, 'allarticle'])->name('all-article.allarticle');
 Route::get('detail-article/{article:slug}', [FrontEndController::class, 'showArticle'])->name('detail-article.showArticle');
@@ -114,4 +114,4 @@ Route::middleware(['role:superadmin'])->group(function () {
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

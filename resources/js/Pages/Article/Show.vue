@@ -68,48 +68,17 @@ const props = defineProps({
                   </p>
                   <div class="text-center my-4">
                     <button
-                      class="
-                        inline-flex
-                        items-center
-                        px-4
-                        py-2
-                        bg-blue-600
-                        border border-transparent
-                        rounded-full
-                        font-semibold
-                        text-xs text-white
-                        uppercase
-                        tracking-widest
-                        hover:bg-blue-500
-                        active:bg-blue-700
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-blue-500
-                        focus:ring-offset-2
-                        dark:focus:ring-offset-gray-800
-                        transition
-                        ease-in-out
-                        duration-150
-                      "
+                      class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-full font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                       disabled
                     >
                       {{ article.category.name }}
                     </button>
                   </div>
                   <div
-                    class="
-                      relative
-                      overflow-hidden
-                      bg-no-repeat bg-cover
-                      relative
-                      overflow-hidden
-                      bg-no-repeat bg-cover
-                      ripple
-                      my-4
-                    "
+                    class="relative overflow-hidden bg-no-repeat bg-cover relative overflow-hidden bg-no-repeat bg-cover ripple my-4"
                   >
                     <img
-                      :src="'../../' + article.thumbnail"
+                      v-bind:src="article.thumbnail"
                       class="w-full rounded-3xl mt-4"
                     />
                   </div>
